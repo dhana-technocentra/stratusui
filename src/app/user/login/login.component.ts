@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
+import { environment } from '../../../environments/environment';
 import { AlertService, AuthenticationService, UserService, LoggerService } from  '../../core';
 
 @Component({
@@ -48,7 +48,13 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        var userObject = {
+            username: this.f.username.value,
+            client_id: environment.oAuthUserName,
+            password: this.f.password.value,
+            grant_type: "password"
+        }
+        this.authenticationService.login(userObject)
             .pipe(first())
             .subscribe(
                 data => {

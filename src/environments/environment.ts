@@ -5,5 +5,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://stratusdev.mavidea.com:8443/stratusservices/v1'
+  apiUrl: 'https://portaldev.stratusnet.com:8888',
+  oAuthUserName: 'companion-oauth2-tQR3GceA86SlTuYM',
+  password: 'SAIbQB#j5!IRZ@mq'
 };
