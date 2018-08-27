@@ -1,7 +1,10 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
+import { UserProfile } from '../models';
 import { User } from '../models';
+
+import { Phone } from '../models';
 
 @Injectable()
 export class UserService {	
@@ -27,4 +30,17 @@ export class UserService {
     delete(id: number) {
         return this.http.delete(`${environment.apiUrl}/users/` + id);
     }
-}
+
+    getUserProfile(userId: string){
+        return this.http.get(`${environment.apiUrl}/api/profile/getUserProfile?userId=` + userId);
+    }
+
+    updateUserProfile(userProfile: UserProfile) {
+        console.log('update userProfile', userProfile);
+        return this.http.post(`${environment.apiUrl}/api/profile/updateUserProfile`, JSON.stringify(userProfile));
+    }
+
+    updatePassword(user: User) {
+        return this.http.put(`${environment.apiUrl}/api/profile/updatePassword`, user);
+    }
+}   

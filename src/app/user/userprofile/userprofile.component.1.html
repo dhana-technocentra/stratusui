@@ -1,0 +1,123 @@
+<h2>Edit user profile</h2>
+<form [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+        />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="isActive">isActive</label>
+      <input type="text" formControlName="isActive" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.isActive.errors }"
+      />
+      <div *ngIf="submitted && f.isActive.errors" class="invalid-feedback">
+          <div *ngIf="f.isActive.errors.required">isActive is required</div>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="registerDate">Register Date</label>
+    <input type="text" formControlName="registerDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.registerDate.errors }"
+    />
+    <div *ngIf="submitted && f.registerDate.errors" class="invalid-feedback">
+        <div *ngIf="f.registerDate.errors.required">registerDate is required</div>
+    </div>
+</div>    
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+        />
+        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+        />
+        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+            <div *ngIf="f.email.errors.email">Invalid Email Address</div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
+      />
+      <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+          <div *ngIf="f.address.errors.required">address is required</div>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="city">city</label>
+    <input type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
+    />
+    <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+        <div *ngIf="f.city.errors.required">city is required</div>
+    </div>
+</div>
+<div class="form-group">
+  <label for="state">state</label>
+  <input type="text" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }"
+  />
+  <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+      <div *ngIf="f.state.errors.required">state is required</div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="zipCode">zipCode</label>
+  <input type="text" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }"
+  />
+  <div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
+      <div *ngIf="f.zipCode.errors.required">zipCode is required</div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="title">Title</label>
+  <input type="text" formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
+  />
+  <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+      <div *ngIf="f.title.errors.required">Title is required</div>
+  </div>
+</div>
+  <div class="form-group">
+    <label for="officePhone">officePhone</label>
+    <input type="text" formControlName="officePhone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.officePhone.errors }"
+    />
+    <div *ngIf="submitted && f.officePhone.errors" class="invalid-feedback">
+        <div *ngIf="f.officePhone.errors.required">officePhone is required</div>
+    </div>
+</div>
+<div class="form-group">
+    
+  <label for="cellPhone">cellPhone</label>
+  <input type="text" formControlName="cellPhone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cellPhone.errors }"
+  />
+  <div *ngIf="submitted && f.cellPhone.errors" class="invalid-feedback">
+      <div *ngIf="f.cellPhone.errors.required">cellPhone is required</div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="faxPhone">faxPhone</label>
+  <input type="text" formControlName="faxPhone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.faxPhone.errors }"
+  />
+  <div *ngIf="submitted && f.faxPhone.errors" class="invalid-feedback">
+      <div *ngIf="f.faxPhone.errors.required">faxPhone is required</div>
+  </div>
+</div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">Register</button>
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+        />
+        <a [routerLink]="['/user/login']" class="btn btn-link">Cancel</a>
+    </div>
+</form>

@@ -11,7 +11,7 @@ import { InvoiceModule } from './invoice/invoice.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { CustomerSupportModule } from './customersupport/customersupport.module';
 
-@NgModule({
+@NgModule({ 
   declarations: [
     AppComponent    
   ],

@@ -31,7 +31,9 @@ import {
 	  MatToolbarModule,
 	  MatTooltipModule,
 	  MatSortModule,
-	  MatPaginatorModule
+	  MatPaginatorModule,
+		MatFormFieldModule,
+		MatOptionModule
 	} from '@angular/material';
 
 
@@ -41,13 +43,25 @@ import {
     MatTableModule,
     MatCheckboxModule,
     MatSortModule,
-    MatPaginatorModule
+		MatPaginatorModule,
+		MatCardModule,
+		MatFormFieldModule,
+		MatSlideToggleModule,
+		MatOptionModule,
+    		MatSelectModule,
+    		MatInputModule
   ],
   exports: [            
             MatTableModule,
             MatCheckboxModule,
             MatSortModule,
-            MatPaginatorModule
+			MatPaginatorModule,
+			MatCardModule,
+			MatFormFieldModule,
+			MatSlideToggleModule,
+			MatOptionModule,
+    		MatSelectModule,
+    		MatInputModule
           ],
   declarations: []
 })

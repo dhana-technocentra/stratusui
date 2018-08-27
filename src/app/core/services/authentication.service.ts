@@ -13,17 +13,21 @@ export class AuthenticationService {
     private oAuthPassword = environment.password;
     constructor(private http: Http) { }
 
-    login(params: any): Observable<any> {
+    login(userObject: any): Observable<any> {
+        console.log('userObject',userObject);
         const headers = new Headers();
         const options = new RequestOptions({ headers: this.getHeaders() });
-        console.log(params, options);
-        return this.http.post(`${environment.apiUrl}/oauth/token`, params, options)
+       
+        let creds="client_id="+ userObject.client_id + "&username="+userObject.username + "&password="+userObject.password + "&grant_type=password";
+        console.log('creds',creds);
+        return this.http.post(`${environment.apiUrl}/oauth/token`, creds, options)
             .map(user => {
-                console.log(user);
+                console.log('authenticated user', user , user.json()["access_token"]);
                 // login successful if there's a jwt token in the response
-                if (user && user["token"]) {
+                if (user && user.json()["access_token"]) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
+                    localStorage.setItem('access_token', JSON.stringify(user.json()["access_token"]));
                 }
             });
     }
@@ -36,7 +40,8 @@ export class AuthenticationService {
     private getHeaders() {
         const headers = new Headers();
         headers.append("Authorization", "Basic " + btoa(this.oAuthUserName + ":" + this.oAuthPassword));
-        headers.append("Content-Type", "multipart/form-data");
+        headers.append("Content-Type", "application/x-www-form-urlencoded");
+      
         return headers;
     }
 }
