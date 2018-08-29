@@ -1,5 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { Response, RequestOptions, Headers } from '@angular/http';
 import {environment} from '../../../environments/environment';
 import { UserProfile } from '../models';
 import { User } from '../models';
@@ -37,10 +38,21 @@ export class UserService {
 
     updateUserProfile(userProfile: UserProfile) {
         console.log('update userProfile', userProfile);
-        return this.http.post(`${environment.apiUrl}/api/profile/updateUserProfile`, JSON.stringify(userProfile));
+        return this.http.post(`${environment.apiUrl}/api/profile/updateUserProfile`, JSON.stringify(userProfile), this.getOptions());
     }
 
     updatePassword(user: User) {
         return this.http.put(`${environment.apiUrl}/api/profile/updatePassword`, user);
+    }
+
+    private getHeaders() {
+        const headers = new HttpHeaders();
+        headers.append("Content-Type", "application/json");      
+        return headers;
+    }
+
+    private getOptions(){
+        //const options = new RequestOptions({ headers: this.getHeaders() });
+        return {headers: this.getHeaders()};
     }
 }   

@@ -34,9 +34,10 @@ import {
 	  MatPaginatorModule,
 		MatFormFieldModule,
 		MatOptionModule
+		
 	} from '@angular/material';
 
-
+import { MatMomentDateModule} from '@angular/material-moment-adapter';
 @NgModule({
   imports: [
     CommonModule,
@@ -49,7 +50,9 @@ import {
 		MatSlideToggleModule,
 		MatOptionModule,
     		MatSelectModule,
-    		MatInputModule
+			MatInputModule,
+			MatDatepickerModule,
+			MatMomentDateModule
   ],
   exports: [            
             MatTableModule,
@@ -61,8 +64,9 @@ import {
 			MatSlideToggleModule,
 			MatOptionModule,
     		MatSelectModule,
-    		MatInputModule
-          ],
+			MatInputModule,
+			MatDatepickerModule
+		  ],		 
   declarations: []
 })
 export class MaterialModule { }
