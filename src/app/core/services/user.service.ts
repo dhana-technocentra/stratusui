@@ -42,7 +42,7 @@ export class UserService {
     }
 
     updatePassword(user: User) {
-        return this.http.put(`${environment.apiUrl}/api/profile/updatePassword`, user);
+        return this.http.post(`${environment.apiUrl}/api/profile/updatePassword`, JSON.stringify(user), this.getOptions());
     }
 
     private getHeaders() {
