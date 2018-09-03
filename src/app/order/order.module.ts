@@ -9,11 +9,13 @@ import { MaterialModule }  from '../material/material.module';
 import { OrderRoutingModule }  from './order.routing';
 
 import { OrderComponent } from './order.component';
-
+import { OrderService } from './order.service';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
-    OrderComponent
+    OrderComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +24,9 @@ import { OrderComponent } from './order.component';
     CoreModule,
     MaterialModule,
     OrderRoutingModule
+  ],
+  providers: [
+    OrderService
   ]
 })
 export class OrderModule { }

@@ -6,6 +6,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+const jwtHelper = new JwtHelperService();
+
 @Injectable()
 export class AuthenticationService {
     private servicesUrl: string = environment.apiUrl;
@@ -37,6 +41,17 @@ export class AuthenticationService {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
     }
+
+    public isAuthenticated(): boolean {
+        const token = localStorage.getItem('access_token');
+        
+        if (localStorage.getItem('currentUser')) {
+            // logged in so return true
+            return true;
+        }
+        return false;
+       // return !jwtHelper.isTokenExpired(token);
+      }
 
     private getHeaders() {
         const headers = new Headers();

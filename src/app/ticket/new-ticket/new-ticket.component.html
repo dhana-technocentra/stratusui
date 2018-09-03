@@ -1,0 +1,98 @@
+<mat-card>
+  <!-- Title of an Card -->
+  <mat-card-title>
+    New Ticket
+  </mat-card-title>
+  
+    
+  <mat-card-content>
+    <form [formGroup]="newTicketForm" (ngSubmit)="onFormSubmit(newTicketForm.value)">
+      
+      <table>
+        <tr>
+          <td colspan="2">
+            <mat-form-field>
+              <input formControlName="ponNumber" matInput placeholder="Pon Number">
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!newTicketForm.get('ponNumber').valid && newTicketForm.get('ponNumber').touched">Please enter
+                valid pon number !!!</span>
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field>
+              <input formControlName="severityParmValue" matInput placeholder="Severity">
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!newTicketForm.get('severityParmValue').valid && newTicketForm.get('severityParmValue').touched">Please enter
+                valid severity !!!</span>
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field>
+              <input formControlName="shortDescription" matInput placeholder="Short Description">
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!newTicketForm.get('shortDescription').valid && newTicketForm.get('shortDescription').touched">Please enter
+                valid short description !!!</span>
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field>
+              <input formControlName="fullDescription" matInput placeholder="Full Description">
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!newTicketForm.get('fullDescription').valid && newTicketForm.get('fullDescription').touched">Please enter
+                valid full description !!!</span>
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field>
+              <input formControlName="contactPersonName" matInput placeholder="Contact Person Name">
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!newTicketForm.get('contactPersonName').valid && newTicketForm.get('contactPersonName').touched">Please enter
+                valid contact person name !!!</span>
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field>
+              <input formControlName="phoneNumber" matInput placeholder="Phone Number">
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!newTicketForm.get('phoneNumber').valid && newTicketForm.get('phoneNumber').touched">Please enter
+                valid phone number !!!</span>
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field>
+              <input formControlName="operationHours" matInput placeholder="Operation Hours">
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!newTicketForm.get('operationHours').valid && newTicketForm.get('operationHours').touched">Please enter
+                valid operation hours !!!</span>
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="content-center">
+              <button mat-raised-button color="accent">Submit</button>
+              <button mat-raised-button color="accent">Clear</button>
+          </td>
+      </tr>
+      </table>
+    </form>
+  </mat-card-content>
+</mat-card>

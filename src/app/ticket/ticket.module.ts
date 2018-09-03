@@ -9,10 +9,13 @@ import { MaterialModule }  from '../material/material.module';
 import { TicketRoutingModule }  from './ticket.routing';
 
 import { TicketComponent } from './ticket.component';
+import { TicketService } from './ticket.service';
+import { NewTicketComponent } from './new-ticket/new-ticket.component';
 
 @NgModule({
   declarations: [
-    TicketComponent
+    TicketComponent,
+    NewTicketComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +24,9 @@ import { TicketComponent } from './ticket.component';
     CoreModule,
     MaterialModule,
     TicketRoutingModule
+  ],
+  providers:[
+    TicketService
   ]
 })
 export class TicketModule { }

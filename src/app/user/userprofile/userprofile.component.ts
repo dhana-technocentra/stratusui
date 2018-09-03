@@ -86,7 +86,16 @@ export class UserProfileComponent implements OnInit {
                 }),           
             fax: 
                 this.formBuilder.group({phoneNumber:['',]}),          
-            isActive: ['']
+            isActive: [''],
+            userPermissions:  
+                this.formBuilder.group({
+                    invoiceManagement: [''],
+                    firewallRead: [''],
+                    firewallWrite: [''],
+                    voiceRead: [''],
+                    voiceWrite: [''],
+                    networkStatistics: ['']
+                }),
         });
 
     const queryParms = this.route.snapshot.queryParams;

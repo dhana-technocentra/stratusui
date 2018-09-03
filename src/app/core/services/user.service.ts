@@ -6,11 +6,14 @@ import { UserProfile } from '../models';
 import { User } from '../models';
 
 import { Phone } from '../models';
+import { BaseService } from './base.service';
 
 @Injectable()
-export class UserService {	
+export class UserService extends BaseService{	
 	
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { 
+        super();
+    }
 
     getAll() {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
@@ -43,16 +46,5 @@ export class UserService {
 
     updatePassword(user: User) {
         return this.http.post(`${environment.apiUrl}/api/profile/updatePassword`, JSON.stringify(user), this.getOptions());
-    }
-
-    private getHeaders() {
-        const headers = new HttpHeaders();
-        headers.append("Content-Type", "application/json");      
-        return headers;
-    }
-
-    private getOptions(){
-        //const options = new RequestOptions({ headers: this.getHeaders() });
-        return {headers: this.getHeaders()};
-    }
+    }   
 }   

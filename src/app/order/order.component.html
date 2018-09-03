@@ -1,3 +1,19 @@
-<p>
-  order works!
-</p>
+<form [formGroup]="orderSummaryForm" >
+<div>
+  <table>
+    <tr>
+      <td>
+        Service Category
+      </td>
+      <td>
+        <mat-form-field>
+          <input formControlName="serviceCategory" matInput readonly>
+        </mat-form-field>
+      </td>
+      <td>
+        {{orderSummary.serviceCategory}}
+      </td>
+    </tr>
+  </table>
+</div>
+</form>
