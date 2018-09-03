@@ -1,0 +1,21 @@
+<div *ngFor="let orderPhone of orderPhones">
+  <table>
+    <tr>
+      <td>
+        Local Dialin Number
+      </td>      
+      <td>
+        {{orderPhone?.localDialInNumber}}
+      </td>
+    </tr>
+    <tr>
+        <td>
+          Number
+        </td>      
+        <td>
+          {{orderPhone?.number}}
+        </td>
+      </tr>
+
+  </table>
+</div>

@@ -14,7 +14,8 @@ import { OrderSummary, LocationInfo } from './../core/models';
 })
 export class OrderComponent implements OnInit {
   orderSummaryForm: FormGroup;
-  orderSummary: OrderSummary;
+  orderSummaries: OrderSummary[] = [];
+  //orderSummary: OrderSummary;
   loading = false;
   submitted = false;
 
@@ -31,15 +32,24 @@ export class OrderComponent implements OnInit {
 
     const queryParms = this.route.snapshot.queryParams;
     const orderId = (queryParms.orderId) ? queryParms.orderId : null;
+    const companyId = (queryParms.companyId) ? queryParms.companyId : null;
 
     if (queryParms.orderId) {
       this.orderService.getOrderSummaryByOrderId(orderId)
         .subscribe(data => {
           this.orderSummaryForm.setValue(data);
-          this.orderSummary = this.getOrderSymmaryData(data);
+          this.orderSummaries.push(this.getOrderSymmaryData(data));
+          console.log('order summary', this.orderSummaryForm);
+        });
+    } else if (queryParms.companyId) {
+      this.orderService.getOrderSummariesByCompanyId(companyId)
+        .subscribe(data => {
+          //this.orderSummaryForm.setValue(data);
+          this.getOrderSummaries(data);
           console.log('order summary', this.orderSummaryForm);
         });
     }
+
   }
 
   getFormGroup() {
@@ -69,6 +79,15 @@ export class OrderComponent implements OnInit {
       ponNumber: [''],
       serviceCategory: ['']
     });
+  }
+
+  getOrderSummaries(data){
+    Object.keys(data).forEach( index => {
+      console.log("push before orderSummaryData", data[index]);
+      let orderSummary = this.getOrderSymmaryData(data[index]);
+      this.orderSummaries.push(orderSummary);
+      console.log("push ordersummary", orderSummary);
+    })
   }
 
   getOrderSymmaryData(data) {

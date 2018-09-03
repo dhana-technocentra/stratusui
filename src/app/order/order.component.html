@@ -1,5 +1,5 @@
 <form [formGroup]="orderSummaryForm" >
-<div>
+  <div *ngFor="let orderSummary of orderSummaries">
   <table>
     <tr>
       <td>
@@ -11,9 +11,79 @@
         </mat-form-field>
       </td>
       <td>
-        {{orderSummary.serviceCategory}}
+        {{orderSummary?.serviceCategory}}
       </td>
     </tr>
+    <tr>
+      <td>
+        Media Type
+      </td>      
+      <td>
+        {{orderSummary?.mediaType}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        HeadLocation
+      </td>      
+      <td>
+        {{orderSummary?.headLocation?.name}}
+        {{orderSummary?.headLocation?.address}}
+        {{orderSummary?.headLocation?.city}}
+        {{orderSummary?.headLocation?.state}}
+        {{orderSummary?.headLocation?.zip}}
+        {{orderSummary?.headLocation?.npa}}
+        {{orderSummary?.headLocation?.name}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+          PonNumber
+      </td>      
+      <td>
+        {{orderSummary?.ponNumber}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+          OrderSerId
+      </td>      
+      <td>
+        {{orderSummary?.orderSerId}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+          Account Number
+      </td>      
+      <td>
+        {{orderSummary?.accountNumber}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+          Company Name
+      </td>      
+      <td>
+        {{orderSummary?.companyName}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+          Order Service State
+      </td>      
+      <td>
+        {{orderSummary?.orderServiceState}}
+      </td>
+    </tr>
+    <tr>
+        <td>
+            Order Service Country
+        </td>      
+        <td>
+          {{orderSummary?.orderServiceCountry}}
+        </td>
+      </tr>
   </table>
 </div>
 </form>

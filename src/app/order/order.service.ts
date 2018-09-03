@@ -12,19 +12,17 @@ export class OrderService  extends BaseService{
    }
 
   getOrderSummariesByCompanyId(companyId: number) {
-    return this.http.get(`${environment.apiUrl}/api/orders/getOrderSummaries?companyId=` + companyId)
-                    .map((response:Response)=>response.json());
+    return this.http.get(`${environment.apiUrl}/api/orders/getOrderSummaries?companyId=` + companyId);
   }
 
   getOrderSummaryByOrderId(orderId: number) {
     return this.http.get(`${environment.apiUrl}/api/orders/getOrderSummary?orderId=` + orderId);
-                    //.map((response:Response)=>response.json);
+    
   }
   
   getOrderPhoneByType(orderId: number,phoneType: string) {
     const params: string = "?orderId="+ orderId + "&phoneType=" + phoneType;
-    return this.http.get(`${environment.apiUrl}/api/orders/getOrderPhoneByType`+params)
-                    .map((response:Response)=>response.json());
+    return this.http.get(`${environment.apiUrl}/api/orders/getOrderPhoneByType`+params);
   }
 
   getOrderDetailByOrderId(orderId: number) {

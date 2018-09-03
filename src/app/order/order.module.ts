@@ -11,11 +11,13 @@ import { OrderRoutingModule }  from './order.routing';
 import { OrderComponent } from './order.component';
 import { OrderService } from './order.service';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { OrderPhoneComponent } from './order-phone/order-phone.component';
 
 @NgModule({
   declarations: [
     OrderComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    OrderPhoneComponent
   ],
   imports: [
     BrowserModule,
