@@ -1,38 +1,44 @@
-<mat-card>
-    <!-- Title of an Card -->
-    <mat-card-title>
-        Login
-    </mat-card-title>
-    <mat-card-content>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <table>
-                <tr>
-                    <td colspan="2">
-                        <mat-form-field>
-                            <input formControlName="username" matInput placeholder="User Name">
-                        </mat-form-field>
-                        <mat-error>  
-                                <span *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">Please enter valid user name !!!</span>  
-                         </mat-error> 
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <mat-form-field>
-                            <input formControlName="password" matInput placeholder="Password" type="password">
-                        </mat-form-field>
-                        <mat-error>  
-                                <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">Please enter valid password !!!</span>  
-                         </mat-error> 
-                    </td>
-                </tr>                
-                <tr>
-                    <td colspan="2" class="content-center">
-                        <button mat-raised-button color="accent">Submit</button>
-                        <button mat-raised-button color="accent">Register</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </mat-card-content>
-</mat-card>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="loginform">
+                            <div class="loginheader">Stratus Customer Login</div>
+                            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label for="username" class="formlabel">Username</label>
+                                            <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+                                            />
+                                            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                                <div *ngIf="f.username.errors.required">Username is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label for="password" class="formlabel">Password</label>
+                                            <input type="text" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                                            />
+                                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-xs-offset-3">
+                                        <div class="form-group">
+                                            <button type="submit" class="form-control" id="loginsubmit">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

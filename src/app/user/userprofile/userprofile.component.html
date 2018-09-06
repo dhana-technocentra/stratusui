@@ -1,153 +1,207 @@
-<mat-card>
-    <!-- Title of an Card -->
-    <mat-card-title>
-        Edit user profile
-    </mat-card-title>
-    <mat-card-content>
-        <form [formGroup]="userProfileForm" (ngSubmit)="onFormSubmit(userProfileForm.value)">
-            <input formControlName="userSerId" type="hidden">
-            <input formControlName="personSerId" type="hidden">
-            <input formControlName="locationSerId" type="hidden">
-            <input formControlName="companyId" type="hidden">
-            <input formControlName="isActive" type="hidden">
-            <table>
-                <tr>
-                    <td colspan="2">
-                        <mat-form-field>
-                            <input formControlName="username" matInput placeholder="User Name">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!userProfileForm.get('username').valid && userProfileForm.get('username').touched">Please
-                                enter valid user name !!!</span>
-                        </mat-error>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="demo-full-width">
-                            <input formControlName="firstName" matInput placeholder="First Name">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!userProfileForm.get('firstName').valid && userProfileForm.get('firstName').touched">Please
-                                enter valid first name !!!</span>
-                        </mat-error>
-                    </td>
-                    <td>
-                        <mat-form-field class="demo-full-width">
-                            <input formControlName="lastName" matInput placeholder="Last Name">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!userProfileForm.get('lastName').valid && userProfileForm.get('lastName').touched">Please
-                                enter valid last name !!!</span>
-                        </mat-error>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">                        
-                        <mat-form-field>
-                            <input matInput [matDatepicker]="picker" formControlName="registerDate" placeholder="Register date">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                          </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <mat-form-field class="demo-full-width">
-                            <input formControlName="email" matInput placeholder="Email">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!userProfileForm.get('email').valid && userProfileForm.get('email').touched">Please
-                                enter valid email !!!</span>
-                        </mat-error>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <mat-form-field class="demo-full-width">
-                            <input formControlName="address" matInput placeholder="Address">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!userProfileForm.get('address').valid && userProfileForm.get('address').touched">Please
-                                enter address !!!</span>
-                        </mat-error>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="demo-full-width">
-                            <input formControlName="city" matInput placeholder="City">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!userProfileForm.get('city').valid && userProfileForm.get('city').touched">Please
-                                enter city !!!</span>
-                        </mat-error>
-                    </td>
-                    <td>
-                        <mat-form-field class="demo-full-width">
-                            <input formControlName="state" matInput placeholder="State">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!userProfileForm.get('state').valid && userProfileForm.get('state').touched">Please
-                                enter state !!!</span>
-                        </mat-error>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <mat-form-field class="demo-full-width">
-                            <input formControlName="zipCode" matInput placeholder="Zipcode">
-                        </mat-form-field>
-                        <mat-error>
-                            <span *ngIf="!userProfileForm.get('zipCode').valid && userProfileForm.get('zipCode').touched">Please
-                                enter zip code !!!</span>
-                        </mat-error>
-                    </td>
-                </tr>
-                <tr>
-                    <div formGroupName="officePhone">
-                        <td>
-                            <mat-form-field class="demo-full-width">
-                                <input formControlName="phoneNumber" matInput placeholder="Office Phone">
-                            </mat-form-field>
-                        </td>
-                        <td>
-                            <mat-form-field class="demo-full-width">
-                                <input formControlName="extension" matInput placeholder="Extn">
-                            </mat-form-field>
-                        </td>
-                    </div>
-                </tr>
-                <tr>
-                    <div formGroupName="cellPhone">
-                        <td colspan="2">
-                            <mat-form-field class="demo-full-width">
-                                <input formControlName="phoneNumber" matInput placeholder="Cell Phone">
-                            </mat-form-field>
-                        </td>
-                    </div>
-                </tr>
-                <tr>
-                    <div formGroupName="fax">
-                        <td colspan="2">
-                            <mat-form-field class="demo-full-width">
-                                <input formControlName="phoneNumber" matInput placeholder="Fax Phone">
-                            </mat-form-field>
-                        </td>
-                    </div>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <mat-slide-toggle (change)="onChange($event)" [checked]="isActiveToggle">Active?</mat-slide-toggle>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="content-center">
-                        <button mat-raised-button color="accent">Submit</button>
-                        <button mat-raised-button color="accent">Clear</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </mat-card-content>
-</mat-card>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-5 col-xs-offset-1">
+                <h4 class="userprofileheader1">Status</h4>
+                <h4 class="userprofileheader2">OPTIMAL SERVICE</h4>
+            </div>
+            <div class="col-xs-5 col-xs-offset-1">
+                <h4 class="userprofileheader1">Registered Since</h4>
+                <h4 class="userprofileheader2">12/12/2018</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <form [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
+                        <div class="col-xs-5 col-xs-offset-1">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="firstname" class="formlabel">First Name</label>
+                                        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+                                        />
+                                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="lastname" class="formlabel">Last Name</label>
+                                        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+                                        />
+                                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="title" class="formlabel">Title</label>
+                                        <input type="text" formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
+                                        />
+                                        <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                            <div *ngIf="f.title.errors.required">Title is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="email" class="formlabel">Email</label>
+                                        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                                        />
+                                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                            <div *ngIf="f.email.errors.required">Email is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="address" class="formlabel">Address</label>
+                                        <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
+                                        />
+                                        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                            <div *ngIf="f.address.errors.required">Address is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="city" class="formlabel">City</label>
+                                        <input type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+                                        <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                            <div *ngIf="f.city.errors.required">City is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="state" class="formlabel">State</label>
+                                        <input type="text" formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }"
+                                        />
+                                        <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                            <div *ngIf="f.state.errors.required">State is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="zip" class="formlabel">Zip</label>
+                                        <input type="text" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }"
+                                        />
+                                        <div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
+                                            <div *ngIf="f.zipCode.errors.required">Zipcode is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-5 col-xs-offset-1">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="officephonenumber" class="formlabel">Office Phone</label>
+                                        <input type="text" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }"
+                                        />
+                                        <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+                                            <div *ngIf="f.phoneNumber.errors.required">Phone Number is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="officeext" class="formlabel">Office Ext</label>
+                                        <input type="text" formControlName="extension" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="mobilephonenumber" class="formlabel">Mobile</label>
+                                        <input type="text" formControlName="cellPhone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cellPhone.errors }"
+                                        />
+                                        <div *ngIf="submitted && f.cellPhone.errors" class="invalid-feedback">
+                                            <div *ngIf="f.cellPhone.errors.required">Mobile is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="fax" class="formlabel">Fax</label>
+                                        <input type="text" formControlName="fax" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fax.errors }" />
+                                        <div *ngIf="submitted && f.fax.errors" class="invalid-feedback">
+                                            <div *ngIf="f.fax.errors.required">Fax is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="currentpassword" class="formlabel">Current Password</label>
+                                        <input type="text" formControlName="currentPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.currentPassword.errors }"
+                                        />
+                                        <div *ngIf="submitted && f.currentPassword.errors" class="invalid-feedback">
+                                            <div *ngIf="f.currentPassword.errors.required">Current Password is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="newpassword" class="formlabel">New Password</label>
+                                        <input type="text" formControlName="newPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.newPassword.errors }"
+                                        />
+                                        <div *ngIf="submitted && f.newPassword.errors" class="invalid-feedback">
+                                            <div *ngIf="f.newPassword.errors.required">New Password is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="repeatpassword" class="formlabel">Repeat Password</label>
+                                        <input type="text" formControlName="repeatPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.repeatPassword.errors }"
+                                        />
+                                        <div *ngIf="submitted && f.repeatPassword.errors" class="invalid-feedback">
+                                            <div *ngIf="f.repeatPassword.errors.required">Repeat Password is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-xs-offset-3">
+                                    <div class="form-group">
+                                        <button type="submit" class="form-control" id="updateprofile">Update Profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

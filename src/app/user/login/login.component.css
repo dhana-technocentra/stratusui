@@ -1,0 +1,30 @@
+.loginform {
+    background: linear-gradient(to bottom, #50EAF8 0%, #5FB6E8 100%);
+    padding: 2rem 3rem; 
+    margin-top: 60px;
+}
+.loginheader {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;    
+    color: white;
+    text-align: center;
+    text-justify: inter-word;
+    margin-bottom: 25px;
+}
+.formlabel {
+    font-size: 12px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+#loginsubmit {
+    background-color: #0F75BD;
+    border: 3px white solid;
+    margin-top: 35px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+}
+.invalid-feedback {
+    color: red;
+}
