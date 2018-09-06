@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { AlertService, AuthenticationService, UserService, LoggerService } from  '../../core';
+import { AppComponent } from './../../app.component';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private alertService: AlertService) {}
+        private alertService: AlertService, private appComponent: AppComponent) {}
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
@@ -34,6 +35,8 @@ export class LoginComponent implements OnInit {
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
+        this.appComponent.title = "Login";
     }
 
     // convenience getter for easy access to form fields
@@ -60,7 +63,7 @@ export class LoginComponent implements OnInit {
                 data => {
                     localStorage.setItem('user_name', userObject.username);
                     console.log('user_name set',userObject.username);
-                    this.router.navigate([this.returnUrl]);
+                    this.router.navigate(['user/userprofile']);
                 },
                 error => {
                     this.alertService.error(error);

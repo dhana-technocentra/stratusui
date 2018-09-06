@@ -1,0 +1,38 @@
+.userprofileheader1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px;    
+    color: #064B94;
+    text-align: left;
+    text-justify: inter-word;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+.userprofileheader2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;    
+    color: #064B94;
+    text-align: left;
+    margin-bottom: 30px;
+}
+.formlabel {
+    font-size: 12px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    color: #064B94;
+    margin-top: 10px;
+    margin-left: 6px;
+}
+
+input {
+    border: 1px #707070 solid;
+}
+
+#updateprofile {
+    margin-top: 25px;
+    border: 3px;
+    color: white;
+    background-color: #0F75BD;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+}

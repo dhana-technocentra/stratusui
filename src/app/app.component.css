@@ -1,0 +1,14 @@
+#header {
+    margin-top: 10px;
+}
+#headertitle {
+    font-size: 32px;
+    text-align: center;
+    opacity: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+.headerborder {
+    margin-top: 15px;
+    border-width: 3px;
+    border-color: #064B94;
+}

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AlertService, UserService } from '../../core';
-
+import { AppComponent } from './../../app.component';
 import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
@@ -55,7 +55,8 @@ export class UserProfileComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private userService: UserService,
-        private alertService: AlertService) { }
+        private alertService: AlertService,
+        private appComponent: AppComponent) { }
 
     ngOnInit() {
        // let userId = localStorage.getItem("editUserId");
@@ -114,6 +115,8 @@ export class UserProfileComponent implements OnInit {
 
             }); 
         }
+        this.appComponent.title = "Profile";
+
     }
 
 
