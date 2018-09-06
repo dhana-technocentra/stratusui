@@ -1,11 +1,102 @@
 <!-- main app container -->
-<div class="jumbotron">
-  <div class="container">
-      <div class="row">
-          <div class="col-sm-6 offset-sm-3">
-              <alert></alert>
-              <router-outlet></router-outlet>
+<div id="page">
+  <div id="canvas" class="page-canvas">
+    <a class="skip-link screen-reader-text sr-only" href="#content">Skip to Content</a>
+    
+    <header class="header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col logo-wrap">
+            <a href="/"><svg class="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 43"><image width="60" height="43" xlink:href="data:image/png;base64,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"/></svg></a>
           </div>
+
+          <div class="col page-title">
+            <h1>{{title}}</h1>
+          </div>
+
+          <div class="col"></div>
+
+        </div>
       </div>
-  </div>
-</div>
+    </header>
+
+    <nav class="navbar" role="navigation" temscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+      <div class="navbar-inner d-flex flex-xs-row-reverse flex-sm-row-reverse flex-md-column  align-items-stretch">
+        <div class="nav greedy nav-main-wrap">
+          <ul class="nav links">
+            <li>
+              <a href="#">  
+                <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M75,30.47v47a5,5,0,0,1-5,5H30a5,5,0,0,1-5-5v-55a5,5,0,0,1,5-5H59.69Z"/><path d="M75,30.47H64.69a5,5,0,0,1-5-5v-8"/><line x1="47.5" y1="37.5" x2="67.5" y2="37.5"/><line x1="31.25" y1="47.5" x2="67.5" y2="47.5"/><line x1="31.25" y1="55" x2="68.75" y2="55"/><line x1="31.25" y1="65" x2="68.75" y2="65"/><line x1="31.25" y1="75" x2="52.5" y2="75"/><path d="M38.75,32.5h-2.5a3.76,3.76,0,0,1-3.75-3.75h0A3.76,3.76,0,0,1,36.25,25h5"/><path d="M36.25,32.5h2.5a3.76,3.76,0,0,1,3.75,3.75h0A3.76,3.76,0,0,1,38.75,40h-5"/><line x1="37.5" y1="24.71" x2="37.5" y2="22.5"/><line x1="37.5" y1="42.35" x2="37.5" y2="40.15"/></svg>
+                Invoices
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polyline points="82.5 82.5 17.5 82.5 17.5 17.5"/><line x1="17.5" y1="37.5" x2="82.5" y2="37.5"/><line x1="17.5" y1="60" x2="82.5" y2="60"/><rect x="22.5" y="20" width="25" height="17.5"/><rect x="55" y="20" width="25" height="17.5"/><rect x="22.5" y="42.5" width="25" height="17.5"/><rect x="55" y="42.5" width="25" height="17.5"/><rect x="22.5" y="65" width="25" height="17.5"/><rect x="55" y="65" width="25" height="17.5"/><rect x="32.5" y="20" width="5" height="5"/><rect x="65" y="20" width="5" height="5"/><rect x="32.5" y="42.5" width="5" height="5"/><rect x="65" y="42.5" width="5" height="5"/><rect x="32.5" y="65" width="5" height="5"/><rect x="65" y="65" width="5" height="5"/></svg>
+                Inventory
+              </a>
+            </li>
+            <li class="greedy-mobile">
+              <a href="#">
+                <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="12.5" y="31.25" width="75" height="37.5"/><rect  x="12.5" y="56.25" width="30" height="12.5"/><rect x="42.5" y="56.25" width="30" height="12.5"/><rect x="72.5" y="56.25" width="15" height="12.5"/><rect x="57.5" y="43.75" width="30" height="12.5" transform="translate(145 100) rotate(180)"/><rect x="27.5" y="43.75" width="30" height="12.5" transform="translate(85 100) rotate(180)"/><rect x="12.5" y="43.75" width="15" height="12.5" transform="translate(40 100) rotate(180)"/><rect x="12.5" y="31.25" width="30" height="12.5"/><rect x="42.5" y="31.25" width="30" height="12.5"/><rect x="72.5" y="31.25" width="15" height="12.5"/></svg>
+                Firewall
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="85 15 15 62.5 40 62.5 40 85 52.5 67.5 77.5 85 85 15"/><line x1="40" y1="62.5" x2="85" y2="15"/><line x1="52.5" y1="67.5" x2="85" y2="15"/></svg>
+                Quote
+              </a>
+            </li>
+            <li class="greedy-mobile">
+              <a href="#">
+                <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M73,83.55a37.5,37.5,0,1,0-47.66-1.33"/><path d="M75,54a27.5,27.5,0,0,0-53.49-9"/><path d="M58.7,38.78a27.54,27.54,0,0,0-29.35-5.19"/><path d="M67.05,54a27.55,27.55,0,0,0-3.35-9"/><path d="M51.65,66.74A5,5,0,1,1,44,60.41c.91-.9,23.54-29,23.54-29S52.19,66,51.65,66.74Z"/></svg>
+                Network
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M80,47.5V36.43C80,21.21,68.75,8.75,55,8.75H45c-13.75,0-25,12.46-25,27.68V47.5"/><path d="M56.89,88.12A15.28,15.28,0,0,0,72,72.72"/><rect x="24.37" y="41.25" width="7.5" height="32.5"/><path d="M24.38,71.25H21.46c-3.21,0-5.84-2.25-5.84-5v-15c0-2.75,2.63-5,5.84-5h2.92"/><rect x="68.12" y="41.25" width="7.5" height="32.5" transform="translate(143.75 115) rotate(-180)"/><path d="M75.62,71.25h2.92c3.21,0,5.83-2.25,5.83-5v-15c0-2.75-2.63-5-5.84-5H75.62"/><rect x="43.44" y="83.75" width="13.26" height="7.5" rx="1.5" ry="1.5"/></svg>
+                Support
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M61.82,70,24.32,57.5s-7.5-3.37-7.5-7.5h0c0-4.13,7.5-7.5,7.5-7.5L61.82,30"/><path d="M51.82,67.5v5a5,5,0,0,1-5,5H34.32a5,5,0,0,1-5-5V60"/><ellipse cx="61.82" cy="50" rx="6.25" ry="20"/><path d="M70.57,30c3.45,0,6.25,9,6.25,20S74,70,70.57,70"/><path d="M74.2,21.25c5,0,9,12.87,9,28.75s-4,28.75-9,28.75"/></svg>
+                Voice
+              </a>
+            </li>
+            <li class=".d-none .d-sm-block .d-md-none greedy-mobile">
+              <a href="#">
+                <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="77.5 60 44.58 60 22.5 80 22.5 20 77.5 20 77.5 60"/></svg>
+              </a>
+            </li>
+          </ul>
+          <div class="position-relative">
+            <button>More</button>
+            <ul class="nav hidden-links hidden"></ul>
+          </div>
+        </div>
+        <ul class="nav nav-secondary d-flex flex-sm-row">
+          <li>
+            <a href="#">
+              <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><ellipse cx="48.13" cy="40" rx="18.75" ry="23.75"/><path d="M64.38,63.75c10.35,0,18.75,7.84,18.74,17.5l-2.49,2.5H19.38l-2.5-2.5c0-9.66,8.39-17.5,18.75-17.5"/></svg>
+              Profile
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polyline points="39.94 36.95 39.94 23.75 79.94 23.75 79.94 76.25 39.94 76.25 39.94 62.66"/><line x1="73.69" y1="51.25" x2="21.19" y2="51.25"/><polyline points="32.44 63.62 20.06 51.25 32.44 38.88"/></svg>
+              Log Out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+        
+    <section id="content" class="content">
+      <router-outlet></router-outlet>
+    </section>
+    
+  </div><!-- .page-canvas -->
+</div><!--#page -->
