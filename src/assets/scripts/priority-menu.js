@@ -15,7 +15,6 @@ $(function() {
 
   var numOfItems = 0;
   var totalSpace = 0;
-  var closingTime = 1000;
   var breakHeights = [];
 
   // Get initial state
@@ -25,36 +24,46 @@ $(function() {
     breakHeights.push(totalSpace);
   });
 
-  var availableSpace, numOfVisibleItems, requiredSpace, timer;
+  var availableSpace, numOfVisibleItems, requiredSpace;
 
   function check() {
 
     if($(window).innerWidth() > 767) {
+      //Put secondary items back on larger screen
+      if($secondarylinks.children().length == 0) {
+        $hlinks.children(".nav-secondary-item").appendTo($secondarylinks);
+      }
+      
       // Get instant state
       availableSpace = $vlinksWrap.innerHeight() - $btn.outerHeight(true) - 10;
       numOfVisibleItems = $vlinks.children().length;
       requiredSpace = breakHeights[numOfVisibleItems - 1];
-
-      // There is not enought space
+      
+      //Too Small
       if (requiredSpace > availableSpace) {
         $vlinks.children().last().prependTo($hlinks);
         numOfVisibleItems -= 1;
         check();
-        // There is more than enough space
+      //Expanded
       } else if (availableSpace > breakHeights[numOfVisibleItems]) {
         $hlinks.children().first().appendTo($vlinks);
         numOfVisibleItems += 1;
         check();
       }
-      // Update the button accordingly
+      
+      //Update button 
       $btn.attr("count", numOfItems - numOfVisibleItems);
       if (numOfVisibleItems === numOfItems) {
         $btn.addClass('hidden');
-      } else $btn.removeClass('hidden');
+      } else {
+        $btn.removeClass('hidden');
+      }
     } else {
-      //Small, put all items in hidden. show secondary.
-      $vlinks.children(":not(.greedy-mobile)").appendTo($hlinks);
-      $secondarylinks.children().appendTo($hlinks);
+      //Small, put all items in hidden.
+      if($secondarylinks.children().length > 0) {
+        $vlinks.children().prependTo($hlinks);
+        $secondarylinks.children().appendTo($hlinks);
+      }
     }
   }
 
@@ -66,19 +75,7 @@ $(function() {
   $btn.on('click', function() {
     $hlinks.toggleClass('hidden');
     $btn.toggleClass('active');
-    clearTimeout(timer);
   });
-
-  $hlinks.on('mouseleave', function() {
-    // Mouse has left, start the timer
-    timer = setTimeout(function() {
-      $hlinks.addClass('hidden');
-      $btn.removeClass('active');
-    }, closingTime);
-  }).on('mouseenter', function() {
-    // Mouse is back, cancel the timer
-    clearTimeout(timer);
-  })
 
   check();
 
