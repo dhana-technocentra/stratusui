@@ -24,7 +24,7 @@ const UPDATE_USERPROFILE = 'User profile udpated successfully';
 
 export const MY_FORMATS = {
     parse: {
-      dateInput: 'YYYY-MM-DD',
+      dateInput: 'DD-MM-YYYY',
     },
     display: {
       dateInput: 'MMMM DD YYYY',
@@ -49,6 +49,7 @@ export class UserProfileComponent implements OnInit {
     submitted = false;
     isActiveToggle: boolean = false;
     registerMomentDate: string;
+    userProfile = {};
 
     constructor(
         private formBuilder: FormBuilder,
@@ -66,27 +67,31 @@ export class UserProfileComponent implements OnInit {
             personSerId:[''],
             locationSerId:[''],
             companyId:[''],
-            username: ['', Validators.required],
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
+            username: ['',  [Validators.required]],
+            firstName: ['',  [Validators.required]],
+            lastName: ['',  [Validators.required]],
             email: ['', [Validators.required, Validators.email]],
-            registerDate: ['', Validators.required],
-            address: ['', Validators.required],
-            city: ['', Validators.required],
-            state: ['', Validators.required],
-            zipCode: ['', Validators.required],
+            registerDate: ['',  [Validators.required]],
+            address: ['',  [Validators.required]],
+            city: ['',  [Validators.required]],
+            state: ['',  [Validators.required]],
+            zipCode: ['',  [Validators.required]],
             title: [''],
             officePhone:  
                 this.formBuilder.group({
                     phoneNumber: ['', Validators.required],
                     extension: ['']
                 }),
-            cellPhone: 
+            cellPhone:
                 this.formBuilder.group({
-                    phoneNumber: ['', Validators.required]
-                }),           
-            fax: 
-                this.formBuilder.group({phoneNumber:['',]}),          
+                    phoneNumber: ['',  [Validators.required]],
+                    extension: ['']
+                }),
+            fax:
+                this.formBuilder.group({
+                    phoneNumber: ['',  [Validators.required]],
+                    extension: ['']
+                }),          
             isActive: [''],
             userPermissions:  
                 this.formBuilder.group({
@@ -97,16 +102,18 @@ export class UserProfileComponent implements OnInit {
                     voiceWrite: [''],
                     networkStatistics: ['']
                 }),
+            admin: ['']
         });
 
     const queryParms = this.route.snapshot.queryParams;
-    const userId = (queryParms.userId) ? queryParms.userId : null;
+    const userId = (queryParms.userId) ? queryParms.userId : 16950;
 
-    if (queryParms.userId) {
+    if (userId != null) {
         this.userService.getUserProfile(userId)
             .subscribe(data => {
+                console.log(data);
                 this.userProfileForm.setValue(data);
-
+                this.userProfile = data;
                 if(data['isActive'] == 'Y')
                 {
                     this.isActiveToggle = true;
@@ -140,30 +147,26 @@ export class UserProfileComponent implements OnInit {
         this.userProfileForm.patchValue({'isActive' : value});
     }
 
-    // Executed When Form Is Submitted  
     onFormSubmit(form: NgForm) {
-        console.log(form);
         this.submitted = true;
-        // stop here if form is invalid
-        //if (this.userProfileForm.invalid) {
-       //     return;
-       // }
-       /*let  registerDateSelected = JSON.stringify(this.userProfileForm.get('registerDate').value);
-       console.log('registerDateSelected', JSON.stringify(registerDateSelected));
-       this.userProfileForm.patchValue({'registerDate' :registerDateSelected.slice(0,11)}); */
-       this.loading = true;
+        if (this.userProfileForm.invalid) {
+            return;
+        }
+
+        console.log("1234567890");
+        this.loading = true;
         this.userService.updateUserProfile(this.userProfileForm.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    console.log('updateUserProfile result ',data);
-                   // this.alertService.success(UPDATE_USERPROFILE, true);
-                  //  this.router.navigate([LOGIN_PATH]);
+                    console.log('updateUserProfile result ', data);
+                    // this.alertService.success(UPDATE_USERPROFILE, true);
+                    //  this.router.navigate([LOGIN_PATH]);
                 },
                 error => {
                     console.log('updateUserProfile result failure ', error);
-                   // this.alertService.error(error);
-                   // this.loading = false;
+                    // this.alertService.error(error);
+                    // this.loading = false;
                 });
     }
 

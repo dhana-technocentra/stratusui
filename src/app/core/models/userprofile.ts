@@ -21,4 +21,5 @@ export interface UserProfile {
     officePhone:	Phone;
     cellPhone:	Phone;
     fax:	Phone;
+    admin: boolean;
 }

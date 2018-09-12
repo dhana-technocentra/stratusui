@@ -1,38 +1,109 @@
-.userprofileheader1 {
+.desktop .userprofileheader1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 48px;    
     color: #064B94;
     text-align: left;
     text-justify: inter-word;
     margin-bottom: 25px;
-    font-weight: bold;
+    font-weight: 600;
+    margin-top: 30px;
 }
-.userprofileheader2 {
+.desktop .userprofileheader2 {
     font-family: 'Montserrat', sans-serif;
     font-size: 32px;    
     color: #064B94;
     text-align: left;
     margin-bottom: 30px;
+    font-weight: lighter;
 }
-.formlabel {
+.desktop .formlabel {
     font-size: 12px;
     text-align: left;
     font-family: 'Montserrat', sans-serif;
     color: #064B94;
     margin-top: 10px;
     margin-left: 6px;
+    font-weight: 500;
 }
 
-input {
+.desktop input {
     border: 1px #707070 solid;
+    border-radius: 5px;
 }
 
-#updateprofile {
+.desktop #updateprofile {
     margin-top: 25px;
     border: 3px;
     color: white;
     background-color: #0F75BD;
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
+    font-weight: 600;
+}
+
+@media (max-width: 767px) {
+    .desktop { display: none; }
+    .mobile { display: block; }
+}
+
+@media (min-width: 768px) {
+    .desktop { display: block; }
+    .mobile { display: none; }
+}
+
+.mobile .userprofileheader1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20pt;    
+    color: #064B94;
+    text-align: left;
+    text-justify: inter-word;
+    margin-bottom: 15px;
     font-weight: 500;
+}
+.mobile .userprofileheader2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12pt;    
+    color: #064B94;
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: lighter;
+}
+.mobile .formlabel {
+    font-size: 10pt;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    color: #064B94;
+    margin-top: 10px;
+    margin-left: 6px;
+    font-weight: 500;
+}
+
+.mobile input {
+    border: 1px #707070 solid;
+    border-radius: 5px;
+
+}
+
+.mobile #updateprofile {
+    margin-top: 25px;
+    border: 3px;
+    color: white;
+    background-color: #0F75BD;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.is-invalid {
+    border: 2px solid #cf4b63 !important;
+}
+
+.is-invalid1 {
+    border: 2px solid #cf4b63 !important;
+}
+
+.invalid-feedback {
+    color: #cf4b63;
+    font-weight: 500;
+    margin-left: 6px;   
 }

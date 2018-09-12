@@ -28,3 +28,28 @@
 .invalid-feedback {
     color: red;
 }
+@media (max-width: 767px) {
+    .desktop { display: none; }
+    .mobile { display: block; background: linear-gradient(to bottom, #5FB6E8 100%, #5FB6E8 100%, #50EAF8 100%); }
+}
+
+@media (min-width: 768px) {
+    .desktop { display: block; }
+    .mobile { display: none; }
+}
+  .mobileloginheader {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24pt;    
+    color: white;
+    text-align: center;
+    text-justify: inter-word;
+    margin-top: 50px;
+    font-weight: 600;
+  }
+  formcontrol {
+      border: 1pt #707070 solid;
+  }
+  .mobileform {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
