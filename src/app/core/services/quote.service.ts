@@ -11,4 +11,8 @@ export class QuoteService {
     requestAQuote(quote: Quote) {
         return this.http.post(`${environment.apiUrl}/api/quote/requestQuote`, quote);
     }
+
+    getServices() {
+        return this.http.get(`${environment.apiUrl}/api/quote/getQuotableServices`);
+    }
 }   

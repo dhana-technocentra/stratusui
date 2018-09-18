@@ -35,8 +35,8 @@ export class UserService extends BaseService{
         return this.http.delete(`${environment.apiUrl}/users/` + id);
     }
 
-    getUserProfile(userId: string){
-        return this.http.get(`${environment.apiUrl}/api/profile/getUserProfile?userId=` + userId);
+    getUserProfile(){
+        return this.http.get(`${environment.apiUrl}/api/profile/getUserProfile`);
     }
 
     updateUserProfile(userProfile: UserProfile) {

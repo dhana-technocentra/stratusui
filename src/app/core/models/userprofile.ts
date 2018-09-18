@@ -1,5 +1,6 @@
 ﻿import { Phone } from "./phone";
 import { UserPermissions } from "./user.permissions";
+import { User } from "./user";
 
 export interface UserProfile {
     userSerId:	number;
@@ -22,4 +23,5 @@ export interface UserProfile {
     cellPhone:	Phone;
     fax:	Phone;
     admin: boolean;
+    password: User
 }

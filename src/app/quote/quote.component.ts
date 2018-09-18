@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Quote } from './../core/models/quote';
 import { QuoteService } from './../core/services/quote.service';
+import { AppComponent } from './../../app/app.component';
 
 @Component({
   selector: 'app-quote',
@@ -15,10 +16,10 @@ export class QuoteComponent implements OnInit {
   loading = false;
   submitted = false;
   priorities = ['High', 'Normal', 'Low'];
-  services = ['Ethernet Services', 'MPLS Services', 'Frame Relay Services', 'ATM Services', 'OCN(Sonet) Services', 'Voice Services', 'Data Services', 'Conference Calling', 'Directory Assistance', 'Referal Agent', 'Sales Agent', 'Other'];
+  services: any;
   states = ["Alaska", "Alabama", "Arkansas", "American Samoa", "Arizona", "California", "Colorado", "Connecticut", "District of Columbia", "Delaware", "Florida", "Georgia", "Guam", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi", "Montana", "North Carolina", "North Dakota", "Nebraska", "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "Virgin Islands", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming"];
   constructor(private formBuilder: FormBuilder,
-    private router: Router, private quoteService: QuoteService) { }
+    private router: Router, private quoteService: QuoteService, private appComponent: AppComponent) { }
 
   ngOnInit() {
     this.quoteForm = this.formBuilder.group({
@@ -34,10 +35,13 @@ export class QuoteComponent implements OnInit {
       state: ['', Validators.required],
       zip: ['', Validators.required]
     });
+    this.appComponent.title = "Request A Quote";
+    this.quoteService.getServices().pipe(first()).subscribe(data => { this.services = data; }, error => { });
   }
+  
 
   get f() { return this.quoteForm.controls; }
-  onSubmit() {
+  onSubmit(form: NgForm) {
     this.submitted = true;
 
     if (this.quoteForm.invalid) {

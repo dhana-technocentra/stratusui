@@ -1,6 +1,5 @@
 ﻿export class User {
-    id: number;
     username: string;
+    oldPassword: string;
     password: string;
-    confirmPassword: string;
 }

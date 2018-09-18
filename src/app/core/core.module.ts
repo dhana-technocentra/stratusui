@@ -12,6 +12,7 @@ import { AlertService, AuthenticationService, UserService,LoggerService } from '
 
 // used to create fake backend
 import { fakeBackendProvider } from './helpers';
+import { QuoteService } from './services/quote.service';
  
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { fakeBackendProvider } from './helpers';
               AlertService,
               AuthenticationService,
               UserService,
+              QuoteService,
               { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
               { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

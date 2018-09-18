@@ -16,6 +16,12 @@
     margin-bottom: 30px;
     font-weight: lighter;
 }
+
+.form-control {
+    border-radius: 5px;
+}
+
+
 .desktop .formlabel {
     font-size: 12px;
     text-align: left;
@@ -31,7 +37,7 @@
     border-radius: 5px;
 }
 
-.desktop #updateprofile {
+.desktop #updateprofile2 {
     margin-top: 25px;
     border: 3px;
     color: white;
@@ -84,7 +90,7 @@
 
 }
 
-.mobile #updateprofile {
+.mobile #updateprofile1 {
     margin-top: 25px;
     border: 3px;
     color: white;

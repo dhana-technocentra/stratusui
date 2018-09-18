@@ -5,8 +5,8 @@ import { first } from 'rxjs/operators';
 
 import { AlertService, UserService } from '../../core';
 import { AppComponent } from './../../app.component';
-import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
 // Depending on whether rollup is used, moment needs to be imported differently.
 // Since Moment.js doesn't have a default export, we normally need to import using the `* as`
@@ -24,27 +24,28 @@ const UPDATE_USERPROFILE = 'User profile udpated successfully';
 
 export const MY_FORMATS = {
     parse: {
-      dateInput: 'DD-MM-YYYY',
+        dateInput: 'DD-MM-YYYY',
     },
     display: {
-      dateInput: 'MMMM DD YYYY',
-      monthYearLabel: 'MMM YYYY',
-      dateA11yLabel: 'LL',
-      monthYearA11yLabel: 'MMMM YYYY',
+        dateInput: 'MMMM DD YYYY',
+        monthYearLabel: 'MMM YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'MMMM YYYY',
     },
-  };
+};
 
 @Component({
     selector: 'app-userprofile',
     templateUrl: './userprofile.component.html',
     styleUrls: ['./userprofile.component.css'],
     providers: [
-        {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-        {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-      ],
+        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+        { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    ],
 })
 export class UserProfileComponent implements OnInit {
     userProfileForm: FormGroup;
+    passwordFom; FormGroup;
     loading = false;
     submitted = false;
     isActiveToggle: boolean = false;
@@ -60,40 +61,46 @@ export class UserProfileComponent implements OnInit {
         private appComponent: AppComponent) { }
 
     ngOnInit() {
-       // let userId = localStorage.getItem("editUserId");
-      
+        // let userId = localStorage.getItem("editUserId");
+
+        this.passwordFom = this.formBuilder.group({
+            oldPassword: ['', [Validators.required]],
+            password: ['', [Validators.required]]
+
+        })
+
         this.userProfileForm = this.formBuilder.group({
-            userSerId:[''],
-            personSerId:[''],
-            locationSerId:[''],
-            companyId:[''],
-            username: ['',  [Validators.required]],
-            firstName: ['',  [Validators.required]],
-            lastName: ['',  [Validators.required]],
+            userSerId: [''],
+            personSerId: [''],
+            locationSerId: [''],
+            companyId: [''],
+            username: ['', [Validators.required]],
+            firstName: ['', [Validators.required]],
+            lastName: ['', [Validators.required]],
             email: ['', [Validators.required, Validators.email]],
-            registerDate: ['',  [Validators.required]],
-            address: ['',  [Validators.required]],
-            city: ['',  [Validators.required]],
-            state: ['',  [Validators.required]],
-            zipCode: ['',  [Validators.required]],
+            registerDate: ['', [Validators.required]],
+            address: ['', [Validators.required]],
+            city: ['', [Validators.required]],
+            state: ['', [Validators.required]],
+            zipCode: ['', [Validators.required]],
             title: [''],
-            officePhone:  
+            officePhone:
                 this.formBuilder.group({
                     phoneNumber: ['', Validators.required],
                     extension: ['']
                 }),
             cellPhone:
                 this.formBuilder.group({
-                    phoneNumber: ['',  [Validators.required]],
+                    phoneNumber: ['', [Validators.required]],
                     extension: ['']
                 }),
             fax:
                 this.formBuilder.group({
-                    phoneNumber: ['',  [Validators.required]],
+                    phoneNumber: ['', [Validators.required]],
                     extension: ['']
-                }),          
+                }),
             isActive: [''],
-            userPermissions:  
+            userPermissions:
                 this.formBuilder.group({
                     invoiceManagement: [''],
                     firewallRead: [''],
@@ -102,26 +109,28 @@ export class UserProfileComponent implements OnInit {
                     voiceWrite: [''],
                     networkStatistics: ['']
                 }),
-            admin: ['']
+            admin: [''],
+            password: this.formBuilder.group({
+                oldPassword: [''],
+                password: [''],
+                repeatPassword: ['']
+            })
         });
 
-    const queryParms = this.route.snapshot.queryParams;
-    const userId = (queryParms.userId) ? queryParms.userId : 16950;
-
-    if (userId != null) {
-        this.userService.getUserProfile(userId)
+        this.userService.getUserProfile()
             .subscribe(data => {
                 console.log(data);
+                data["password"] = {
+                    "oldPassword": "",
+                    "password": "",
+                    "repeatPassword": ""
+                }
                 this.userProfileForm.setValue(data);
                 this.userProfile = data;
-                if(data['isActive'] == 'Y')
-                {
+                if (data['isActive'] == 'Y') {
                     this.isActiveToggle = true;
                 }
-                //this.registerMomentDate = moment();
-
-            }); 
-        }
+            });
         this.appComponent.title = "Profile";
 
     }
@@ -134,7 +143,7 @@ export class UserProfileComponent implements OnInit {
     onChange(event: any) {
         console.log("Active event", event);
         if (event.checked == true) {
-            console.log("Active set to true");            
+            console.log("Active set to true");
             this.setActive('Y');
         } else {
             console.log("Active set to false");
@@ -142,9 +151,8 @@ export class UserProfileComponent implements OnInit {
         }
     }
 
-    setActive(value)
-    {
-        this.userProfileForm.patchValue({'isActive' : value});
+    setActive(value) {
+        this.userProfileForm.patchValue({ 'isActive': value });
     }
 
     onFormSubmit(form: NgForm) {
@@ -153,14 +161,32 @@ export class UserProfileComponent implements OnInit {
             return;
         }
 
-        console.log("1234567890");
         this.loading = true;
-        this.userService.updateUserProfile(this.userProfileForm.value)
+        console.log(this.userProfileForm.value.oldPassword, this.userProfileForm.value.password);
+        if (this.userProfileForm.value.password.oldPassword != "" && this.userProfileForm.value.password.password != "") {
+            var passwordObject = {
+                "username": this.userProfileForm.value.username,
+                "oldPassword": this.userProfileForm.value.password.oldPassword,
+                "password": this.userProfileForm.value.password.password
+            }
+            this.userService.updatePassword(passwordObject)
+                .pipe(first())
+                .subscribe(
+                    data => {
+                        console.log(data);
+                    },
+                    error => {
+                        console.log(error);
+                    });
+        }
+        var userProfileObj = Object.assign({}, this.userProfileForm.value);
+        delete userProfileObj["password"];
+        this.userService.updateUserProfile(userProfileObj)
             .pipe(first())
             .subscribe(
                 data => {
+                    this.alertService.success(UPDATE_USERPROFILE, true);
                     console.log('updateUserProfile result ', data);
-                    // this.alertService.success(UPDATE_USERPROFILE, true);
                     //  this.router.navigate([LOGIN_PATH]);
                 },
                 error => {
@@ -170,5 +196,5 @@ export class UserProfileComponent implements OnInit {
                 });
     }
 
-    
+
 }
