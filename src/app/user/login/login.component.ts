@@ -81,6 +81,7 @@ export class LoginComponent implements OnInit {
                 data => {
                     localStorage.setItem('user_name', userObject.username);
                     console.log('user_name set', userObject.username);
+                    this.appComponent.showNavBar = false;
                     this.router.navigate(['user/userprofile']);
                 },
                 error => {

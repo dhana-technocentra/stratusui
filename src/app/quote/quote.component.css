@@ -1,4 +1,4 @@
-.desktop .formlabel {
+.formlabel {
     font-size: 12px;
     text-align: left;
     font-family: 'Montserrat', sans-serif;
@@ -15,4 +15,57 @@
 .multiple {
     padding-left: 10px;
     padding-right: 0px;
+}
+
+.note {
+    font-size: 20px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    color: #064B94;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+#requestquote1 {
+    margin-top: 25px;
+    border: 3px;
+    color: white;
+    background-color: #0F75BD;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.desktop input {
+    border: 1px #707070 solid;
+    border-radius: 5px;
+}
+
+@media (max-width: 767px) {
+    .desktop { display: none; }
+    .mobile { display: block; }
+}
+
+@media (min-width: 768px) {
+    .desktop { display: block; }
+    .mobile { display: none; }
+}
+
+
+.is-invalid {
+    border: 2px solid #cf4b63 !important;
+}
+
+.is-invalid1 {
+    border: 2px solid #cf4b63 !important;
+}
+
+.invalid-feedback {
+    color: #cf4b63;
+    font-weight: 500;
+    margin-left: 6px;   
+}
+
+form {
+    margin-top: 25px;
 }

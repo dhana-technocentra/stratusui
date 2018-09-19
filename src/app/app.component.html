@@ -19,8 +19,7 @@
         </div>
       </div>
     </header>
-
-    <nav class="navbar" role="navigation" temscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+    <nav [hidden]="showNavBar" class="navbar" role="navigation" temscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
       <div class="navbar-inner d-flex flex-row-reverse flex-md-column align-items-stretch">
         <div class="nav greedy nav-main-wrap flex-row flex-md-column">
           <ul class="nav mobile justify-content-around">
@@ -35,7 +34,7 @@
               </a>
             </li>
             <li>
-              <a href="#">
+              <a routerLink="#">
                 <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="94 66 41.33 66 6 98 6 2 94 2 94 66"/></svg>
               </a>
             </li>
@@ -67,7 +66,7 @@
             </li>
            
             <li>
-              <a href="#">
+              <a routerLink="quote">
                 <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="96 4 4 66.43 36.86 66.43 36.86 96 53.29 73 86.14 96 96 4"/><line x1="36.86" y1="66.43" x2="96" y2="4"/><line x1="53.29" y1="73" x2="96" y2="4"/></svg>
                 <span class="menu-label">Quote</span>
               </a>
@@ -98,13 +97,13 @@
         </div>
         <ul class="nav nav-secondary flex-row flex-md-column">
           <li class="nav-secondary-item">
-            <a href="#">
+            <a routerLink="user/userprofile">
               <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><ellipse cx="47.44" cy="36.37" rx="25.56" ry="32.37"/><path d="M69.59,68.74c14.12,0,25.56,10.68,25.56,23.85L91.74,96H8.26L4.85,92.59c0-13.17,11.44-23.85,25.56-23.85"/></svg>
               <span class="menu-label">Profile</span>
             </a>
           </li>
           <li class="nav-secondary-item">
-            <a href="#">
+            <a (click)="logOut()">
               <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polyline points="34.28 29.62 34.28 9 96.76 9 96.76 91 34.28 91 34.28 69.77"/><line x1="87" y1="51.95" x2="5" y2="51.95"/><polyline points="22.57 71.28 3.24 51.95 22.57 32.63"/></svg>
               <span class="menu-label">Log Out</span>
             </a>
@@ -113,9 +112,9 @@
       </div>
     </nav>
         
-    <section id="content" class="content">
-      <router-outlet></router-outlet>
-    </section>
     
   </div><!-- .page-canvas -->
 </div><!--#page -->
+        <section id="content" class="content">
+          <router-outlet></router-outlet>
+        </section>

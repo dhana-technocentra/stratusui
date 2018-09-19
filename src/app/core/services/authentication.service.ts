@@ -40,6 +40,8 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('user_name');
+        localStorage.removeItem('access_token');
     }
 
     public isAuthenticated(): boolean {

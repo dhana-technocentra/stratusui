@@ -47,15 +47,16 @@ export class QuoteComponent implements OnInit {
     if (this.quoteForm.invalid) {
       return;
     }
-    this.quoteService.requestAQuote(this.quoteForm.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        });
+    // this.quoteService.requestAQuote(this.quoteForm.value)
+    //   .pipe(first())
+    //   .subscribe(
+    //     data => {
+    //       console.log(data);
+    //     },
+    //     error => {
+    //       console.log(error);
+    //     });
+    console.log(this.quoteForm.value);
   }
 
 }
