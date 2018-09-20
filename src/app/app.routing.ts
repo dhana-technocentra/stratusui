@@ -1,12 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {QuoteComponent} from './quote/quote.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/user', pathMatch: 'full' },
     { path: 'customersupport', redirectTo: '/customersupport', pathMatch: 'full', data: {title: 'Customer Support'} },
     { path: 'ticket', redirectTo: '/ticket', pathMatch: 'full', data: {title: 'Ticket'} },
-    { path: 'quote', component: QuoteComponent, data: {title: 'Request Quote'}}
+    { path: 'quote', component: QuoteComponent, data: {title: 'Request Quote'}},
+    { path: 'inventory', component: InventoryComponent, data: {title: 'Inventory Details'}}
     //{ path: '**', redirectTo: '' }
 ];
 

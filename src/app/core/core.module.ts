@@ -13,6 +13,7 @@ import { AlertService, AuthenticationService, UserService,LoggerService } from '
 // used to create fake backend
 import { fakeBackendProvider } from './helpers';
 import { QuoteService } from './services/quote.service';
+import { InventoryService } from './services/inventory.service';
  
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { QuoteService } from './services/quote.service';
               AuthenticationService,
               UserService,
               QuoteService,
+              InventoryService,
               { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
               { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

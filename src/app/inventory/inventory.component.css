@@ -1,0 +1,63 @@
+.mat-column-select {
+    overflow: visible;
+  }
+  .mat-cell:foucs {
+    outline-color:black;
+  }
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+  
+  .mobile-label {
+    display: none;
+  }
+  
+  @media(max-width: 600px) {
+    .mobile-label {
+      width: 80px;
+      display: inline-block;
+          font-weight: bold;
+    }
+  
+    .mat-header-row {
+      display: none;
+    }
+  
+    .mat-row { 
+      flex-direction: column;
+      align-items: start;
+      padding: 8px 24px 0px 24px;
+      min-height: 20px;
+    }
+  }
+  
+  .type--right {
+    text-align: right;
+}
+
+mat-header-cell {
+    border-right: 1px solid white;
+    padding-left: 24px;
+    background: #064B94;
+    font-size: 32px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;   
+    text-align: center;
+    font-weight: 400;
+}
+
+mat-cell {
+    border-right: 1px solid #e0e0e0;
+    padding-left: 24px;
+}
+
+mat-cell :first-child {
+    background: #0F75BD;
+}

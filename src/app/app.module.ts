@@ -10,6 +10,7 @@ import { QuoteModule }    from './quote/quote.module';
 import { InvoiceModule } from './invoice/invoice.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { CustomerSupportModule } from './customersupport/customersupport.module';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({ 
   declarations: [
@@ -25,7 +26,8 @@ import { CustomerSupportModule } from './customersupport/customersupport.module'
     InvoiceModule,
     InventoryModule,
     CustomerSupportModule,
-    HttpModule
+    HttpModule,
+    MatTableModule
   ],
   providers: [
     

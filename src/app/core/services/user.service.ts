@@ -44,7 +44,7 @@ export class UserService extends BaseService{
         return this.http.post(`${environment.apiUrl}/api/profile/updateUserProfile`, JSON.stringify(userProfile), this.getOptions());
     }
 
-    updatePassword(user: User) {
-        return this.http.post(`${environment.apiUrl}/api/profile/updatePassword`, JSON.stringify(user), this.getOptions());
+    updatePassword(passwordObject: any) {
+        return this.http.post(`${environment.apiUrl}/api/profile/updatePassword`, JSON.stringify(passwordObject), this.getOptions());
     }   
 }   
