@@ -3,16 +3,16 @@ import { Router } from '@angular/router';
 import { AppComponent } from './../../app/app.component';
 
 @Component({
-  selector: 'app-invoice',
-  templateUrl: './invoice.component.html',
-  styleUrls: ['./invoice.component.css']
+  selector: 'app-voice',
+  templateUrl: './voice.component.html',
+  styleUrls: ['./voice.component.css']
 })
-export class InvoiceComponent implements OnInit {
+export class VoiceComponent implements OnInit {
 
   constructor(private router: Router, private appComponent: AppComponent) { }
 
   ngOnInit() {
-    this.appComponent.title = "Invoices";
+    this.appComponent.title = "Voice Services Management";
   }
 
 }

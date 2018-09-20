@@ -9,12 +9,15 @@ import { TicketModule }    from './ticket/ticket.module';
 import { QuoteModule }    from './quote/quote.module';
 import { InvoiceModule } from './invoice/invoice.module';
 import { InventoryModule } from './inventory/inventory.module';
+import { VoiceModule } from './voice/voice.module';
+import { FirewallModule } from './firewall/firewall.module';
+import { NetworkModule } from './network/network.module';
 import { CustomerSupportModule } from './customersupport/customersupport.module';
 import {MatTableModule} from '@angular/material/table';
 
 @NgModule({ 
   declarations: [
-    AppComponent    
+    AppComponent   
   ],
   imports: [    
     CoreModule,
@@ -25,6 +28,9 @@ import {MatTableModule} from '@angular/material/table';
     QuoteModule,
     InvoiceModule,
     InventoryModule,
+    VoiceModule,
+    FirewallModule,
+    NetworkModule,
     CustomerSupportModule,
     HttpModule,
     MatTableModule

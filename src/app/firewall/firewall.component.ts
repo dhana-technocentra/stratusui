@@ -3,16 +3,16 @@ import { Router } from '@angular/router';
 import { AppComponent } from './../../app/app.component';
 
 @Component({
-  selector: 'app-invoice',
-  templateUrl: './invoice.component.html',
-  styleUrls: ['./invoice.component.css']
+  selector: 'app-firewall',
+  templateUrl: './firewall.component.html',
+  styleUrls: ['./firewall.component.css']
 })
-export class InvoiceComponent implements OnInit {
+export class FirewallComponent implements OnInit {
 
   constructor(private router: Router, private appComponent: AppComponent) { }
 
   ngOnInit() {
-    this.appComponent.title = "Invoices";
+    this.appComponent.title = "Firewall Services";
   }
 
 }
