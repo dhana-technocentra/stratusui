@@ -1,24 +1,24 @@
-.mat-column-select {
+/* .mat-column-select {
     overflow: visible;
   }
   .mat-cell:foucs {
     outline-color:black;
   }
-  .example-container {
+  /* .example-container {
     display: flex;
     flex-direction: column;
     max-height: 500px;
-  }
+  } */
   
-  .mat-table {
+  /* .mat-table {
     overflow: auto;
     max-height: 500px;
   }
   
+  */
   .mobile-label {
     display: none;
   }
-  
   @media(max-width: 600px) {
     .mobile-label {
       width: 80px;
@@ -42,22 +42,56 @@
     text-align: right;
 }
 
+#ponnumber {
+  border-right: 0.5px solid #064B94;
+}
+
 mat-header-cell {
     border-right: 1px solid white;
-    padding-left: 24px;
     background: #064B94;
-    font-size: 32px;
+    font-size: 20px;
     font-family: 'Montserrat', sans-serif;
-    color: white;   
-    text-align: center;
-    font-weight: 400;
+    color: #FFFFFF;   
+    text-align: left;
+    font-weight: 100;
+    justify-content: center;
 }
-
 mat-cell {
-    border-right: 1px solid #e0e0e0;
-    padding-left: 24px;
+    border-right: 0.5px solid #064B94;
+    color: #064B94;
+    background: white;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;  
+    text-align: center;
+    text-justify: inter-word;
+    font-weight: 100;
+    justify-content: center;
 }
 
-mat-cell :first-child {
-    background: #0F75BD;
+mat-header-row {
+  min-height: 92px;
+  text-align: center;
+}
+
+#category {
+  background: #0F75BD;
+  color: white; 
+}
+
+mat-row {
+  border: 0.5px solid #064B94 ;  
+  min-height: 75px;
+} 
+
+mat-header-row {
+  border: 0.5px #064B94 solid;  
+}
+
+.mat-paginator {
+  display: none;
+}
+
+mat-table {
+  border-bottom: 1px solid #064B94;
+  box-shadow: 0px;
 }

@@ -6,29 +6,29 @@
           matSortDirection="desc" matSortDisableClear [class.isMobile]="isMobile">
           <ng-container matColumnDef="Category">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
-            <mat-cell *matCellDef="let order">
+            <mat-cell id="category" *matCellDef="let order">
               <span class="mobile-label">Service:</span>{{order.serviceCategory}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="Service Type">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Service Type </mat-header-cell>
-            <mat-cell *matCellDef="let order">
+            <mat-header-cell *matHeaderCellDef id="servicetype" mat-sort-header> Service Type </mat-header-cell>
+            <mat-cell id="servicetype" *matCellDef="let order">
               <span class="mobile-label">Service Type:</span>{{order.mediaType}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="Head Location">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Head Location </mat-header-cell>
-            <mat-cell *matCellDef="let order">
+            <mat-header-cell *matHeaderCellDef id="headlocation" mat-sort-header> Head Location </mat-header-cell>
+            <mat-cell id="headlocation" *matCellDef="let order">
               <span class="mobile-label">Head Location:</span> {{order.headLocation.address}}
               {{order.headLocation.city}}
               {{order.headLocation.state}} {{order.headLocation.zip}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="Remote Location">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Remote Location </mat-header-cell>
-            <mat-cell *matCellDef="let order">
+            <mat-header-cell *matHeaderCellDef id="remotelocation" mat-sort-header> Remote Location </mat-header-cell>
+            <mat-cell id="remotelocation" *matCellDef="let order">
               <span class="mobile-label">Remote Location:</span> No Remote Location </mat-cell>
           </ng-container>
           <ng-container matColumnDef="PON Number">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> PON Number </mat-header-cell>
-            <mat-cell *matCellDef="let order">
+            <mat-header-cell *matHeaderCellDef id="ponnumber" mat-sort-header> PON Number </mat-header-cell>
+            <mat-cell id="ponnumber" *matCellDef="let order">
               <span class="mobile-label">PON Number:</span> {{order.ponNumber}} </mat-cell>
           </ng-container>
           <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
