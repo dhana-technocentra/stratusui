@@ -9,11 +9,13 @@ import { MaterialModule }  from '../material/material.module';
 import { InventoryRoutingModule }  from './inventory.routing';
 
 import { InventoryComponent } from './inventory.component';
+import { InventorydetailsComponent } from './inventorydetails/inventorydetails.component';
 
 
 @NgModule({
   declarations: [
-    InventoryComponent
+    InventoryComponent,
+    InventorydetailsComponent
   ],
   imports: [
     BrowserModule,

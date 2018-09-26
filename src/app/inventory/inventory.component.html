@@ -1,13 +1,14 @@
 <div class="container">
-  <div class="row"  style="margin-top:50px;">
-    <div class="col-xs-12">
+  <div class="row">
+    <div class="col-12" style="margin-top: 5%;">
       <div class="example-container mat-elevation-z8">
         <mat-table #table [dataSource]="orders" matSort (matSortChange)="sortData($event)" matSortActive="Service"
           matSortDirection="desc" matSortDisableClear [class.isMobile]="isMobile">
           <ng-container matColumnDef="Category">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
             <mat-cell id="category" *matCellDef="let order">
-              <span class="mobile-label">Service:</span>{{order.serviceCategory}}</mat-cell>
+              <span class="mobile-label">Category:</span><a style="cursor: pointer;" (click)="navigateToInventoryDetails(order.orderSerId)">{{order.serviceCategory}}</a>
+            </mat-cell>
           </ng-container>
           <ng-container matColumnDef="Service Type">
             <mat-header-cell *matHeaderCellDef id="servicetype" mat-sort-header> Service Type </mat-header-cell>
