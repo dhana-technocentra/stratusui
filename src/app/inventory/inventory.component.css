@@ -68,6 +68,14 @@ mat-cell {
     justify-content: center;
 }
 
+mat-cell:first-child {
+  padding-left: 0px;
+}
+
+mat-header-cell:first-child {
+  padding-left: 0px;
+}
+
 mat-header-row {
   min-height: 92px;
   text-align: center;
@@ -87,11 +95,22 @@ mat-header-row {
   border: 0.5px #064B94 solid;  
 }
 
-.mat-paginator {
+/* .mat-paginator {
   display: none;
-}
+} */
 
 mat-table {
   border-bottom: 1px solid #064B94;
   box-shadow: 0px;
+}
+
+mat-cell a {
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  text-justify: inter-word;
+  font-weight: 100;
+  justify-content: center;
 }

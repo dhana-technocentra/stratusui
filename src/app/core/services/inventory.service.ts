@@ -14,4 +14,8 @@ export class InventoryService {
     getOrdersByCompanyId(id: number) {
         return this.http.get(`${environment.apiUrl}/api/orders/getOrderSummaries?companyId=` + id);
     }
+
+    getOrderDetailsByOrderId(id: any) {
+        return this.http.get(`${environment.apiUrl}/api/orders/getOrderSummary?orderId=` + id);
+    }
 }   

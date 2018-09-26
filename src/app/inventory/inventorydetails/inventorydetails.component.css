@@ -1,0 +1,115 @@
+
+
+.addresstable {
+    background: #064B94;
+    height: 55px;
+    text-align: left;
+    color: white;
+    padding-top: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.addresscolumns {
+    margin-top: 5px;
+}
+
+.columnstyle {
+    padding: 5pt 1pt 1pt 5pt;
+}
+
+
+
+@media (max-width: 767px) {
+    .desktop { display: none; }
+    .mobile { display: block; }
+    #header {
+        text-align: left;
+        font-size: 24pt;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        color: #064B94;
+        margin-top: 25px;
+        text-justify: inter-word;
+    }
+    
+    #subheader {
+        text-align: left;
+        font-size: 12pt;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 300;
+        color: #064B94;
+        margin-top: 15px;
+    }
+    table {
+        border-collapse:collapse;
+        border:none;
+        border-right: hidden;
+        border-left: hidden;
+        border-color: #064B94;
+        margin-top: 25px;
+        width:100%;
+    }
+    .tableheader {
+        background: #064B94;
+        color: white;
+        height: 50px; 
+        margin-left: 5px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .rowstyle {
+        font-size: 12pt;
+        color: #064B94;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+    }
+}
+
+@media (min-width: 768px) {
+    .desktop { display: block; }
+    .mobile { display: none; }
+    table {
+        border-collapse:collapse;
+        border:none;
+        border-right: hidden;
+        border-left: hidden;
+        border-color: #064B94;
+    }
+    #header {
+        text-align: center;
+        font-size: 48px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        color: #064B94;
+        margin-top: 25px;
+        text-justify: inter-word;
+    }
+    
+    #subheader {
+        text-align: center;
+        font-size: 32px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 300;
+        color: #064B94;
+        margin-top: 30px;
+    }
+    .tableheader {
+        background: #064B94;
+        color: white;
+        height: 50px; 
+        margin-left: 5px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        font-weight: 300;
+    }
+    .rowstyle {
+        font-size: 12pt;
+        color: #101010;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+    }
+}
+

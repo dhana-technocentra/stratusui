@@ -1,0 +1,257 @@
+<section class="desktop">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12" id="header">
+        <span>{{order.companyName}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12" id="subheader">
+        Office Location
+      </div>
+    </div>
+  </div>
+  <div class="container" style="margin-top: 45px;">
+    <div class="row">
+      <div class="col-6">
+        <table border="1" cellspacing='50' cellpadding='0'>
+          <tbody>
+            <tr class="tableheader">
+              <td style="padding: 15pt 1pt 1pt 5pt;width: 45%;">Address</td>
+              <td style="padding: 15pt 1pt 1pt 5pt;width: 300px;">On-Site Contact</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">{{order.headLocation.name}}</td>
+              <td class="columnstyle">John Doe Companion</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">{{order.headLocation.npa}}-{{order.headLocation.nxx}}</td>
+              <td class="columnstyle">Ph: (309)845-1337 ext: 11</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">{{order.headLocation.address}}</td>
+              <td class="columnstyle">Cell: (309)545-2248</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">{{order.headLocation.city}},{{order.headLocation.state}}
+                {{order.headLocation.zip}}</td>
+              <td class="columnstyle"></td>
+            </tr>
+          </tbody>
+        </table><br>
+        <table border="1" cellspacing='50' cellpadding='0'>
+          <tbody>
+            <tr class="tableheader">
+              <td style="padding: 15pt 1pt 1pt 5pt;width: 45%;">Account</td>
+              <td style="padding: 15pt 1pt 1pt 5pt;width: 300px;"></td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Account Number</td>
+              <td class="columnstyle">{{order.accountNumber}}</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">PON Number</td>
+              <td class="columnstyle">{{order.ponNumber}}</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Service Type</td>
+              <td class="columnstyle">{{order.serviceCategory}}</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Service</td>
+              <td class="columnstyle">{{order.mediaType}}</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Bandwidth</td>
+              <td class="columnstyle">{{order.bandwidth}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-6">
+        <table border="1" cellspacing='50' cellpadding='0'>
+          <tbody>
+            <tr class="tableheader">
+              <td style="padding: 15pt 1pt 1pt 5pt;width: 50%;">Order Detail</td>
+              <td style="padding: 15pt 1pt 1pt 5pt;width: 300px;"></td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Extend Demarc:</td>
+              <td class="columnstyle"></td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Router Included:</td>
+              <td class="columnstyle"></td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">serial IP from Carrier:</td>
+              <td class="columnstyle"></td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Custom Serail IP from Carrier:</td>
+              <td class="columnstyle"></td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">LAN IP's:</td>
+              <td class="columnstyle"></td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Router Password:</td>
+              <td class="columnstyle"></td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Provider DNS:</td>
+              <td class="columnstyle"></td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Provider DNS Notes:</td>
+              <td class="columnstyle"></td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">LEC Circuit ID:</td>
+              <td class="columnstyle"></td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Loop Provided By:</td>
+              <td class="columnstyle"></td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Carrier Port/IOC/Bundle Circuit ID:</td>
+              <td class="columnstyle"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="mobile">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12" id="header">
+        {{order.companyName}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12" id="subheader">
+        Office Location
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" style="margin-top: 20px;">
+    <div class="row">
+      <div class="col-12">
+        <table border="1" cellspacing='50' cellpadding='0'>
+          <tbody>
+            <tr class="tableheader">
+              <td style="padding: 15pt 1pt 1pt 5pt;">Address</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">{{order.headLocation.name}}</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">{{order.headLocation.npa}}-{{order.headLocation.nxx}}</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">{{order.headLocation.address}}</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">{{order.headLocation.city}},{{order.headLocation.state}}
+                {{order.headLocation.zip}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <table border="1" cellspacing='50' cellpadding='0'>
+          <tbody>
+            <tr class="tableheader">
+              <td style="padding: 15pt 1pt 1pt 5pt;">On-Site Contact</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">John Doe Companion</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Ph: (309)845-1337 ext: 11</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Cell: (309)545-2248</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <table border="1" cellspacing='50' cellpadding='0'>
+          <tbody>
+            <tr class="tableheader">
+              <td style="padding: 15pt 1pt 1pt 5pt;">Account</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Account Number: {{order.accountNumber}}</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">PON Number: {{order.ponNumber}}</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Service Type: {{order.serviceCategory}}</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Service: {{order.mediaType}}</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Bandwidth: {{order.bandwidth}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <table border="1" cellspacing='50' cellpadding='0'>
+          <tbody>
+            <tr class="tableheader">
+              <td style="padding: 15pt 1pt 1pt 5pt;">Order Detail</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Extend Demarc:</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Router Included:</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">serial IP from Carrier:</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Custom Serail IP from Carrier:</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">LAN IP's:</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Router Password:</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Provider DNS:</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Provider DNS Notes:</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">LEC Circuit ID:</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Loop Provided By:</td>
+            </tr>
+            <tr class="rowstyle">
+              <td class="columnstyle">Carrier Port/IOC/Bundle Circuit ID:</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
