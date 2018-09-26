@@ -1,55 +1,73 @@
-.loginform {
-    background: linear-gradient(to bottom, #50EAF8 0%, #5FB6E8 100%);
-    padding: 2rem 3rem; 
+.loginform, .loginsuccess {
+    background: rgb(95,182,232);
+    background: -webkit-linear-gradient(bottom left, rgba(95,182,232,1) 0%, rgba(95,182,232,1) 50%, rgba(80,234,248,1) 100%);
+    background: -o-linear-gradient(bottom left, rgba(95,182,232,1) 0%, rgba(95,182,232,1) 50%, rgba(80,234,248,1) 100%);
+    background: linear-gradient(to top right, rgba(95,182,232,1) 0%, rgba(95,182,232,1) 50%, rgba(80,234,248,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5fb6e8",endColorstr="#50eaf8",GradientType=1);
+
+    padding: 4rem 3rem; 
     margin-top: 60px;
 }
 .loginheader {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 32px;    
     color: white;
+    font-weight: 400;
     text-align: center;
-    text-justify: inter-word;
     margin-bottom: 25px;
 }
-.formlabel {
+.loginform label {
     font-size: 12px;
     text-align: left;
-    font-family: 'Montserrat', sans-serif;
     color: white;
+    margin-bottom: 0;
 }
 #loginsubmit {
     background-color: #0F75BD;
     border: 3px white solid;
-    margin-top: 35px;
+    margin-top: 25px;
+    width: auto;
+    padding: 1rem 6rem; 
+    margin: 25px auto 0 auto;
     color: white;
-    font-family: 'Montserrat', sans-serif;
     font-size: 12px;
 }
-.invalid-feedback {
-    color: red;
+
+.loginsuccess svg {
+  width: 265px;
+  display: block;
+  margin: 0 auto;
+  fill: none;
+  stroke: #FFF;
+  stroke-width: 15px; 
+  stroke-linecap: square;
+  stroke-miterlimit: 10;
 }
-@media (max-width: 767px) {
-    .desktop { display: none; }
-    .mobile { display: block; background: linear-gradient(to bottom, #5FB6E8 100%, #5FB6E8 100%, #50EAF8 100%); }
+.path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+}
+.path.check {
+  stroke-dashoffset: -100;
+  -webkit-animation: dash-check 0.9s 0.35s ease-in-out forwards;
+  animation: dash-check 0.9s 0.35s ease-in-out forwards;
+}
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
 }
 
-@media (min-width: 768px) {
-    .desktop { display: block; }
-    .mobile { display: none; }
-}
-  .mobileloginheader {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 24pt;    
-    color: white;
-    text-align: center;
-    text-justify: inter-word;
-    margin-top: 50px;
-    font-weight: 600;
-  }
-  formcontrol {
-      border: 1pt #707070 solid;
-  }
-  .mobileform {
-    margin-top: 100px;
-    margin-bottom: 100px;
+
+@media (max-width: 767px) {
+  .loginform, .loginsuccess { height: 100vh; max-height: calc(100vh - 45px); margin: 0; }
 }
