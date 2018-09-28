@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     submitted = false;
     returnUrl: string;
     width = '';
+    formTitle = '';
 
     constructor(
         private formBuilder: FormBuilder,
@@ -39,12 +40,13 @@ export class LoginComponent implements OnInit {
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        console.log(window.innerWidth);
-        if (window.screen.width <= 767) {
+        if (window.innerWidth <= 767) {
             this.appComponent.title = "Companion Portal";
+            this.formTitle = "Login";
         } else {
             this.appComponent.title = "Login";
-        }   
+            this.formTitle = "Stratus Customer Login";
+        }
         
     }
 
@@ -55,10 +57,17 @@ export class LoginComponent implements OnInit {
     onResize(event) {
         if(event.target.innerWidth <= 767) {
             this.appComponent.title = "Companion Portal";
+            this.formTitle = "Login";
         } else {
             this.appComponent.title = "Login";
+            this.formTitle = "Stratus Customer Login";
         }
     }
+
+    @HostListener('window:load', ['$event'])
+    onLoad(event) {
+    console.log(event);
+  }
 
     onSubmit() {
         this.submitted = true;

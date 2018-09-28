@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule }    from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators, ControlContainer, FormGroup, FormControl, FormsModule }    from '@angular/forms';
 import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
@@ -22,7 +22,8 @@ import { QuoteComponent } from './quote.component';
     HttpClientModule,
     CoreModule,
     MaterialModule,
-    QuoteRoutingModule
+    QuoteRoutingModule,
+    FormsModule
   ]
 })
 export class QuoteModule { }

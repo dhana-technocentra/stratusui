@@ -34,21 +34,37 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     font-weight: 600;
+    height: calc(2.25rem + 20px);
 }
 
 .desktop input {
     border: 1px #707070 solid;
     border-radius: 5px;
+    font-size: 16px;
+    color: #064B94;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    height: calc(2.25rem + 10px);
 }
 
-@media (max-width: 767px) {
-    .desktop { display: none; }
-    .mobile { display: block; }
+.desktop select {
+    border: 1px #707070 solid;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #064B94;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    height: calc(2.25rem + 10px);
 }
 
-@media (min-width: 768px) {
-    .desktop { display: block; }
-    .mobile { display: none; }
+.desktop textarea {
+    border: 1px #707070 solid;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #064B94;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    resize: none;
 }
 
 
@@ -69,3 +85,39 @@
 form {
     margin-top: 25px;
 }
+
+@media (max-width: 767px) {
+    .desktop input {
+        height: calc(2.25rem + 25px);
+    }
+    
+    .desktop select {
+        height: calc(2.25rem + 25px);
+    }
+    .multiple {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    #noteid {
+        display: none;
+    }
+}
+
+/* remove the original arrow */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    /* no standardized syntax available, no ie-friendly solution available */
+  }
+  
+  select + i.fa {
+    float: right;
+    margin-top: -27px;
+    margin-right: 5px;
+    pointer-events: none;
+    background-color: #fff;
+    padding-right: 5px;
+    color: #034396;
+  }

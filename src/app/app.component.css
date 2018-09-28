@@ -111,6 +111,10 @@ header {
     height: 50px;
     padding: 0;
   }
+
+  .content {
+    margin: 0px !important;
+  }
   
   .nav.greedy .nav.links { display: none; }
   .nav.greedy .nav.mobile { width: 75%; display: flex; z-index: 101; background: #064B94; }

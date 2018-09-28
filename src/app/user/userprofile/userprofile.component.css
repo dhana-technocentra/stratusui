@@ -4,9 +4,7 @@
     color: #064B94;
     text-align: left;
     text-justify: inter-word;
-    margin-bottom: 25px;
     font-weight: 600;
-    margin-top: 30px;
 }
 .desktop .userprofileheader2 {
     font-family: 'Montserrat', sans-serif;
@@ -45,59 +43,7 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     font-weight: 600;
-}
-
-@media (max-width: 767px) {
-    .desktop { display: none; }
-    .mobile { display: block; }
-}
-
-@media (min-width: 768px) {
-    .desktop { display: block; }
-    .mobile { display: none; }
-}
-
-.mobile .userprofileheader1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20pt;    
-    color: #064B94;
-    text-align: left;
-    text-justify: inter-word;
-    margin-bottom: 15px;
-    font-weight: 500;
-}
-.mobile .userprofileheader2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12pt;    
-    color: #064B94;
-    text-align: left;
-    margin-bottom: 10px;
-    font-weight: lighter;
-}
-.mobile .formlabel {
-    font-size: 10pt;
-    text-align: left;
-    font-family: 'Montserrat', sans-serif;
-    color: #064B94;
-    margin-top: 10px;
-    margin-left: 6px;
-    font-weight: 500;
-}
-
-.mobile input {
-    border: 1px #707070 solid;
-    border-radius: 5px;
-
-}
-
-.mobile #updateprofile1 {
-    margin-top: 25px;
-    border: 3px;
-    color: white;
-    background-color: #0F75BD;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
-    font-weight: 600;
+    height: calc(2.25rem + 20px);
 }
 
 .is-invalid {
@@ -112,4 +58,37 @@
     color: #cf4b63;
     font-weight: 500;
     margin-left: 6px;   
+}
+
+.desktop .form-control {
+    height: calc(2.25rem + 10px);
+}
+
+.desktop input {
+    font-size: 16px;
+    color: #064B94;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+@media (max-width: 767px) {
+    .desktop .form-control {
+        height: calc(2.25rem + 25px);
+    }
+    .desktop .userprofileheader1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20pt;    
+        color: #064B94;
+        text-align: left;
+        text-justify: inter-word;
+        font-weight: 600;
+    }
+    .desktop .userprofileheader2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12pt;    
+        color: #064B94;
+        text-align: left;
+        font-weight: lighter;
+    }
+    
 }

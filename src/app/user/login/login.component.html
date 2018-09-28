@@ -1,15 +1,15 @@
 <section class="desktop">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-1 col-md-3 col-lg-3 col-xl-4"></div>
-            <div class="col-xs-10 col-md-6 col-lg-5 col-xl-4">
+            <div class="col-md-3 col-lg-3 col-xl-4"></div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-12">
                         <div class="loginform">
-                            <div class="loginheader">Stratus Customer Login</div>
+                            <div class="loginheader">{{formTitle}}</div>
                             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                                 <div class="row">
-                                    <div class="col-xs-12">
+                                    <div class="col-12">
                                         <div class="form-group">
                                             <label for="username" class="formlabel">Username</label>
                                             <input type="text" formControlName="username" class="form-control"
@@ -19,7 +19,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12">
+                                    <div class="col-12">
                                         <div class="form-group">
                                             <label for="password" class="formlabel">Password</label>
                                             <input type="password" formControlName="password" class="form-control"
@@ -29,7 +29,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-xs-offset-3">
+                                    <div class="col-8 offset-2 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
                                         <div class="form-group">
                                             <button type="submit" class="form-control" id="loginsubmit">Submit</button>
                                         </div>
@@ -39,46 +39,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="mobile">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="mobileloginheader">Login</div>
-            </div>
-        </div>
-        <div class="row mobileform">
-            <div class="col-xs-12">
-                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="form-group">
-                                <label for="username" class="formlabel">Username</label>
-                                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                                    <div *ngIf="f.username.errors.required">Username is required</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="form-group">
-                                <label for="password" class="formlabel">Password</label>
-                                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                    <div *ngIf="f.password.errors.required">Password is required</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-xs-offset-3">
-                            <div class="form-group">
-                                <button type="submit" class="form-control" id="loginsubmit">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
     </div>

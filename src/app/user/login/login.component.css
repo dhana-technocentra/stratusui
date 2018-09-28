@@ -20,23 +20,61 @@
 #loginsubmit {
     background-color: #0F75BD;
     border: 3px white solid;
-    margin-top: 35px;
+    margin-top: 60px;
     color: white;
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
+    border-radius: 10px;
+    margin-bottom: 60px;
 }
 .invalid-feedback {
     color: red;
 }
-@media (max-width: 767px) {
-    .desktop { display: none; }
-    .mobile { display: block; background: linear-gradient(to bottom, #5FB6E8 100%, #5FB6E8 100%, #50EAF8 100%); }
+ @media (max-width: 767px) {
+    .desktop {
+        background: linear-gradient(to bottom, #5FB6E8 100%, #5FB6E8 100%, #50EAF8 100%);
+        margin-top: 0px !important;
+    }
+    .loginform {
+        background: none;
+        padding: 2rem 3rem; 
+        margin-top: 60px;
+    }
+    .form-control {
+        height: calc(2.25rem + 25px);
+    }
+    .loginheader {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 32px;    
+        color: white;
+        text-align: center;
+        text-justify: inter-word;
+        margin-bottom: 200px;
+        font-weight: 600;
+    }
+    #loginsubmit {
+        background-color: #0F75BD;
+        border: 3px white solid;
+        margin-top: 60px;
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        border-radius: 10px;
+        margin-bottom: 100px;
+    }
+
 }
 
 @media (min-width: 768px) {
-    .desktop { display: block; }
-    .mobile { display: none; }
-}
+    .loginform {
+    background: linear-gradient(to bottom, #50EAF8 0%, #5FB6E8 100%);
+    padding: 2rem 3rem; 
+    margin-top: 60px;
+    }
+    .form-control {
+        height: calc(2.25rem + 10px);
+    }
+} 
   .mobileloginheader {
     font-family: 'Montserrat', sans-serif;
     font-size: 24pt;    
@@ -49,6 +87,16 @@
   formcontrol {
       border: 1pt #707070 solid;
   }
+
+  .desktop input {
+    border: 1px #707070 solid;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #064B94;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    resize: none;
+}
   .mobileform {
     margin-top: 100px;
     margin-bottom: 100px;
