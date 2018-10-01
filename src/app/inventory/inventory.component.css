@@ -76,6 +76,15 @@ mat-header-cell:first-child {
   padding-left: 0px;
 }
 
+.paginationinfo {
+  color: #064B94;
+    font-size: 16px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 100;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
 mat-header-row {
   min-height: 92px;
   text-align: center;
@@ -114,3 +123,66 @@ mat-cell a {
   font-weight: 100;
   justify-content: center;
 }
+
+@media(max-width: 767px) { 
+  .desktop { display:none; }
+  .mobile { display: block; margin-top: 75px; }
+  .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+@media(min-width: 768px) { 
+  .desktop { display:block; }
+  .mobile { display: none; }
+}
+
+table {
+  border-collapse:collapse;
+  border:none;
+  border-right: hidden;
+  border-left: hidden;
+  border-color: #064B94;
+  margin-top: 25px;
+  width:88%;
+  margin-left: 25px;
+}
+.tableheader {
+  background: #064B94;
+  color: white;
+  height: 50px; 
+  margin-left: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24pt;
+  font-weight: 600;
+}
+.rowstyle {
+  font-size: 12pt;
+  color: #064B94;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  
+}
+
+.columnstyle {
+  padding: 5pt 1pt 5pt 5pt;
+}
+
+.tableheaderinfo {
+  padding: 15pt 1pt 15pt 5pt;
+}
+
+.title {
+  padding-right:100pt;
+}
+
+.columnvalue {
+  text-align: center;
+  font-size: 10pt;
+  color: #064B94;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+
+}
+

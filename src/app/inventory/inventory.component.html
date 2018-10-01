@@ -1,45 +1,115 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12" style="margin-top: 5%;">
-      <div class="example-container mat-elevation-z8">
-        <mat-table #table [dataSource]="orders" matSort (matSortChange)="sortData($event)" matSortActive="Service"
-          matSortDirection="desc" matSortDisableClear [class.isMobile]="isMobile">
-          <ng-container matColumnDef="Category">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
-            <mat-cell id="category" *matCellDef="let order">
-              <span class="mobile-label">Category:</span><a style="cursor: pointer;" (click)="navigateToInventoryDetails(order.orderSerId)">{{order.serviceCategory}}</a>
-            </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="Service Type">
-            <mat-header-cell *matHeaderCellDef id="servicetype" mat-sort-header> Service Type </mat-header-cell>
-            <mat-cell id="servicetype" *matCellDef="let order">
-              <span class="mobile-label">Service Type:</span>{{order.mediaType}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="Head Location">
-            <mat-header-cell *matHeaderCellDef id="headlocation" mat-sort-header> Head Location </mat-header-cell>
-            <mat-cell id="headlocation" *matCellDef="let order">
-              <span class="mobile-label">Head Location:</span> {{order.headLocation.address}}
-              {{order.headLocation.city}}
-              {{order.headLocation.state}} {{order.headLocation.zip}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="Remote Location">
-            <mat-header-cell *matHeaderCellDef id="remotelocation" mat-sort-header> Remote Location </mat-header-cell>
-            <mat-cell id="remotelocation" *matCellDef="let order">
-              <span class="mobile-label">Remote Location:</span> No Remote Location </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="PON Number">
-            <mat-header-cell *matHeaderCellDef id="ponnumber" mat-sort-header> PON Number </mat-header-cell>
-            <mat-cell id="ponnumber" *matCellDef="let order">
-              <span class="mobile-label">PON Number:</span> {{order.ponNumber}} </mat-cell>
-          </ng-container>
-          <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: columnsToDisplay;">
-          </mat-row>
-        </mat-table>
-
-        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="setPageSizeOptions($event)">
-        </mat-paginator>
+<section class="desktop">
+  <div class="container">
+    <div class="row">
+      <div class="col-12" style="margin-top: 5%;">
+        <div class="example-container mat-elevation-z8" *ngIf="dataLoaded">
+          <mat-table #table [dataSource]="orders" matSort (matSortChange)="sortData($event)" matSortActive="Service"
+            matSortDirection="desc" matSortDisableClear [class.isMobile]="isMobile">
+            <ng-container matColumnDef="Category">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
+              <mat-cell id="category" *matCellDef="let order">
+                <span class="mobile-label">Category:</span><a style="cursor: pointer;" (click)="navigateToInventoryDetails(order.orderSerId)">{{order.serviceCategory}}</a>
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Service Type">
+              <mat-header-cell *matHeaderCellDef id="servicetype" mat-sort-header> Service Type </mat-header-cell>
+              <mat-cell id="servicetype" *matCellDef="let order">
+                <span class="mobile-label">Service Type:</span>{{order.mediaType}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Head Location">
+              <mat-header-cell *matHeaderCellDef id="headlocation" mat-sort-header> Head Location </mat-header-cell>
+              <mat-cell id="headlocation" *matCellDef="let order">
+                <span class="mobile-label">Head Location:</span> {{order.headLocation.address}}
+                {{order.headLocation.city}}
+                {{order.headLocation.state}} {{order.headLocation.zip}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Remote Location">
+              <mat-header-cell *matHeaderCellDef id="remotelocation" mat-sort-header> Remote Location </mat-header-cell>
+              <mat-cell id="remotelocation" *matCellDef="let order">
+                <span class="mobile-label">Remote Location:</span> No Remote Location </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="PON Number">
+              <mat-header-cell *matHeaderCellDef id="ponnumber" mat-sort-header> PON Number </mat-header-cell>
+              <mat-cell id="ponnumber" *matCellDef="let order">
+                <span class="mobile-label">PON Number:</span> {{order.ponNumber}} </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: columnsToDisplay;">
+            </mat-row>
+          </mat-table>
+          
+          <!-- <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="setPageSizeOptions($event)">
+          </mat-paginator> -->
+        </div>
+        <p class="paginationinfo" *ngIf="dataLoaded">Showing 1 to {{orders.length}} of {{orders.length}} entries</p>
       </div>
     </div>
   </div>
-</div>
+  
+</section>
+<section class="mobile">
+  <table border="1" cellspacing='50' cellpadding='0' *ngFor="let order of orders">
+    <tbody>
+      <tr class="tableheader">
+        <td class="tableheaderinfo">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 col-sm-12"><a style="cursor: pointer;" (click)="navigateToInventoryDetails(order.orderSerId)">{{order.serviceCategory}}</a></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="rowstyle">
+        <td class="columnstyle">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-6 col-sm-6">Service</div>
+              <div class="col-6 col-sm-6 columnvalue">{{order.serviceCategory}}</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="rowstyle">
+        <td class="columnstyle">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-6 col-sm-6">Service Type</div>
+              <div class="col-6 col-sm-6 columnvalue">{{order.mediaType}}</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="rowstyle">
+        <td class="columnstyle">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-6 col-sm-6">Head Location</div>
+              <div class="col-6 col-sm-6 columnvalue">{{order.headLocation.address}}
+                {{order.headLocation.city}} {{order.headLocation.state}}</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="rowstyle">
+        <td class="columnstyle">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-6 col-sm-6">Remote Location</div>
+              <div class="col-6 col-sm-6 columnvalue">No Remote Location</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="rowstyle" style="border-bottom: hidden;">
+        <td class="columnstyle">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-6 col-sm-6">PON Number</div>
+              <div class="col-6 col-sm-6 columnvalue">{{order.ponNumber}}</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

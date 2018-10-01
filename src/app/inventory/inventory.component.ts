@@ -9,6 +9,7 @@ import { Sort } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatPaginator} from '@angular/material';
 import { PageEvent } from '@angular/material';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
@@ -17,7 +18,7 @@ import { PageEvent } from '@angular/material';
 export class InventoryComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
-    private router: Router, private inventoryService: InventoryService, private appComponent: AppComponent, private userService: UserService) { }
+    private router: Router, private inventoryService: InventoryService, private appComponent: AppComponent, private userService: UserService, private spinnerService: Ng4LoadingSpinnerService) { }
 
   userProfile: any;
   companyId: any;
@@ -30,9 +31,11 @@ export class InventoryComponent implements OnInit {
   sortField = "expiration_date";
   sortOrder = "DESC";
   pageIndex = 0;
+  dataLoaded = false;
 
   ngOnInit() {
     this.appComponent.title = "Inventory";
+    this.spinnerService.show();
     this.userService.getUserProfile()
     .subscribe(data => {
       this.userProfile = data;
@@ -40,6 +43,8 @@ export class InventoryComponent implements OnInit {
       this.inventoryService.getOrdersByCompanyId(this.companyId).subscribe(data => {
         this.orders = data;
         this.length = this.orders.length;
+        this.dataLoaded = true;
+        this.spinnerService.hide();
       });
     });
   }

@@ -1,4 +1,4 @@
-<section class="desktop">
+<section class="desktop" *ngIf="dataLoaded">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12" id="header">
@@ -77,47 +77,47 @@
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">Extend Demarc:</td>
-              <td class="columnstyle"></td>
+              <td class="columnstyle">{{orderInfo.extendedDeMarc}}</td>
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">Router Included:</td>
-              <td class="columnstyle"></td>
+              <td class="columnstyle">{{orderInfo.routerIncluded}}</td>
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">serial IP from Carrier:</td>
-              <td class="columnstyle"></td>
+              <td class="columnstyle">{{orderInfo.serIpFromCarrier}}</td>
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">Custom Serail IP from Carrier:</td>
-              <td class="columnstyle"></td>
+              <td class="columnstyle">{{orderInfo.custSerIpFromCarrier}}</td>
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">LAN IP's:</td>
-              <td class="columnstyle"></td>
+              <td class="columnstyle">{{orderInfo.ipReceivedFromCarrier}}</td>
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">Router Password:</td>
-              <td class="columnstyle"></td>
+              <td class="columnstyle">{{orderInfo.routerPassword}}</td>
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">Provider DNS:</td>
-              <td class="columnstyle"></td>
+              <td class="columnstyle">{{orderInfo.providerDNS}}</td>
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">Provider DNS Notes:</td>
-              <td class="columnstyle"></td>
+              <td class="columnstyle">{{orderInfo.dnsNotes}}</td>
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">LEC Circuit ID:</td>
-              <td class="columnstyle"></td>
+              <td class="columnstyle">{{orderInfo.lecCircuitId}}</td>
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">Loop Provided By:</td>
-              <td class="columnstyle"></td>
+              <td class="columnstyle">{{orderInfo.providedBy}}</td>
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">Carrier Port/IOC/Bundle Circuit ID:</td>
-              <td class="columnstyle"></td>
+              <td class="columnstyle">{{orderInfo.carrierCuitId}}</td>
             </tr>
           </tbody>
         </table>
@@ -125,7 +125,7 @@
     </div>
   </div>
 </section>
-<section class="mobile">
+<section class="mobile" *ngIf="dataLoaded">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12" id="header">
@@ -217,37 +217,37 @@
               <td style="padding: 15pt 1pt 1pt 5pt;">Order Detail</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">Extend Demarc:</td>
+              <td class="columnstyle">Extend Demarc:{{orderInfo.extendedDeMarc}}</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">Router Included:</td>
+              <td class="columnstyle">Router Included:{{orderInfo.routerIncluded}}</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">serial IP from Carrier:</td>
+              <td class="columnstyle">serial IP from Carrier:{{orderInfo.serIpFromCarrier}}</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">Custom Serail IP from Carrier:</td>
+              <td class="columnstyle">Custom Serail IP from Carrier:{{orderInfo.custSerIpFromCarrier}}</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">LAN IP's:</td>
+              <td class="columnstyle">LAN IP's:{{orderInfo.ipReceivedFromCarrier}}</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">Router Password:</td>
+              <td class="columnstyle">Router Password:{{orderInfo.routerPassword}}</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">Provider DNS:</td>
+              <td class="columnstyle">Provider DNS:{{orderInfo.providerDNS}}</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">Provider DNS Notes:</td>
+              <td class="columnstyle">Provider DNS Notes:{{orderInfo.providerDNS}}</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">LEC Circuit ID:</td>
+              <td class="columnstyle">LEC Circuit ID:{{orderInfo.lecCircuitId}}</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">Loop Provided By:</td>
+              <td class="columnstyle">Loop Provided By:{{orderInfo.providedBy}}</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">Carrier Port/IOC/Bundle Circuit ID:</td>
+              <td class="columnstyle">Carrier Port/IOC/Bundle Circuit ID:{{orderInfo.carrierCuitId}}</td>
             </tr>
           </tbody>
         </table>

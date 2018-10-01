@@ -18,4 +18,8 @@ export class InventoryService {
     getOrderDetailsByOrderId(id: any) {
         return this.http.get(`${environment.apiUrl}/api/orders/getOrderSummary?orderId=` + id);
     }
+
+    getOrderDetailById(id: any) {
+        return this.http.get(`${environment.apiUrl}/api/orders/getOrderDetail?orderId=` + id);
+    }
 }   

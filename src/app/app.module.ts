@@ -14,6 +14,7 @@ import { FirewallModule } from './firewall/firewall.module';
 import { NetworkModule } from './network/network.module';
 import { CustomerSupportModule } from './customersupport/customersupport.module';
 import {MatTableModule} from '@angular/material/table';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 @NgModule({ 
   declarations: [
@@ -33,7 +34,8 @@ import {MatTableModule} from '@angular/material/table';
     NetworkModule,
     CustomerSupportModule,
     HttpModule,
-    MatTableModule
+    MatTableModule,
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [
     

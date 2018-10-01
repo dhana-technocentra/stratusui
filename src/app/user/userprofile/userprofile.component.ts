@@ -7,6 +7,8 @@ import { AlertService, UserService } from '../../core';
 import { AppComponent } from './../../app.component';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 
 // Depending on whether rollup is used, moment needs to be imported differently.
 // Since Moment.js doesn't have a default export, we normally need to import using the `* as`
@@ -58,11 +60,11 @@ export class UserProfileComponent implements OnInit {
         private route: ActivatedRoute,
         private userService: UserService,
         private alertService: AlertService,
-        private appComponent: AppComponent) { }
+        private appComponent: AppComponent, private spinnerService: Ng4LoadingSpinnerService) { }
 
     ngOnInit() {
         // let userId = localStorage.getItem("editUserId");
-
+        this.spinnerService.show();
         this.passwordFom = this.formBuilder.group({
             oldPassword: ['', [Validators.required]],
             password: ['', [Validators.required]]
@@ -127,6 +129,7 @@ export class UserProfileComponent implements OnInit {
                 }
                 this.userProfileForm.setValue(data);
                 this.userProfile = data;
+                this.spinnerService.hide();
                 if (data['isActive'] == 'Y') {
                     this.isActiveToggle = true;
                 }
