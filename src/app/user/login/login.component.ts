@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
     submitted = false;
+    loginsuccessful = false;
     returnUrl: string;
     width = '';
     formTitle = '';
@@ -32,8 +33,7 @@ export class LoginComponent implements OnInit {
             password: ['', Validators.required]
         });
 
-
-
+        this.appComponent.showNavBar = true;
 
         // reset login status
         this.authenticationService.logout();
@@ -90,11 +90,16 @@ export class LoginComponent implements OnInit {
                 data => {
                     localStorage.setItem('user_name', userObject.username);
                     console.log('user_name set', userObject.username);
-                    this.appComponent.showNavBar = false;
-                    this.router.navigate(['user/userprofile']);
+                    this.loginsuccessful = true;
+                  
+                    setTimeout(()=>{ 
+                      this.appComponent.showNavBar = false;
+                      this.router.navigate(['user/userprofile']);
+                    }, 1500);
                 },
                 error => {
                     this.alertService.error(error);
+                    this.loginsuccessful = false;
                     this.loading = false;
                 });
     }

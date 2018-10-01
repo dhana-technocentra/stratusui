@@ -1,20 +1,17 @@
-.loginform {
-    background: linear-gradient(to bottom, #50EAF8 0%, #5FB6E8 100%);
-    padding: 2rem 3rem; 
-    margin-top: 60px;
-}
+
 .loginheader {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 32px;    
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 32px;
     color: white;
+    font-weight: 400;
     text-align: center;
-    text-justify: inter-word;
+    text-justify: inter-word; 
     margin-bottom: 25px;
 }
 .formlabel {
+    font-family: 'Montserrat', sans-serif; 
     font-size: 12px;
     text-align: left;
-    font-family: 'Montserrat', sans-serif;
     color: white;
 }
 #loginsubmit {
@@ -22,14 +19,26 @@
     border: 3px white solid;
     margin-top: 60px;
     color: white;
-    font-family: 'Montserrat', sans-serif;
     font-size: 12px;
     border-radius: 10px;
     margin-bottom: 60px;
 }
-.invalid-feedback {
-    color: red;
+
+
+.is-invalid {
+    border: 2px solid #cf4b63 !important;
 }
+
+.is-invalid1 {
+    border: 2px solid #cf4b63 !important;
+}
+
+.invalid-feedback {
+    color: #cf4b63;
+    font-weight: 500;
+    margin-left: 6px;   
+}
+
  @media (max-width: 767px) {
     .desktop {
         background: linear-gradient(to bottom, #5FB6E8 100%, #5FB6E8 100%, #50EAF8 100%);
@@ -62,6 +71,7 @@
         border-radius: 10px;
         margin-bottom: 100px;
     }
+      .loginform, .loginsuccess { height: 100vh; max-height: calc(100vh - 45px); } 
 
 }
 
@@ -84,9 +94,6 @@
     margin-top: 50px;
     font-weight: 600;
   }
-  formcontrol {
-      border: 1pt #707070 solid;
-  }
 
   .desktop input {
     border: 1px #707070 solid;
@@ -101,3 +108,21 @@
     margin-top: 100px;
     margin-bottom: 100px;
 }
+
+ .path.check { 
+    stroke-dashoffset: -100; 
+    -webkit-animation: dash-check 0.9s 0.35s ease-in-out forwards; 
+    animation: dash-check 0.9s 0.35s ease-in-out forwards; 
+  }
+  
+
+  .loginsuccess svg { 
+    width: 265px; 
+    display: block; 
+    margin: 0 auto; 
+    fill: none; 
+    stroke: #FFF; 
+    stroke-width: 15px;  
+    stroke-linecap: square; 
+    stroke-miterlimit: 10; 
+  } 

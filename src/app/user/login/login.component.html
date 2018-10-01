@@ -1,5 +1,5 @@
 <section class="desktop">
-    <div class="container-fluid">
+    <div class="container-fluid"  *ngIf="!loginsuccessful">
         <div class="row">
             <div class="col-md-3 col-lg-3 col-xl-4"></div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4">
@@ -42,4 +42,22 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid" *ngIf="loginsuccessful">
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-4"></div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="loginform loginsuccess">
+                            <h3 class="loginheader">Logged In Successfully!</h3>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+                                <polyline class="path check" points="100.2,40.2 51.5,88.8 29.8,67.5 " />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>

@@ -196,7 +196,37 @@ a.btn-warning:hover,.btn-warning:hover {
 /*====================
 	Forms
 ====================*/
+.form-group { margin-bottom: 2rem;}
+label { 
+  font-size: 12px;
+  text-align: left;
+  color: #064B94;
+  margin: 0 0 0 6px;
+  font-weight: 400;
+}
+.form-control {
+  border: 1px solid #707070;
+  padding: 5px;
+  font-size: 1.6rem;
+  height: auto;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.form-control:focus {
+  border: 1px solid #707070;
+  box-shadow: none;
+}
+.invalid-feedback {
+    color: #C70039;
+    font-weight: 400;
+}
 
+@media (max-width: 767px) {
+  .form-control {
+    font-size: 12px;
+  }
+}
 /*====================
 	Modal
 ====================*/
