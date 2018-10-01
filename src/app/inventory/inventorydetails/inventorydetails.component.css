@@ -23,7 +23,7 @@
 
 @media (max-width: 767px) {
     .desktop { display: none; }
-    .mobile { display: block; }
+    .mobile { display: block; margin-bottom: 50px;}
     #header {
         text-align: left;
         font-size: 24pt;

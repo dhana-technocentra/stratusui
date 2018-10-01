@@ -24,7 +24,6 @@ header {
 @media (max-width: 767px) {
   .content {
     margin-top: 0px !important;
-    margin-bottom: 50px !important;
   }
   
   header { padding: 10px 0;}
@@ -118,7 +117,6 @@ header {
 
   .content {
     margin-top: 0px !important;
-    margin-bottom: 50px !important;
     margin-left: 0px !important;
     margin-right: 0px !important;
   }

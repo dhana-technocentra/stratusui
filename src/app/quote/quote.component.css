@@ -99,6 +99,10 @@ form {
     .form-check-input {
         margin-top: 78px;
     }
+
+    .desktop {
+        margin-bottom: 50px;
+    }
     
     .form-check-label {
         margin-top: 85px;

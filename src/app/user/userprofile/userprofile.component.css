@@ -74,6 +74,9 @@
 }
 
 @media (max-width: 767px) {
+    .desktop {
+        margin-bottom: 50px;
+    }
     .desktop .form-control {
         height: calc(2.25rem + 25px);
     }
