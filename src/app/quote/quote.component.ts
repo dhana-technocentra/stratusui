@@ -18,7 +18,7 @@ export class QuoteComponent implements OnInit {
   submitted = false;
   priorities = ['High', 'Normal', 'Low'];
   services: any;
-  sameAsAccount = false;
+  sameAsAccount = true;
   userProfile: any;
   states = ["Alaska", "Alabama", "Arkansas", "American Samoa", "Arizona", "California", "Colorado", "Connecticut", "District of Columbia", "Delaware", "Florida", "Georgia", "Guam", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi", "Montana", "North Carolina", "North Dakota", "Nebraska", "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "Virgin Islands", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming"];
   constructor(private formBuilder: FormBuilder,
@@ -32,7 +32,6 @@ export class QuoteComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       companyName: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
       address: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
@@ -43,7 +42,7 @@ export class QuoteComponent implements OnInit {
     this.userService.getUserProfile().pipe(first()).subscribe(data => { this.userProfile = data; }, error => { });
 
   }
-  
+
 
   get f() { return this.quoteForm.controls; }
   onSubmit(form: NgForm) {
@@ -52,30 +51,37 @@ export class QuoteComponent implements OnInit {
     if (this.quoteForm.invalid) {
       return;
     }
-    // this.quoteService.requestAQuote(this.quoteForm.value)
-    //   .pipe(first())
-    //   .subscribe(
-    //     data => {
-    //       console.log(data);
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     });
-    console.log(this.quoteForm.value);
+    this.quoteService.requestAQuote(this.quoteForm.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
   }
 
-  copyUser() {
-    if (this.sameAsAccount) {
-      this.quoteForm.value.firstName = this.userProfile.firstName;
-      this.quoteForm.value.lastName = this.userProfile.lastName;
-      this.quoteForm.value.company = this.userProfile.company;
-      this.quoteForm.value.address = this.userProfile.address;
-      this.quoteForm.value.city = this.userProfile.city;
-      this.quoteForm.value.state = this.userProfile.state;
-      this.quoteForm.value.zip = this.userProfile.zipCode;
-      console.log(this.quoteForm.value);
+  copyUser(event) {
+    console.log(event.target.checked);
+    if (event.target.checked) {
+      var userObject = {
+        firstName: this.userProfile.firstName,
+        lastName: this.userProfile.lastName,
+        address: this.userProfile.address,
+        city: this.userProfile.city,
+        state: this.userProfile.state,
+        zip: this.userProfile.zipCode,
+        companyName: "",
+        service: "",
+        priority: "",
+        message: ""
+
+      }
+      this.quoteForm.setValue(userObject);
+    } else {
+      this.quoteForm.reset();
     }
-    console.log(this.sameAsAccount);
   }
 
 }

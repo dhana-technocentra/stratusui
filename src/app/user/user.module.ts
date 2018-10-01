@@ -15,7 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserProfileComponent } from './userprofile/userprofile.component';
 import { UserPasswordComponent } from './userpassword/userpassword.component';
-
+import { FormsModule } from '@angular/forms';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { UserPasswordComponent } from './userpassword/userpassword.component';
     HttpClientModule,
     CoreModule,
     MaterialModule,
-    UserRoutingModule
+    UserRoutingModule,
+    FormsModule,
+    TextMaskModule
   ]
 })
 export class UserModule { }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -53,6 +53,7 @@ export class UserProfileComponent implements OnInit {
     isActiveToggle: boolean = false;
     registerMomentDate: string;
     userProfile = {};
+    public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -85,7 +86,7 @@ export class UserProfileComponent implements OnInit {
             city: ['', [Validators.required]],
             state: ['', [Validators.required]],
             zipCode: ['', [Validators.required]],
-            title: [''],
+            title: ['', [Validators.required]],
             officePhone:
                 this.formBuilder.group({
                     phoneNumber: ['', Validators.required],
@@ -128,7 +129,11 @@ export class UserProfileComponent implements OnInit {
                     "repeatPassword": ""
                 }
                 this.userProfileForm.setValue(data);
+                var registerDate = new Date(data["registerDate"]).toLocaleString().slice(0,10);
+                registerDate = registerDate.replace(/,/g,"");
+                console.log(registerDate);
                 this.userProfile = data;
+                this.userProfile["registerDate"] = registerDate; 
                 this.spinnerService.hide();
                 if (data['isActive'] == 'Y') {
                     this.isActiveToggle = true;
@@ -136,6 +141,13 @@ export class UserProfileComponent implements OnInit {
             });
         this.appComponent.title = "Profile";
 
+    }
+
+    @HostListener('document:keypress', ['$event'])
+    handleKeyboardEvent(event: KeyboardEvent) {
+      if (event.srcElement.id == "zip" && (event.keyCode < 48 || event.keyCode > 57)) {
+        event.returnValue = false;
+      }
     }
 
 

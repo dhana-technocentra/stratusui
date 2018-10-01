@@ -22,7 +22,11 @@ header {
 .page-title { text-align: center; position: relative;}
 
 @media (max-width: 767px) {
-  .content { margin: 45px 0 0 0; }
+  .content {
+    margin-top: 0px !important;
+    margin-bottom: 50px !important;
+  }
+  
   header { padding: 10px 0;}
   .logo-wrap { display: none; }
 }
@@ -113,8 +117,12 @@ header {
   }
 
   .content {
-    margin: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 50px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
   }
+  
   
   .nav.greedy .nav.links { display: none; }
   .nav.greedy .nav.mobile { width: 75%; display: flex; z-index: 101; background: #064B94; }

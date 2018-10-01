@@ -55,6 +55,7 @@
                                         <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                                         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                                             <div *ngIf="f.email.errors.required">Email is required</div>
+                                            <div *ngIf="!f.email.errors.required && f.email.errors">Email is Invalid</div>
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +97,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="zip" class="formlabel">Zip *</label>
-                                        <input type="text" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
+                                        <input type="text" formControlName="zipCode" id="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
                                         <div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
                                             <div *ngIf="f.zipCode.errors.required">Zipcode is required</div>
                                         </div>
@@ -110,7 +111,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="officephonenumber" class="formlabel">Office Phone *</label>
-                                            <input type="text" formControlName="phoneNumber" class="form-control"
+                                            <input type="text" [textMask]="{mask: mask,guide : false}" formControlName="phoneNumber" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && userProfileForm.controls.officePhone.controls.phoneNumber.errors }" />
                                             <div *ngIf="submitted && userProfileForm.controls.officePhone.controls.phoneNumber.errors"
                                                 class="invalid-feedback">
@@ -135,7 +136,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="mobilephonenumber" class="formlabel">Mobile *</label>
-                                            <input type="text" formControlName="phoneNumber" class="form-control"
+                                            <input type="text" [textMask]="{mask: mask,guide : false}" formControlName="phoneNumber" class="form-control"
                                                 [ngClass]="{ 'is-invalid': submitted && userProfileForm.controls.officePhone.controls.phoneNumber.errors }" />
                                             <div *ngIf="submitted && userProfileForm.controls.officePhone.controls.phoneNumber.errors"
                                                 class="invalid-feedback">
@@ -152,7 +153,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="fax" class="formlabel">Fax</label>
-                                            <input type="text" formControlName="phoneNumber" class="form-control" />
+                                            <input type="text" [textMask]="{mask: mask,guide : false}" formControlName="phoneNumber" class="form-control" />
                                         </div>
                                     </div>
                                 </div>

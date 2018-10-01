@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" (click)="copyUser()" [(ngModel)]="sameAsAccount" #ctrl="ngModel"> Same as Account
+                    <input class="form-check-input" type="checkbox" (change)="copyUser($event)"> <label class="form-check-label">Same
+                        as Account
                     </label>
                 </div>
                 <form [formGroup]="quoteForm" (ngSubmit)="onSubmit(quoteForm)">

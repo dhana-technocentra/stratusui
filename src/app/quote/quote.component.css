@@ -13,7 +13,7 @@
 }
 
 .multiple {
-    padding-left: 10px;
+    padding-left: 15px;
     padding-right: 0px;
 }
 
@@ -24,6 +24,15 @@
     color: #064B94;
     margin-top: 10px;
     font-weight: 500;
+}
+
+.form-check-input {
+    margin-top: 25px;
+}
+
+.form-check-label {
+    margin-top: 28px;
+    margin-left: 10px;
 }
 
 #requestquote1 {
@@ -87,6 +96,28 @@ form {
 }
 
 @media (max-width: 767px) {
+    .form-check-input {
+        margin-top: 78px;
+    }
+    
+    .form-check-label {
+        margin-top: 85px;
+        margin-left: 10px;
+        font-size: 12pt;
+        text-align: left;
+        font-family: 'Montserrat', sans-serif;
+        color: #064B94;
+    }
+    .formlabel {
+        font-size: 10pt;
+        text-align: left;
+        font-family: 'Montserrat', sans-serif;
+        color: #064B94;
+        margin-top: 10px;
+        margin-left: 6px;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
     .desktop input {
         height: calc(2.25rem + 25px);
     }
@@ -114,10 +145,11 @@ select {
   
   select + i.fa {
     float: right;
-    margin-top: -27px;
+    margin-top: -23px;
     margin-right: 5px;
     pointer-events: none;
     background-color: #fff;
     padding-right: 5px;
     color: #034396;
   }
+  
