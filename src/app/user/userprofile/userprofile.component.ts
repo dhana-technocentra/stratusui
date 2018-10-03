@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -8,6 +8,7 @@ import { AppComponent } from './../../app.component';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { ToastsManager } from 'ng6-toastr';
 
 
 // Depending on whether rollup is used, moment needs to be imported differently.
@@ -61,7 +62,9 @@ export class UserProfileComponent implements OnInit {
         private route: ActivatedRoute,
         private userService: UserService,
         private alertService: AlertService,
-        private appComponent: AppComponent, private spinnerService: Ng4LoadingSpinnerService) { }
+        private appComponent: AppComponent, private spinnerService: Ng4LoadingSpinnerService, public toastr: ToastsManager, vcr: ViewContainerRef) { 
+            this.toastr.setRootViewContainerRef(vcr);
+        }
 
     ngOnInit() {
         // let userId = localStorage.getItem("editUserId");
@@ -143,6 +146,10 @@ export class UserProfileComponent implements OnInit {
 
     }
 
+    showSuccess(successMessage) {
+        this.toastr.success(successMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true}); 
+    }
+
     @HostListener('document:keypress', ['$event'])
     handleKeyboardEvent(event: KeyboardEvent) {
       if (event.srcElement.id == "zip" && (event.keyCode < 48 || event.keyCode > 57)) {
@@ -172,7 +179,9 @@ export class UserProfileComponent implements OnInit {
 
     onFormSubmit(form: NgForm) {
         this.submitted = true;
+        this.spinnerService.show();
         if (this.userProfileForm.invalid) {
+            this.spinnerService.hide();
             return;
         }
 
@@ -200,11 +209,14 @@ export class UserProfileComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    this.spinnerService.hide();
+                        this.showSuccess("Updated Successfully");
                     this.alertService.success(UPDATE_USERPROFILE, true);
                     console.log('updateUserProfile result ', data);
                     //  this.router.navigate([LOGIN_PATH]);
                 },
                 error => {
+                    this.spinnerService.hide();
                     console.log('updateUserProfile result failure ', error);
                     // this.alertService.error(error);
                     // this.loading = false;

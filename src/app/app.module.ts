@@ -15,8 +15,7 @@ import { NetworkModule } from './network/network.module';
 import { CustomerSupportModule } from './customersupport/customersupport.module';
 import {MatTableModule} from '@angular/material/table';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
-
-
+import {ToastModule} from 'ng6-toastr';
 
 @NgModule({ 
   declarations: [
@@ -37,7 +36,8 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     CustomerSupportModule,
     HttpModule,
     MatTableModule,
-    Ng4LoadingSpinnerModule.forRoot()
+    Ng4LoadingSpinnerModule.forRoot(),
+    ToastModule.forRoot()
   ],
   providers: [
     

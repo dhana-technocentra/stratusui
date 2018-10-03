@@ -23,7 +23,7 @@ export class InventoryComponent implements OnInit {
   userProfile: any;
   companyId: any;
   orders: any;
-  columnsToDisplay = ["Category", "Service Type", "Head Location", "Remote Location", "PON Number"];
+  columnsToDisplay = ["Category", "Service Media", "Head Location", "Remote Location", "PON Number"];
   length = 0;
   pageSize = 1;
   pageSizeOptions = [1, 2, 3];

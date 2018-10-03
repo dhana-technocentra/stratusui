@@ -11,10 +11,10 @@
                 <span class="mobile-label">Category:</span><a style="cursor: pointer;" (click)="navigateToInventoryDetails(order.orderSerId)">{{order.serviceCategory}}</a>
               </mat-cell>
             </ng-container>
-            <ng-container matColumnDef="Service Type">
-              <mat-header-cell *matHeaderCellDef id="servicetype" mat-sort-header> Service Type </mat-header-cell>
-              <mat-cell id="servicetype" *matCellDef="let order">
-                <span class="mobile-label">Service Type:</span>{{order.mediaType}} </mat-cell>
+            <ng-container matColumnDef="Service Media">
+              <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Service Media </mat-header-cell>
+              <mat-cell id="mediaType" *matCellDef="let order">
+                <span class="mobile-label">Service Media:</span>{{order.mediaType}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="Head Location">
               <mat-header-cell *matHeaderCellDef id="headlocation" mat-sort-header> Head Location </mat-header-cell>

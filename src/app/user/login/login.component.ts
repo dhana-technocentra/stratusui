@@ -1,10 +1,12 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { AlertService, AuthenticationService, UserService, LoggerService } from '../../core';
 import { AppComponent } from './../../app.component';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { ToastsManager } from 'ng6-toastr';
 
 @Component({
     selector: 'app-login',
@@ -25,7 +27,13 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private alertService: AlertService, private appComponent: AppComponent) { }
+        private alertService: AlertService, private appComponent: AppComponent, private spinnerService: Ng4LoadingSpinnerService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+            this.toastr.setRootViewContainerRef(vcr);
+    }
+
+    showError(errorMessage) {
+        this.toastr.error(errorMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true}); 
+    }
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
@@ -70,10 +78,12 @@ export class LoginComponent implements OnInit {
   }
 
     onSubmit() {
+        this.spinnerService.show();
         this.submitted = true;
 
         // stop here if form is invalid
         if (this.loginForm.invalid) {
+            this.spinnerService.hide();
             return;
         }
 
@@ -90,6 +100,7 @@ export class LoginComponent implements OnInit {
                 data => {
                     localStorage.setItem('user_name', userObject.username);
                     console.log('user_name set', userObject.username);
+                    this.spinnerService.hide();
                     this.loginsuccessful = true;
                   
                     setTimeout(()=>{ 
@@ -98,6 +109,9 @@ export class LoginComponent implements OnInit {
                     }, 1500);
                 },
                 error => {
+                    var error = JSON.parse(error._body);
+                    this.spinnerService.hide();
+                    this.showError(error.error_description);
                     this.alertService.error(error);
                     this.loginsuccessful = false;
                     this.loading = false;

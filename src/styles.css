@@ -1,7 +1,7 @@
 /*====================
 	Font Styles
 ====================*/
-
+@import url("../node_modules/ng6-toastr/ng2-toastr.css");
 html, body {text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 html {font-size: 10px !important;}
 body {
