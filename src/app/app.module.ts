@@ -16,10 +16,11 @@ import { CustomerSupportModule } from './customersupport/customersupport.module'
 import {MatTableModule} from '@angular/material/table';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import {ToastModule} from 'ng6-toastr';
+import {SupportModule } from './support/support.module';
 
 @NgModule({ 
   declarations: [
-    AppComponent   
+    AppComponent
   ],
   imports: [    
     CoreModule,
@@ -37,7 +38,8 @@ import {ToastModule} from 'ng6-toastr';
     HttpModule,
     MatTableModule,
     Ng4LoadingSpinnerModule.forRoot(),
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    SupportModule
   ],
   providers: [
     

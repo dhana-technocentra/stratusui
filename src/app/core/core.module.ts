@@ -8,12 +8,13 @@ import {AlertComponent} from './directives';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
-import { AlertService, AuthenticationService, UserService,LoggerService } from './services';
+import { AlertService, AuthenticationService, UserService,LoggerService,  } from './services';
 
 // used to create fake backend
 import { fakeBackendProvider } from './helpers';
 import { QuoteService } from './services/quote.service';
 import { InventoryService } from './services/inventory.service';
+import { IFrameService } from './services/iframe.service';
  
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { InventoryService } from './services/inventory.service';
               UserService,
               QuoteService,
               InventoryService,
+              IFrameService,
               { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
               { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

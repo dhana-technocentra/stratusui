@@ -64,23 +64,35 @@ export class QuoteComponent implements OnInit {
 
   copyUser(event) {
     console.log(event.target.checked);
+    var userObject = {};
     if (event.target.checked) {
-      var userObject = {
+      userObject = {
         firstName: this.userProfile.firstName,
         lastName: this.userProfile.lastName,
         address: this.userProfile.address,
         city: this.userProfile.city,
         state: this.userProfile.state,
         zip: this.userProfile.zipCode,
-        companyName: "",
-        service: "",
-        priority: "",
-        message: ""
-
+        companyName: this.quoteForm.controls.companyName.value,
+        service: this.quoteForm.controls.service.value,
+        priority: this.quoteForm.controls.priority.value,
+        message: this.quoteForm.controls.message.value,
       }
       this.quoteForm.setValue(userObject);
     } else {
-      this.quoteForm.reset();
+      userObject = {
+        firstName: "",
+        lastName: "",
+        address: "",
+        city: "",
+        state: "",
+        zip: "",
+        companyName: this.quoteForm.controls.companyName.value,
+        service: this.quoteForm.controls.service.value,
+        priority: this.quoteForm.controls.priority.value,
+        message: this.quoteForm.controls.message.value,
+      }
+      this.quoteForm.setValue(userObject);
     }
   }
 

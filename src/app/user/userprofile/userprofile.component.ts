@@ -131,6 +131,18 @@ export class UserProfileComponent implements OnInit {
                     "password": "",
                     "repeatPassword": ""
                 }
+                if(typeof data["cellPhone"]["phoneNumber"] == "undefined") {
+                    data["cellPhone"]["phoneNumber"] = "";
+                    data["cellPhone"]["extension"] = "";
+                }
+                if(typeof data["officePhone"]["phoneNumber"] == "undefined") {
+                    data["officePhone"]["phoneNumber"] = "";
+                    data["officePhone"]["extension"] = "";
+                }
+                if(typeof data["fax"]["phoneNumber"] == "undefined") {
+                    data["fax"]["phoneNumber"] = "";
+                    data["fax"]["extension"] = "";
+                }
                 this.userProfileForm.setValue(data);
                 var registerDate = new Date(data["registerDate"]).toLocaleString().slice(0,10);
                 registerDate = registerDate.replace(/,/g,"");

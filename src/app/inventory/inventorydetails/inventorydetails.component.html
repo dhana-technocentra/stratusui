@@ -22,15 +22,15 @@
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">{{order.headLocation.name}}</td>
-              <td class="columnstyle">John Doe Companion</td>
+              <td class="columnstyle">{{order.headLocation.firstName}} {{order.headLocation.lastName}}</td>
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">{{order.headLocation.npa}}-{{order.headLocation.nxx}}</td>
-              <td class="columnstyle">Ph: (309)845-1337 ext: 11</td>
+              <td class="columnstyle">Ph: {{order.headLocation.contactPhone}} ext: {{order.headLocation.contactExtension}}</td>
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">{{order.headLocation.address}}</td>
-              <td class="columnstyle">Cell: (309)545-2248</td>
+              <td class="columnstyle">Cell: {{order.headLocation.contactCell}}</td>
             </tr>
             <tr class="rowstyle">
               <td class="columnstyle">{{order.headLocation.city}},{{order.headLocation.state}}
@@ -171,13 +171,13 @@
               <td style="padding: 15pt 1pt 1pt 5pt;">On-Site Contact</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">John Doe Companion</td>
+              <td class="columnstyle">{{order.headLocation.firstName}} {{order.headLocation.lastName}}</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">Ph: (309)845-1337 ext: 11</td>
+              <td class="columnstyle">Ph: {{order.headLocation.contactPhone}} ext: {{order.headLocation.contactExtension}}</td>
             </tr>
             <tr class="rowstyle">
-              <td class="columnstyle">Cell: (309)545-2248</td>
+              <td class="columnstyle">Cell: {{order.headLocation.contactCell}}</td>
             </tr>
           </tbody>
         </table>
