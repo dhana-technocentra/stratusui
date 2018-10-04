@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatPaginator} from '@angular/material';
 import { PageEvent } from '@angular/material';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import {MatSort, MatTableDataSource} from '@angular/material';
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
@@ -18,7 +19,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 export class InventoryComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
-    private router: Router, private inventoryService: InventoryService, private appComponent: AppComponent, private userService: UserService, private spinnerService: Ng4LoadingSpinnerService) { }
+    private router: Router, private inventoryService: InventoryService, private appComponent: AppComponent, private userService: UserService, private spinnerService: Ng4LoadingSpinnerService, private changeDetector: ChangeDetectorRef) { }
 
   userProfile: any;
   companyId: any;
@@ -32,21 +33,25 @@ export class InventoryComponent implements OnInit {
   sortOrder = "DESC";
   pageIndex = 0;
   dataLoaded = false;
+  dataSource: any;
+  @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
     this.appComponent.title = "Inventory";
     this.spinnerService.show();
     this.userService.getUserProfile()
-    .subscribe(data => {
-      this.userProfile = data;
-      this.companyId = this.userProfile.companyId;
-      this.inventoryService.getOrdersByCompanyId(this.companyId).subscribe(data => {
-        this.orders = data;
-        this.length = this.orders.length;
-        this.dataLoaded = true;
-        this.spinnerService.hide();
+      .subscribe(data => {
+        this.userProfile = data;
+        this.companyId = this.userProfile.companyId;
+        this.inventoryService.getOrdersByCompanyId(this.companyId).subscribe(data => {
+          this.orders = data;
+          this.dataSource = new MatTableDataSource(this.orders);
+          this.dataSource.sort = this.sort;
+          this.length = this.orders.length;
+          this.dataLoaded = true;
+          this.spinnerService.hide();
+        });
       });
-    });
   }
 
   setPageSizeOptions(setPageSizeOptionsInput: any) {
@@ -58,5 +63,26 @@ export class InventoryComponent implements OnInit {
     console.log(id);
     this.router.navigate(['/inventorydetails', { orderId: id }]);
   }
+
+  sortData(sort: Sort) {
+    this.spinnerService.show();
+    this.orders = this.orders.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'Category': return this.compare(a.serviceCategory, b.serviceCategory, isAsc);
+        case 'Service Media': return this.compare(a.mediaType, b.mediaType, isAsc);
+        case 'PON Number': return this.compare(a.ponNumber, b.mediaType, isAsc);
+        default: return 0;
+      }
+    });
+    this.dataSource = new MatTableDataSource(this.orders);
+    this.spinnerService.hide();
+  }
+
+  compare(a, b, isAsc) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+
+
 
 }

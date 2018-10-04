@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12" style="margin-top: 5%;">
         <div class="example-container mat-elevation-z8" *ngIf="dataLoaded">
-          <mat-table #table [dataSource]="orders" matSort (matSortChange)="sortData($event)" matSortActive="Service"
+          <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)"
             matSortDirection="desc" matSortDisableClear [class.isMobile]="isMobile">
             <ng-container matColumnDef="Category">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
@@ -26,7 +26,8 @@
             <ng-container matColumnDef="Remote Location">
               <mat-header-cell *matHeaderCellDef id="remotelocation" mat-sort-header> Remote Location </mat-header-cell>
               <mat-cell id="remotelocation" *matCellDef="let order">
-                <span class="mobile-label">Remote Location:</span> No Remote Location </mat-cell>
+                <span class="mobile-label">Remote Location:</span><span *ngIf="order.remoteLocation">{{order.remoteLocation.address}}
+                {{order.remoteLocation.city}} {{order.remoteLocation.state}}</span><span *ngIf="!order.remoteLocation">No Remote Location</span> </mat-cell>
             </ng-container>
             <ng-container matColumnDef="PON Number">
               <mat-header-cell *matHeaderCellDef id="ponnumber" mat-sort-header> PON Number </mat-header-cell>
@@ -95,7 +96,8 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-6 col-sm-6">Remote Location</div>
-              <div class="col-6 col-sm-6 columnvalue">No Remote Location</div>
+              <div class="col-6 col-sm-6 columnvalue"><span *ngIf="order.remoteLocation">{{order.remoteLocation.address}}
+                {{order.remoteLocation.city}} {{order.remoteLocation.state}}</span><span *ngIf="!order.remotelocation">No Remote Location</span></div>
             </div>
           </div>
         </td>
