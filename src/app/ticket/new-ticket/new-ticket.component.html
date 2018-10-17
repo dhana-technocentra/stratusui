@@ -1,98 +1,109 @@
-<mat-card>
-  <!-- Title of an Card -->
-  <mat-card-title>
-    New Ticket
-  </mat-card-title>
-  
-    
-  <mat-card-content>
-    <form [formGroup]="newTicketForm" (ngSubmit)="onFormSubmit(newTicketForm.value)">
-      
-      <table>
-        <tr>
-          <td colspan="2">
-            <mat-form-field>
-              <input formControlName="ponNumber" matInput placeholder="Pon Number">
-            </mat-form-field>
-            <mat-error>
-              <span *ngIf="!newTicketForm.get('ponNumber').valid && newTicketForm.get('ponNumber').touched">Please enter
-                valid pon number !!!</span>
-            </mat-error>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <mat-form-field>
-              <input formControlName="severityParmValue" matInput placeholder="Severity">
-            </mat-form-field>
-            <mat-error>
-              <span *ngIf="!newTicketForm.get('severityParmValue').valid && newTicketForm.get('severityParmValue').touched">Please enter
-                valid severity !!!</span>
-            </mat-error>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <mat-form-field>
-              <input formControlName="shortDescription" matInput placeholder="Short Description">
-            </mat-form-field>
-            <mat-error>
-              <span *ngIf="!newTicketForm.get('shortDescription').valid && newTicketForm.get('shortDescription').touched">Please enter
-                valid short description !!!</span>
-            </mat-error>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <mat-form-field>
-              <input formControlName="fullDescription" matInput placeholder="Full Description">
-            </mat-form-field>
-            <mat-error>
-              <span *ngIf="!newTicketForm.get('fullDescription').valid && newTicketForm.get('fullDescription').touched">Please enter
-                valid full description !!!</span>
-            </mat-error>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <mat-form-field>
-              <input formControlName="contactPersonName" matInput placeholder="Contact Person Name">
-            </mat-form-field>
-            <mat-error>
-              <span *ngIf="!newTicketForm.get('contactPersonName').valid && newTicketForm.get('contactPersonName').touched">Please enter
-                valid contact person name !!!</span>
-            </mat-error>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <mat-form-field>
-              <input formControlName="phoneNumber" matInput placeholder="Phone Number">
-            </mat-form-field>
-            <mat-error>
-              <span *ngIf="!newTicketForm.get('phoneNumber').valid && newTicketForm.get('phoneNumber').touched">Please enter
-                valid phone number !!!</span>
-            </mat-error>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <mat-form-field>
-              <input formControlName="operationHours" matInput placeholder="Operation Hours">
-            </mat-form-field>
-            <mat-error>
-              <span *ngIf="!newTicketForm.get('operationHours').valid && newTicketForm.get('operationHours').touched">Please enter
-                valid operation hours !!!</span>
-            </mat-error>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" class="content-center">
-              <button mat-raised-button color="accent">Submit</button>
-              <button mat-raised-button color="accent">Clear</button>
-          </td>
-      </tr>
-      </table>
-    </form>
-  </mat-card-content>
-</mat-card>
+<section class="desktop">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <form [formGroup]="newTicketForm" (ngSubmit)="onFormSubmit(newTicketForm)">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="severityParmValue" class="formlabel">Select Severity *</label>
+                    <select formControlName="severityParmValue" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.severityParmValue.errors }">
+                      <option [value]="severityParmValue" *ngFor="let severityParmValue of severities">{{severityParmValue}}</option>
+                    </select>
+                    <i class="fa fa-chevron-down"></i>
+                    <div *ngIf="submitted && f.severityParmValue.errors" class="invalid-feedback">
+                      <div *ngIf="f.severityParmValue.errors.required">Severity is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="ponNumber" class="formlabel">If you are unsure of PON # please refer to inventory
+                      section *</label>
+                    <select formControlName="ponNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ponNumber.errors }">
+                      <option [value]="ponNumber" *ngFor="let ponNumber of ponNumbers">{{ponNumber}}</option>
+                    </select>
+                    <i class="fa fa-chevron-down"></i>
+                    <div *ngIf="submitted && f.ponNumber.errors" class="invalid-feedback">
+                      <div *ngIf="f.ponNumber.errors.required">PON Number is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="contactPersonName" class="formlabel">Contact Person Name *</label>
+                    <input type="text" formControlName="contactPersonName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contactPersonName.errors }" />
+                    <div *ngIf="submitted && f.contactPersonName.errors" class="invalid-feedback">
+                      <div *ngIf="f.contactPersonName.errors.required">Contact Person Name is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="phoneNumber" class="formlabel">Contact Person Phone *</label>
+                    <input type="text" formControlName="phoneNumber" [textMask]="{mask: mask,guide : false}" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+                    <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+                      <div *ngIf="f.phoneNumber.errors.required">Contact Person Phone is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="operationHours" class="formlabel">Operation Hours *</label>
+                    <input type="text" formControlName="operationHours" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.operationHours.errors }" />
+                    <div *ngIf="submitted && f.operationHours.errors" class="invalid-feedback">
+                      <div *ngIf="f.operationHours.errors.required">Operation Hours is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-6">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="shortDescription" class="formlabel">Ticket Title * (max 150 characters)</label>
+                    <input type="text" formControlName="shortDescription" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.shortDescription.errors }" />
+                    <div *ngIf="submitted && f.shortDescription.errors" class="invalid-feedback">
+                      <div *ngIf="f.shortDescription.errors.required">Ticket Title is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="fullDescription" class="formlabel">Message</label>
+                    <textarea formControlName="fullDescription" class="form-control" maxlength="2000" [ngClass]="{ 'is-invalid': submitted && f.fullDescription.errors }"
+                      rows="12"></textarea>
+                    <div *ngIf="submitted && f.fullDescription.errors" class="invalid-feedback">
+                      <div *ngIf="f.fullDescription.errors.required">Message is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-2 col-sm-2 col-md-1 col-lg-3 col-xl-3"></div>
+                <div class="col-8 col-sm-8 col-md-10 col-lg-6 col-xl-6">
+                  <div class="form-group">
+                    <button type="submit" class="form-control" id="requestquote1">Open Ticket</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

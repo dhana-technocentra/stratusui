@@ -6,8 +6,8 @@ import { first } from 'rxjs/operators';
 import { AlertService } from '../../core';
 import { TicketService } from './../ticket.service';
 import { SupportTicket } from './../../core/models';
-
-const CREATE_NEWTICKET = "Support ticket has been created successfully";
+import { AppComponent } from './../../app.component';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-new-ticket',
@@ -18,52 +18,53 @@ export class NewTicketComponent implements OnInit {
   newTicketForm: FormGroup;
   loading = false;
   submitted = false;
+  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private ticketService: TicketService,
-    private alertService: AlertService) { }
+    private alertService: AlertService, private appComponent: AppComponent, private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
-    this.newTicketForm = this.getFormGroup();
-}
-
-getFormGroup(){
-  return this.formBuilder.group({
-    ponNumber : [''],
-    severityParmValue: [''],
-    shortDescription: [''],
-    fullDescription: [''],
-    contactPersonName: [''],
-    phoneNumber: [''],
-    operationHours: ['']
-  });
-}
-
-// Executed When Form Is Submitted  
-onFormSubmit(form: NgForm) {
-  console.log(form);
-  this.submitted = true;
-
-  if (this.newTicketForm.invalid) {
-    return;
+    this.newTicketForm = this.formBuilder.group({
+      ponNumber: ['', Validators.required],
+      severityParmValue: ['', Validators.required],
+      shortDescription: ['', Validators.required],
+      fullDescription: ['', Validators.required],
+      contactPersonName: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      operationHours: ['', Validators.required]
+    });
+    this.appComponent.title = "Request A Quote";
   }
 
-  this.loading = true;
-  this.ticketService.openNewTicket(this.newTicketForm.value)
-    .pipe(first())
-    .subscribe(
-      data => {
-        console.log('create new support ticket result ', data);
-        this.alertService.success(CREATE_NEWTICKET, true);
+  severities = ["No Impact", "Minor", "Major", "Critical"];
+  ponNumbers = ["1576.02.01.2017", "1576.02.01.2017", "1576.02.01.2017"];
 
-      },
-      error => {
-        console.log('create support ticket failure ', error);
-        this.alertService.error(error);
-        this.loading = false;
-      });
-}
+  get f() { return this.newTicketForm.controls; }
+
+  // Executed When Form Is Submitted  
+  onFormSubmit(form: NgForm) {
+    console.log(form);
+    this.submitted = true;
+    this.spinnerService.show();
+    if (this.newTicketForm.invalid) {
+      this.spinnerService.hide();
+      return;
+    }
+    this.ticketService.openNewTicket(this.newTicketForm.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.spinnerService.hide();
+          console.log('create new support ticket result ', data);
+
+        },
+        error => {
+          this.spinnerService.hide();
+          console.log('create support ticket failure ', error);
+        });
+  }
 }
