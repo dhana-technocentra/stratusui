@@ -13,7 +13,7 @@ body {
 }
 h1,.h1 {
 	font-family:'Montserrat',Sans-Serif;
-	font-size:32px;
+	font-size:3.2rem;
   line-height: 1em;
 	font-weight:400;
   padding: 0;
@@ -171,24 +171,11 @@ a.btn-warning:hover,.btn-warning:hover {
   }
 }
 
-/* .mat-sort-header-stem {
-	background: none;
-	display: none!important;
-  }
-  
-  .mat-sort-header-pointer-middle{
-	background: none;
-	display: none!important;
-  }
-  
-  .mat-sort-header-indicator{
-	top: 5px!important;
-  }
+
 
   .mat-sort-header-arrow {
 	  color: white !important;	
-	  margin: 0 0 50px -50px !important;
-  } */
+  }
 
 
 

@@ -67,11 +67,11 @@ export class InventoryComponent implements OnInit {
   sortData(sort: Sort) {
     this.spinnerService.show();
     this.orders = this.orders.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
+      const isAsc = sort.direction === 'asc' ? true : false;
       switch (sort.active) {
         case 'Category': return this.compare(a.serviceCategory, b.serviceCategory, isAsc);
         case 'Service Media': return this.compare(a.mediaType, b.mediaType, isAsc);
-        case 'PON Number': return this.compare(a.ponNumber, b.mediaType, isAsc);
+        case 'PON Number': return this.compare(a.ponNumber, b.ponNumber, isAsc);
         default: return 0;
       }
     });

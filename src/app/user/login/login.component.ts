@@ -105,7 +105,7 @@ export class LoginComponent implements OnInit {
                   
                     setTimeout(()=>{ 
                       this.appComponent.showNavBar = false;
-                      this.router.navigate(['user/userprofile']);
+                      this.router.navigate(['inventory']);
                     }, 1500);
                 },
                 error => {

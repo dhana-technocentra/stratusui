@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12" style="margin-top: 5%;">
-        <div class="example-container mat-elevation-z8" *ngIf="dataLoaded">
+        <div class="example-container" *ngIf="dataLoaded">
           <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)"
             matSortDirection="desc" matSortDisableClear [class.isMobile]="isMobile">
             <ng-container matColumnDef="Category">
@@ -17,20 +17,20 @@
                 <span class="mobile-label">Service Media:</span>{{order.mediaType}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="Head Location">
-              <mat-header-cell *matHeaderCellDef id="headlocation" mat-sort-header> Head Location </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef id="headlocation"> Head Location </mat-header-cell>
               <mat-cell id="headlocation" *matCellDef="let order">
                 <span class="mobile-label">Head Location:</span> {{order.headLocation.address}}
                 {{order.headLocation.city}}
                 {{order.headLocation.state}} {{order.headLocation.zip}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="Remote Location">
-              <mat-header-cell *matHeaderCellDef id="remotelocation" mat-sort-header> Remote Location </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef id="remotelocation"> Remote Location </mat-header-cell>
               <mat-cell id="remotelocation" *matCellDef="let order">
                 <span class="mobile-label">Remote Location:</span><span *ngIf="order.remoteLocation">{{order.remoteLocation.address}}
                 {{order.remoteLocation.city}} {{order.remoteLocation.state}}</span><span *ngIf="!order.remoteLocation">No Remote Location</span> </mat-cell>
             </ng-container>
             <ng-container matColumnDef="PON Number">
-              <mat-header-cell *matHeaderCellDef id="ponnumber" mat-sort-header> PON Number </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef id="ponnumber"> PON Number </mat-header-cell>
               <mat-cell id="ponnumber" *matCellDef="let order">
                 <span class="mobile-label">PON Number:</span> {{order.ponNumber}} </mat-cell>
             </ng-container>
@@ -55,7 +55,7 @@
         <td class="tableheaderinfo">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-12 col-sm-12"><a style="cursor: pointer;" (click)="navigateToInventoryDetails(order.orderSerId)">{{order.serviceCategory}}</a></div>
+              <div class="col-12 col-sm-12"><a (click)="navigateToInventoryDetails(order.orderSerId)">{{order.serviceCategory}}</a></div>
             </div>
           </div>
         </td>
