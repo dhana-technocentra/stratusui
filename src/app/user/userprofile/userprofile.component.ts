@@ -102,7 +102,7 @@ export class UserProfileComponent implements OnInit {
                 }),
             fax:
                 this.formBuilder.group({
-                    phoneNumber: ['', [Validators.minLength(12)]],
+                    phoneNumber: ['', [Validators.minLength(14)]],
                     extension: ['']
                 }),
             isActive: [''],
@@ -142,6 +142,8 @@ export class UserProfileComponent implements OnInit {
                 if(typeof data["fax"]["phoneNumber"] == "undefined") {
                     data["fax"]["phoneNumber"] = "";
                     data["fax"]["extension"] = "";
+                } else {
+                    data["fax"]["phoneNumber"] = "(" + data["fax"]["phoneNumber"].substring(0,3) + ") " + data["fax"]["phoneNumber"].substring(3, data["fax"]["phoneNumber"].length);
                 }
                 this.userProfileForm.setValue(data);
                 var registerDate = new Date(data["registerDate"]).toLocaleString().slice(0,10);
