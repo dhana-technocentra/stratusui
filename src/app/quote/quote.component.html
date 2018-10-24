@@ -47,12 +47,12 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="firstname" class="formlabel">Phone Number *</label>
-                                        <input type="text" [textMask]="{mask: mask,guide : false}" formControlName="phoneNumber"
-                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
-                                        <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
-                                            <div *ngIf="f.phoneNumber.errors.required">
+                                        <input type="text" [textMask]="{mask: mask,guide : false}" formControlName="phone"
+                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                                        <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                            <div *ngIf="f.phone.errors.required">
                                                 Phone Number is required</div>
-                                            <div *ngIf="f.phoneNumber.errors.minlength">
+                                            <div *ngIf="f.phone.errors.minlength">
                                                 Invalid Phone Number</div>
                                         </div>
                                     </div>
@@ -111,13 +111,13 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="service" class="formlabel">Service *</label>
-                                        <select formControlName="service" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.service.errors }">
-                                            <option [value]="service" *ngFor="let service of services">{{service}}</option>
+                                        <label for="serviceType" class="formlabel">Service *</label>
+                                        <select formControlName="serviceType" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.serviceType.errors }">
+                                            <option [value]="serviceType" *ngFor="let serviceType of services">{{serviceType}}</option>
                                         </select>
                                         <i class="fa fa-chevron-down"></i>
-                                        <div *ngIf="submitted && f.service.errors" class="invalid-feedback">
-                                            <div *ngIf="f.service.errors.required">Service is required</div>
+                                        <div *ngIf="submitted && f.serviceType.errors" class="invalid-feedback">
+                                            <div *ngIf="f.serviceType.errors.required">Service is required</div>
                                         </div>
                                     </div>
                                 </div>
