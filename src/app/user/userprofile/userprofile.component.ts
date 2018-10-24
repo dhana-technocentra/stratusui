@@ -92,17 +92,17 @@ export class UserProfileComponent implements OnInit {
             title: ['', [Validators.required]],
             officePhone:
                 this.formBuilder.group({
-                    phoneNumber: ['', Validators.required],
+                    phoneNumber: ['', [Validators.required, Validators.minLength(14)]],
                     extension: ['']
                 }),
             cellPhone:
                 this.formBuilder.group({
-                    phoneNumber: ['', [Validators.required]],
+                    phoneNumber: ['', [Validators.required, Validators.minLength(14)]],
                     extension: ['']
                 }),
             fax:
                 this.formBuilder.group({
-                    phoneNumber: ['', [Validators.required]],
+                    phoneNumber: ['', [Validators.minLength(12)]],
                     extension: ['']
                 }),
             isActive: [''],
@@ -162,6 +162,10 @@ export class UserProfileComponent implements OnInit {
         this.toastr.success(successMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true}); 
     }
 
+    showError(errorMessage) {
+        this.toastr.error(errorMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true });
+      }
+
     @HostListener('document:keypress', ['$event'])
     handleKeyboardEvent(event: KeyboardEvent) {
       if (event.srcElement.id == "zip" && (event.keyCode < 48 || event.keyCode > 57)) {
@@ -190,6 +194,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     onFormSubmit(form: NgForm) {
+        console.log(form);
         this.submitted = true;
         this.spinnerService.show();
         if (this.userProfileForm.invalid) {
@@ -209,12 +214,23 @@ export class UserProfileComponent implements OnInit {
                 .pipe(first())
                 .subscribe(
                     data => {
-                        console.log(data);
+                        if (data["status"] == "failed - no matching found.") {
+                            this.spinnerService.hide();
+                            this.showError("Invalid Current Password!");
+                        } else {
+                            this.updateUserProfile();
+                        }   
                     },
                     error => {
                         console.log(error);
                     });
+        } else {
+            this.updateUserProfile();
         }
+
+    }
+
+    updateUserProfile() {
         var userProfileObj = Object.assign({}, this.userProfileForm.value);
         delete userProfileObj["password"];
         this.userService.updateUserProfile(userProfileObj)
@@ -222,9 +238,12 @@ export class UserProfileComponent implements OnInit {
             .subscribe(
                 data => {
                     this.spinnerService.hide();
-                        this.showSuccess("Updated Successfully");
+                    this.showSuccess("Updated Successfully");
                     this.alertService.success(UPDATE_USERPROFILE, true);
                     console.log('updateUserProfile result ', data);
+                    this.userProfileForm.controls.password.value.oldPassword = "";
+                    this.userProfileForm.controls.password.value.repeatPassword = "";
+                    this.userProfileForm.controls.password.value.password = "";
                     //  this.router.navigate([LOGIN_PATH]);
                 },
                 error => {

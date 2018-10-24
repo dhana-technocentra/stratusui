@@ -9,6 +9,7 @@ import { MaterialModule }  from '../material/material.module';
 import { QuoteRoutingModule }  from './quote.routing';
 
 import { QuoteComponent } from './quote.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 
@@ -23,7 +24,8 @@ import { QuoteComponent } from './quote.component';
     CoreModule,
     MaterialModule,
     QuoteRoutingModule,
-    FormsModule
+    FormsModule,
+    TextMaskModule
   ]
 })
 export class QuoteModule { }

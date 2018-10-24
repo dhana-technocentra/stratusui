@@ -16,16 +16,23 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("12357890", this.authenticationService.isAuthenticated());
-    if (!this.authenticationService.isAuthenticated()) {
-      this.showNavBar = true;
+    if (this.authenticationService.isAuthenticated()) {
+      document.getElementById("navbar").style.display = "block";
     } else {
-      this.showNavBar = false;
+      document.getElementById("navbar").style.display = "none";
+    }
+  }
+
+  checkForAuthentication() {
+    if (this.authenticationService.isAuthenticated()) {
+      document.getElementById("navbar").style.display = "block";
+    } else {
+      document.getElementById("navbar").style.display = "none";
     }
   }
   logOut() {
     this.authenticationService.logout();
-    this.showNavBar = true;
+    document.getElementById("navbar").style.display = "none";
     this.router.navigate(['/user/login'], {});
   }
   

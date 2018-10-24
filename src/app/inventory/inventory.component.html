@@ -7,8 +7,8 @@
             matSortDirection="desc" matSortDisableClear [class.isMobile]="isMobile">
             <ng-container matColumnDef="Category">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
-              <mat-cell id="category" *matCellDef="let order">
-                <span class="mobile-label">Category:</span><a style="cursor: pointer;" (click)="navigateToInventoryDetails(order.orderSerId)">{{order.serviceCategory}}</a>
+              <mat-cell id="category" *matCellDef="let order" (click)="navigateToInventoryDetails(order.orderSerId)">
+                <span class="mobile-label">Category:</span><a style="cursor: pointer;">{{order.serviceCategory}}</a>
               </mat-cell>
             </ng-container>
             <ng-container matColumnDef="Service Media">

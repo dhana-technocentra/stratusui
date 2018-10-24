@@ -102,10 +102,10 @@ export class LoginComponent implements OnInit {
                     console.log('user_name set', userObject.username);
                     this.spinnerService.hide();
                     this.loginsuccessful = true;
-                  
+                    
                     setTimeout(()=>{ 
-                      this.appComponent.showNavBar = false;
-                      this.router.navigate(['inventory']);
+                        this.appComponent.checkForAuthentication();
+                        this.router.navigate(['inventory']);
                     }, 1500);
                 },
                 error => {

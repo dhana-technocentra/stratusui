@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm, AbstractControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Quote } from './../core/models/quote';
 import { QuoteService } from './../core/services/quote.service';
@@ -23,6 +23,7 @@ export class QuoteComponent implements OnInit {
   sameAsAccount = true;
   userProfile: any;
   states = ["Alaska", "Alabama", "Arkansas", "American Samoa", "Arizona", "California", "Colorado", "Connecticut", "District of Columbia", "Delaware", "Florida", "Georgia", "Guam", "Hawaii", "Iowa", "Idaho", "Illinois", "Indiana", "Kansas", "Kentucky", "Louisiana", "Massachusetts", "Maryland", "Maine", "Michigan", "Minnesota", "Missouri", "Mississippi", "Montana", "North Carolina", "North Dakota", "Nebraska", "New Hampshire", "New Jersey", "New Mexico", "Nevada", "New York", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "Virgin Islands", "Vermont", "Washington", "Wisconsin", "West Virginia", "Wyoming"];
+  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   constructor(private formBuilder: FormBuilder,
     private router: Router, private quoteService: QuoteService, private appComponent: AppComponent, private userService: UserService, private spinnerService: Ng4LoadingSpinnerService, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
@@ -31,12 +32,13 @@ export class QuoteComponent implements OnInit {
   ngOnInit() {
     this.spinnerService.show();
     this.quoteForm = this.formBuilder.group({
-      message: ['', Validators.required],
+      emailBody: ['', Validators.required],
       priority: ['', Validators.required],
       service: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       companyName: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.minLength(14)]],
       address: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
@@ -71,7 +73,13 @@ export class QuoteComponent implements OnInit {
         data => {
           this.spinnerService.hide();
           this.showSuccess("Submitted Successfully");
-          console.log(data);
+          let control: AbstractControl = null;
+          this.quoteForm.reset();
+          this.quoteForm.markAsUntouched();
+          Object.keys(this.quoteForm.controls).forEach((name) => {
+            control = this.quoteForm.controls[name];
+            control.setErrors(null);
+          });
         },
         error => {
           var error = JSON.parse(error._body);
@@ -92,10 +100,11 @@ export class QuoteComponent implements OnInit {
         city: this.userProfile.city,
         state: this.userProfile.state,
         zip: this.userProfile.zipCode,
+        phoneNumber: this.quoteForm.controls.phoneNumber.value,
         companyName: this.quoteForm.controls.companyName.value,
         service: this.quoteForm.controls.service.value,
         priority: this.quoteForm.controls.priority.value,
-        message: this.quoteForm.controls.message.value,
+        emailBody: this.quoteForm.controls.emailBody.value,
       }
       this.quoteForm.setValue(userObject);
     } else {
@@ -106,10 +115,11 @@ export class QuoteComponent implements OnInit {
         city: "",
         state: "",
         zip: "",
+        phoneNumber: this.quoteForm.controls.phoneNumber.value,
         companyName: this.quoteForm.controls.companyName.value,
         service: this.quoteForm.controls.service.value,
         priority: this.quoteForm.controls.priority.value,
-        message: this.quoteForm.controls.message.value,
+        emailBody: this.quoteForm.controls.emailBody.value,
       }
       this.quoteForm.setValue(userObject);
     }
