@@ -5,8 +5,8 @@ import { first } from 'rxjs/operators';
 
 import { AlertService } from '../core';
 import { TicketService } from './ticket.service';
-import { Ticket, Incident,TicketNotes } from './../core/models';
-
+import { Ticket, Incident, TicketNotes } from './../core/models';
+import { AppComponent } from './../app.component';
 
 @Component({
   selector: 'app-ticket',
@@ -15,80 +15,26 @@ import { Ticket, Incident,TicketNotes } from './../core/models';
 })
 export class TicketComponent implements OnInit {
   ticketForm: FormGroup;
-  ticketNotes: TicketNotes;
+  ticketNotes: any;
   incidents: Incident[];
   loading = false;
   submitted = false;
-
+  columnsToDisplay = ["ID", "Name", "Date", "Details"];
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private ticketService: TicketService,
-    private alertService: AlertService) { }
+    private alertService: AlertService, private appComponent: AppComponent) { }
 
   ngOnInit() {
+    this.appComponent.title = "Support";
+    this.ticketNotes = [{"id":"#732714", "name": "Test McTest", "date": "Today", "Details": "this is a test details required to open a ticket and generate values"},{"id":"#732715", "name": "Test McTest", "date": "10/12/2018", "Details": "this is a test details required to open a ticket and generate values"},{"id":"#732716", "name": "Test McTest", "date": "9/23/2018", "Details": "this is a test details required to open a ticket and generate values"},{"id":"#732717", "name": "Test McTest", "date": "9/6/2018", "Details": "this is a test details required to open a ticket and generate values"}]
+  }
 
-    this.ticketForm = this.getFormGroup();
+  navigateToCreateTicket() {
     
-    const queryParms = this.route.snapshot.queryParams;
-    console.log('ticket queryParms',queryParms);
-    const companyId = (queryParms.companyId) ? queryParms.companyId : null;
-
-    console.log('ticket companyId',companyId);
-    if (queryParms.companyId) {
-      this.ticketService.getTicketNotes(companyId)
-        .subscribe(data => {
-          console.log('ticket');
-          this.getTicketNotes(data);
-         
-        });
-    }
-  }
-  
-  
-  getFormGroup(){
-    return this.formBuilder.group({
-      ponNumber : [''],
-      severityParmValue: [''],
-      shortDescription: [''],
-      fullDescription: [''],
-      contactPersonName: [''],
-      phoneNumber: [''],
-      operationHours: ['']
-    });
   }
 
-  getTicketNotes(data){
-    this.ticketNotes = new TicketNotes();
-    this.ticketNotes.openActiveTickets = data['openActiveTickets'];
-    //this.ticketNotes.openActiveTickets.incidents = this.getIncidents(data['openActiveTickets']['incidents']);
-    
-    if( data['openActiveTickets']['count'] != null &&  data['openActiveTickets']['count'] > 0)
-    {
-        this.ticketNotes.openActiveTickets.count = data['openActiveTickets']['count'];
-        console.log('count',this.ticketNotes.openActiveTickets.count);
-        this.getIncidents(data['openActiveTickets']['incidents']);
-    }
-    this.ticketNotes.closedTickets = data['closedTickets'];
-  }
-
-  getIncidents(incidents) {    
-    Object.keys(incidents).forEach(key => {
-      let incident = incidents(key);
-      this.ticketNotes.openActiveTickets.incidents.push(new Incident( incident['incidentLogGUID'],incident['incidentID'], incident['attachmentFileType'],
-        incident['createdByFullName'],
-        incident['createDate'],
-        incident['logType'],
-        incident['logTypeDescription'],
-        incident['billable'],
-        incident['publish'],
-        incident['longText'],
-        incident['minutesSpent'],
-        incident['attachmentFileName'],
-        incident['createdByType']
-      ));      
-    });
-}
 
 }

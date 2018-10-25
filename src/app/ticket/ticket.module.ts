@@ -12,6 +12,8 @@ import { TicketComponent } from './ticket.component';
 import { TicketService } from './ticket.service';
 import { NewTicketComponent } from './new-ticket/new-ticket.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     TicketComponent,
@@ -24,7 +26,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     CoreModule,
     MaterialModule,
     TicketRoutingModule,
-    TextMaskModule
+    TextMaskModule,
+    NgbModule
   ],
   providers:[
     TicketService

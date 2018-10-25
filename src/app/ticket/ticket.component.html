@@ -1,3 +1,104 @@
-<p>
-  ticket works!
-</p>
+<div class="container-fluid" id="headertitle">
+  <div class="row text-center">
+    <div class="col-12 header">
+      <span>Phone: 1-866-822-2246</span>
+    </div>
+    <div class="col-12 header">
+      <span>Support Email: noc@stratusnet.com</span>
+    </div>
+    <div class="col-12">
+      <button clas="form-control" (click)="navigateToCreateTicket()" id="requestquote1">Open A Support Ticket</button>
+    </div>
+  </div>
+</div>
+<div class="container" id="title">
+  <div class="row">
+      <div class="col-1 col-sm-1"></div>
+    <div class="col-10 col-sm-10 col-md-12 col-lg-12 col-xl-12 header2">
+      <span>Open/Active Tickets</span>
+    </div>
+  </div>
+</div>
+<section class="desktop">
+  <div class="example-container">
+    <mat-table #table [dataSource]="ticketNotes" matSort (matSortChange)="sortData($event)" matSortDirection="desc"
+      matSortDisableClear [class.isMobile]="isMobile">
+      <ng-container matColumnDef="ID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell id="category" *matCellDef="let ticket">
+          {{ticket.id}}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Name </mat-header-cell>
+        <mat-cell id="mediaType" *matCellDef="let ticket">
+          {{ticket.name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Date">
+        <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Date </mat-header-cell>
+        <mat-cell id="mediaType" *matCellDef="let ticket">
+          {{ticket.date}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Details">
+        <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Details </mat-header-cell>
+        <mat-cell id="mediaType" *matCellDef="let ticket">
+          {{ticket.Details.substring(0, 15)}}...<button type="button" id="seemore" class="btn btn-outline-secondary mr-2"
+            placement="top" ngbPopover="{{ticket.Details}}">
+            See More
+          </button> </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnsToDisplay;">
+      </mat-row>
+    </mat-table>
+
+    <!-- <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="setPageSizeOptions($event)">
+    </mat-paginator> -->
+  </div>
+</section>
+
+<section class="mobile">
+  <table border="1" cellspacing='50' cellpadding='0' *ngFor="let ticket of ticketNotes" style="border-top: none;">
+    <tbody>
+      <tr class="rowstyle">
+        <td class="columnstyle">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 col-sm-12">ID:{{ticket.id}}</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="rowstyle">
+        <td class="columnstyle">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 col-sm-12">Name:{{ticket.name}}</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="rowstyle">
+        <td class="columnstyle">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 col-sm-12">Date:{{ticket.date}}</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="rowstyle">
+        <td class="columnstyle">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 col-sm-12 columnvalue1">{{ticket.Details.substring(0, 15)}}...<button type="button" id="seemore"
+                  class="btn btn-outline-secondary mr-2" placement="top" ngbPopover="{{ticket.Details}}">
+                  See More
+                </button></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
