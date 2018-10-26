@@ -174,7 +174,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="oldPassword" class="formlabel">Current Password</label>
-                                            <input type="password" formControlName="oldPassword" class="form-control"
+                                            <input type="password" formControlName="oldPassword" class="form-control" id="oldPassword"
                                                 [ngClass]="{ 'is-invalid': submitted && userProfileForm.value.password.password.length > 0 && userProfileForm.value.password.oldPassword.length == 0 }" />
                                             <div *ngIf="submitted && userProfileForm.value.password.password.length > 0"
                                                 class="invalid-feedback">
@@ -188,7 +188,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="password" class="formlabel">New Password</label>
-                                            <input type="password" formControlName="password" class="form-control" />
+                                            <input type="password" formControlName="password" id="password" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -196,7 +196,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="repeatpassword" class="formlabel">Repeat Password</label>
-                                            <input type="password" formControlName="repeatPassword" class="form-control"
+                                            <input type="password" formControlName="repeatPassword" class="form-control" id="repeatPassword"
                                                 [ngClass]="{ 'is-invalid': submitted && userProfileForm.value.password.password.length > 0 && userProfileForm.value.password.password != userProfileForm.value.password.repeatPassword }" />
                                             <div *ngIf="submitted && userProfileForm.value.password.password.length > 0"
                                                 class="invalid-feedback">
