@@ -114,6 +114,10 @@ button:focus {outline:0;}*/
 img { max-width: 100%; height: auto;}
 #page{position:relative;}
 
+section {
+	margin-bottom: 100px !important;
+}
+
 
 /*====================
 	Buttons

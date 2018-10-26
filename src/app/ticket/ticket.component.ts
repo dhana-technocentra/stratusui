@@ -8,6 +8,7 @@ import { TicketService } from './ticket.service';
 import { Ticket, Incident, TicketNotes } from './../core/models';
 import { AppComponent } from './../app.component';
 
+
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
@@ -33,7 +34,8 @@ export class TicketComponent implements OnInit {
   }
 
   navigateToCreateTicket() {
-    
+    this.router.navigate(['/ticket/createnewticket', { }]);
+
   }
 
 

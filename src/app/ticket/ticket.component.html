@@ -11,15 +11,15 @@
     </div>
   </div>
 </div>
-<div class="container" id="title">
-  <div class="row">
+<section class="desktop">
+  <div class="container" id="title">
+    <div class="row">
       <div class="col-1 col-sm-1"></div>
-    <div class="col-10 col-sm-10 col-md-12 col-lg-12 col-xl-12 header2">
-      <span>Open/Active Tickets</span>
+      <div class="col-10 col-sm-10 col-md-12 col-lg-12 col-xl-12 header2">
+        <span>Open/Active Tickets</span>
+      </div>
     </div>
   </div>
-</div>
-<section class="desktop">
   <div class="example-container">
     <mat-table #table [dataSource]="ticketNotes" matSort (matSortChange)="sortData($event)" matSortDirection="desc"
       matSortDisableClear [class.isMobile]="isMobile">
@@ -58,6 +58,14 @@
 </section>
 
 <section class="mobile">
+  <div class="container-fluid" id="title">
+    <div class="row">
+      <div class="col-10 col-sm-10 header2">
+        <span>Open/Active Tickets</span>
+      </div>
+      <div class="col-1 col-sm-1"></div>
+    </div>
+  </div>
   <table border="1" cellspacing='50' cellpadding='0' *ngFor="let ticket of ticketNotes" style="border-top: none;">
     <tbody>
       <tr class="rowstyle">
