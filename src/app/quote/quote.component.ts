@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm, AbstractControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -44,7 +44,11 @@ export class QuoteComponent implements OnInit {
       state: ['', Validators.required],
       zip: ['', Validators.required]
     });
-    this.appComponent.title = "Request A Quote";
+    if (window.innerWidth <= 767) {
+      this.appComponent.title = "Submit Quote";
+    } else {
+      this.appComponent.title = "Request A Quote";
+    }
     this.quoteService.getServices().pipe(first()).subscribe(data => { this.services = data; }, error => { });
     this.userService.getUserProfile().pipe(first()).subscribe(data => { this.userProfile = data; }, error => { });
     this.spinnerService.hide();
@@ -58,6 +62,16 @@ export class QuoteComponent implements OnInit {
   showSuccess(successMessage) {
     this.toastr.success(successMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true });
   }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (event.target.innerWidth <= 767) {
+      this.appComponent.title = "Submit Quote";
+    } else {
+      this.appComponent.title = "Request A Quote";
+    }
+  }
+
   get f() { return this.quoteForm.controls; }
   onSubmit(form: NgForm) {
     this.spinnerService.show();

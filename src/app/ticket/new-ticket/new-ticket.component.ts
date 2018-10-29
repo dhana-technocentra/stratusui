@@ -29,13 +29,13 @@ export class NewTicketComponent implements OnInit {
 
   ngOnInit() {
     this.newTicketForm = this.formBuilder.group({
-      ponNumber: ['', Validators.required],
-      severityParmValue: ['', Validators.required],
-      shortDescription: ['', Validators.required],
-      fullDescription: ['', Validators.required],
-      contactPersonName: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      operationHours: ['', Validators.required]
+      ponNumber: ['', [Validators.required]],
+      severityParmValue: ['', [Validators.required]],
+      shortDescription: ['', [Validators.required]],
+      fullDescription: ['', [Validators.required]],
+      contactPersonName: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(14)]],
+      operationHours: ['', [Validators.required]]
     });
     this.appComponent.title = "Request A Quote";
   }

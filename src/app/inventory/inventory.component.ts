@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -37,7 +37,11 @@ export class InventoryComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
-    this.appComponent.title = "Inventory";
+    if (window.innerWidth <= 767) {
+      this.appComponent.title = "Stratus Inventory";
+    } else {
+      this.appComponent.title = "Inventory";
+    }
     this.spinnerService.show();
     this.userService.getUserProfile()
       .subscribe(data => {
@@ -57,6 +61,15 @@ export class InventoryComponent implements OnInit {
   setPageSizeOptions(setPageSizeOptionsInput: any) {
     this.pageIndex = setPageSizeOptionsInput.pageIndex;
     this.pageSize = setPageSizeOptionsInput.pageSize;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (event.target.innerWidth <= 767) {
+      this.appComponent.title = "Stratus Inventory";
+    } else {
+      this.appComponent.title = "Inventory";
+    }
   }
 
   navigateToInventoryDetails(id) {

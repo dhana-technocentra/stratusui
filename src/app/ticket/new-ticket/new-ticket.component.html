@@ -52,6 +52,8 @@
                     <input type="text" formControlName="phoneNumber" [textMask]="{mask: mask,guide : false}" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
                     <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
                       <div *ngIf="f.phoneNumber.errors.required">Contact Person Phone is required</div>
+                      <div *ngIf="f.phoneNumber.errors.minlength">
+                        Invalid Contact Phone Number</div>
                     </div>
                   </div>
                 </div>

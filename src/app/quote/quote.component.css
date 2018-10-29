@@ -150,7 +150,7 @@ select {
   
   select + i.fa {
     float: right;
-    margin-top: -23px;
+    margin-top: -25px;
     margin-right: 5px;
     pointer-events: none;
     background-color: #fff;

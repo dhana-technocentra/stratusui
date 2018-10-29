@@ -10,7 +10,7 @@ header {
 	background-color: white;
 	z-index: 101;
   border-bottom: 5px solid #064B94; 
-  padding: 25px 0;
+  padding: 15px 0;
 }
 .logo-wrap { width: 93px; flex-grow: 0;}
 .logo {
