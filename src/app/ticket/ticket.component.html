@@ -20,30 +20,30 @@
       </div>
     </div>
   </div>
-  <div class="example-container">
+  <div class="example-container" *ngIf="displayData">
     <mat-table #table [dataSource]="ticketNotes" matSort (matSortChange)="sortData($event)" matSortDirection="desc"
       matSortDisableClear [class.isMobile]="isMobile">
       <ng-container matColumnDef="ID">
         <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
         <mat-cell id="category" *matCellDef="let ticket">
-          {{ticket.id}}
+          #{{ticket.incidentID}}
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="Name">
         <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Name </mat-header-cell>
         <mat-cell id="mediaType" *matCellDef="let ticket">
-          {{ticket.name}} </mat-cell>
+          {{ticket.results[0].CreatedByFullName}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="Date">
         <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Date </mat-header-cell>
         <mat-cell id="mediaType" *matCellDef="let ticket">
-          {{ticket.date}} </mat-cell>
+          {{ticket.results[0].CreateDate | date:'shortDate' }} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="Details">
         <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Details </mat-header-cell>
         <mat-cell id="mediaType" *matCellDef="let ticket">
-          {{ticket.Details.substring(0, 15)}}...<button type="button" id="seemore" class="btn btn-outline-secondary mr-2"
-            placement="top" ngbPopover="{{ticket.Details}}">
+          {{ticket.results[0].LongText.substring(0, 15)}}...<button type="button" id="seemore" class="btn btn-outline-secondary mr-2"
+            placement="top" ngbPopover="{{ticket.results[0].LongText}}">
             See More
           </button> </mat-cell>
       </ng-container>
@@ -72,7 +72,7 @@
         <td class="columnstyle">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-12 col-sm-12">ID:{{ticket.id}}</div>
+              <div class="col-12 col-sm-12">ID:#{{ticket.incidentID}}</div>
             </div>
           </div>
         </td>
@@ -81,7 +81,7 @@
         <td class="columnstyle">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-12 col-sm-12">Name:{{ticket.name}}</div>
+              <div class="col-12 col-sm-12">Name:{{ticket.results[0].CreatedByFullName}}</div>
             </div>
           </div>
         </td>
@@ -90,7 +90,7 @@
         <td class="columnstyle">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-12 col-sm-12">Date:{{ticket.date}}</div>
+              <div class="col-12 col-sm-12">Date:{{ticket.results[0].CreateDate | date:'shortDate' }}</div>
             </div>
           </div>
         </td>
@@ -99,8 +99,8 @@
         <td class="columnstyle">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-12 col-sm-12 columnvalue1">{{ticket.Details.substring(0, 15)}}...<button type="button" id="seemore"
-                  class="btn btn-outline-secondary mr-2" placement="top" ngbPopover="{{ticket.Details}}">
+              <div class="col-12 col-sm-12 columnvalue1">{{ticket.results[0].LongText.substring(0, 15)}}...<button type="button" id="seemore"
+                  class="btn btn-outline-secondary mr-2" placement="top" ngbPopover="{{ticket.results[0].LongText}}">
                   See More
                 </button></div>
             </div>

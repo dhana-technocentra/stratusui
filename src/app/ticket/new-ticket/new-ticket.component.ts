@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -8,6 +8,7 @@ import { TicketService } from './../ticket.service';
 import { SupportTicket } from './../../core/models';
 import { AppComponent } from './../../app.component';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { ToastsManager } from 'ng6-toastr';
 
 @Component({
   selector: 'app-new-ticket',
@@ -25,19 +26,29 @@ export class NewTicketComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private ticketService: TicketService,
-    private alertService: AlertService, private appComponent: AppComponent, private spinnerService: Ng4LoadingSpinnerService) { }
+    private alertService: AlertService, private appComponent: AppComponent, private spinnerService: Ng4LoadingSpinnerService,  public toastr: ToastsManager, vcr: ViewContainerRef) { 
+      this.toastr.setRootViewContainerRef(vcr);
+    }
 
   ngOnInit() {
     this.newTicketForm = this.formBuilder.group({
       ponNumber: ['', [Validators.required]],
-      severityParmValue: ['', [Validators.required]],
+      servrityParmValue: ['', [Validators.required]],
       shortDescription: ['', [Validators.required]],
       fullDescription: ['', [Validators.required]],
       contactPersonName: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required, Validators.minLength(14)]],
       operationHours: ['', [Validators.required]]
     });
-    this.appComponent.title = "Request A Quote";
+    this.appComponent.title = "Create Ticket";
+  }
+
+  showError(errorMessage) {
+    this.toastr.error(errorMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true });
+  }
+
+  showSuccess(successMessage) {
+    this.toastr.success(successMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true });
   }
 
   severities = ["No Impact", "Minor", "Major", "Critical"];
@@ -59,11 +70,13 @@ export class NewTicketComponent implements OnInit {
       .subscribe(
         data => {
           this.spinnerService.hide();
+          this.showSuccess("Submitted Successfully");
           console.log('create new support ticket result ', data);
 
         },
         error => {
           this.spinnerService.hide();
+          this.showSuccess(error);
           console.log('create support ticket failure ', error);
         });
   }
