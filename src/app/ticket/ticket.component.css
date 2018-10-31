@@ -345,3 +345,13 @@ table {
     font-weight: 400;
     color: #064B94;
 }
+
+:host >>> .popover-body {
+  padding: .5rem .75rem;
+    color: #064B94;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: #064B94;
+}

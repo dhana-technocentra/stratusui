@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm, AbstractControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AlertService } from '../../core';
@@ -69,7 +69,15 @@ export class NewTicketComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          let control: AbstractControl = null;
+          this.newTicketForm.reset();
+          this.newTicketForm.markAsUntouched();
+          Object.keys(this.newTicketForm.controls).forEach((name) => {
+            control = this.newTicketForm.controls[name];
+            control.setErrors(null);
+          });
           this.spinnerService.hide();
+          
           this.showSuccess("Submitted Successfully");
           console.log('create new support ticket result ', data);
 

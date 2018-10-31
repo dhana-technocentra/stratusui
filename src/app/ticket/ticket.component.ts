@@ -47,7 +47,7 @@ export class TicketComponent implements OnInit {
         this.companyId = this.userProfile.companyId;
         this.ticketService.getTicketNotes(this.companyId).subscribe(ticketDetails => {
           this.displayData = true;
-          if (ticketDetails["openActiveTickets"].length > 0) {
+          if (ticketDetails["openActiveTickets"].count > 0) {
             this.dataExists = false;
             this.ticketNotes = ticketDetails["openActiveTickets"]["incidents"];
           } else {
