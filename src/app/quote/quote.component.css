@@ -157,4 +157,8 @@ select {
     padding-right: 5px;
     color: #034396;
   }
+
+  select::-ms-expand {
+	display: none;
+}
   

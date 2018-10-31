@@ -145,7 +145,7 @@ export class UserProfileComponent implements OnInit {
                     data["fax"]["extension"] = "";
                 }
                 this.userProfileForm.setValue(data);
-                var registerDate = new Date(data["registerDate"]).toLocaleString().slice(0, 10);
+                var registerDate = new Date(data["registerDate"]).toLocaleString().replace(/[^ -~]/g,'').slice(0, 10);
                 registerDate = registerDate.replace(/,/g, "");
                 console.log(registerDate);
                 this.userProfile = data;

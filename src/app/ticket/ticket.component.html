@@ -20,6 +20,14 @@
       </div>
     </div>
   </div>
+  <div class="container" *ngIf="dataExists">
+    <div class="row">
+      <div class="col-1 col-sm-1"></div>
+      <div class="col-10 col-sm-10 col-md-12 col-lg-12 col-xl-12 header3">
+        <span>No Data Available</span>
+      </div>
+    </div>
+  </div>
   <div class="example-container" *ngIf="displayData">
     <mat-table #table [dataSource]="ticketNotes" matSort (matSortChange)="sortData($event)" matSortDirection="desc"
       matSortDisableClear [class.isMobile]="isMobile">
@@ -40,7 +48,7 @@
           {{ticket.results[0].CreateDate | date:'shortDate' }} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="Details">
-        <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Details </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef id="mediaType"> Details </mat-header-cell>
         <mat-cell id="mediaType" *matCellDef="let ticket">
           {{ticket.results[0].LongText.substring(0, 15)}}...<button type="button" id="seemore" class="btn btn-outline-secondary mr-2"
             placement="top" ngbPopover="{{ticket.results[0].LongText}}">

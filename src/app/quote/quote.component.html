@@ -113,6 +113,7 @@
                                     <div class="form-group">
                                         <label for="serviceType" class="formlabel">Service *</label>
                                         <select formControlName="serviceType" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.serviceType.errors }">
+                                            <option selected></option>
                                             <option [value]="serviceType" *ngFor="let serviceType of services">{{serviceType}}</option>
                                         </select>
                                         <i class="fa fa-chevron-down"></i>
@@ -127,6 +128,7 @@
                                     <div class="form-group">
                                         <label for="priority" class="formlabel">Priority *</label>
                                         <select formControlName="priority" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.priority.errors }">
+                                            <option selected></option>
                                             <option [value]="priority" *ngFor="let priority of priorities">{{priority}}</option>
                                         </select>
                                         <i class="fa fa-chevron-down"></i>

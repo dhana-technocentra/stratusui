@@ -174,3 +174,6 @@ select {
     color: #034396;
   }
   
+  select::-ms-expand {
+	display: none;
+}
