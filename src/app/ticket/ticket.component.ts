@@ -29,6 +29,7 @@ export class TicketComponent implements OnInit {
   companyId: any;
   displayData: any;
   dataExists: any;
+  dataSource: any;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
@@ -50,6 +51,8 @@ export class TicketComponent implements OnInit {
           if (ticketDetails["openActiveTickets"].count > 0) {
             this.dataExists = false;
             this.ticketNotes = ticketDetails["openActiveTickets"]["incidents"];
+            this.dataSource = new MatTableDataSource(this.ticketNotes);
+            this.dataSource.sort = this.sort;
           } else {
             this.dataExists = true;
             this.displayData = false;
@@ -71,6 +74,7 @@ export class TicketComponent implements OnInit {
         default: return 0;
       }
     });
+    this.dataSource = new MatTableDataSource(this.ticketNotes);
     this.spinnerService.hide();
   }
 

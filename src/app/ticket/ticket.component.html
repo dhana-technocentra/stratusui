@@ -29,7 +29,7 @@
     </div>
   </div>
   <div class="example-container" *ngIf="displayData">
-    <mat-table #table [dataSource]="ticketNotes" matSort (matSortChange)="sortData($event)" matSortDirection="desc"
+    <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" matSortDirection="desc"
       matSortDisableClear [class.isMobile]="isMobile">
       <ng-container matColumnDef="ID">
         <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
