@@ -8,6 +8,33 @@
     font-weight: 500;
 }
 
+.helpertext {
+    font-size: 16px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    color: #064B94 !important;
+}
+
+a {
+    font-size: 16px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    color: #064B94 !important;
+    text-decoration: underline !important;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+a:active {
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    color: #064B94 !important;
+    text-decoration: underline;
+    font-weight: 100;
+}
+
 .form-control {
     border-radius: 5px;
 }

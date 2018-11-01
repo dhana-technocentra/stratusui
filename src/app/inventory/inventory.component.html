@@ -6,7 +6,7 @@
           <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)"
             matSortDirection="desc" matSortDisableClear [class.isMobile]="isMobile">
             <ng-container matColumnDef="Category">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Service </mat-header-cell>
               <mat-cell id="category" *matCellDef="let order" (click)="navigateToInventoryDetails(order.orderSerId)">
                 <span class="mobile-label">Category:</span><a style="cursor: pointer;">{{order.serviceCategory}}</a>
               </mat-cell>

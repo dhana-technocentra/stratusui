@@ -3,13 +3,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm, AbstractControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AlertService } from '../../core';
+import { AlertService, UserService } from '../../core';
 import { TicketService } from './../ticket.service';
 import { SupportTicket } from './../../core/models';
 import { AppComponent } from './../../app.component';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastsManager } from 'ng6-toastr';
-
+import { InventoryService } from './../../core/services/inventory.service';
 @Component({
   selector: 'app-new-ticket',
   templateUrl: './new-ticket.component.html',
@@ -20,17 +20,19 @@ export class NewTicketComponent implements OnInit {
   loading = false;
   submitted = false;
   public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-
+  severities = ["No Impact", "Minor", "Major", "Critical"];
+  ponNumbers: any;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private ticketService: TicketService,
-    private alertService: AlertService, private appComponent: AppComponent, private spinnerService: Ng4LoadingSpinnerService,  public toastr: ToastsManager, vcr: ViewContainerRef) { 
+    private alertService: AlertService, private appComponent: AppComponent, private spinnerService: Ng4LoadingSpinnerService,  public toastr: ToastsManager, vcr: ViewContainerRef, private userService: UserService, private inventoryService: InventoryService) { 
       this.toastr.setRootViewContainerRef(vcr);
     }
 
   ngOnInit() {
+    this.spinnerService.show();
     this.newTicketForm = this.formBuilder.group({
       ponNumber: ['', [Validators.required]],
       servrityParmValue: ['', [Validators.required]],
@@ -41,6 +43,12 @@ export class NewTicketComponent implements OnInit {
       operationHours: ['', [Validators.required]]
     });
     this.appComponent.title = "Create Ticket";
+    this.userService.getUserProfile().subscribe(data => {
+      this.inventoryService.getPONsByCompanyId(data["companyId"]).subscribe(data1 => {
+        this.ponNumbers = data1;
+        this.spinnerService.hide();
+      })
+    });
   }
 
   showError(errorMessage) {
@@ -50,9 +58,6 @@ export class NewTicketComponent implements OnInit {
   showSuccess(successMessage) {
     this.toastr.success(successMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true });
   }
-
-  severities = ["No Impact", "Minor", "Major", "Critical"];
-  ponNumbers = ["1576.02.01.2017", "1576.02.01.2017", "1576.02.01.2017"];
 
   get f() { return this.newTicketForm.controls; }
 
@@ -87,5 +92,9 @@ export class NewTicketComponent implements OnInit {
           this.showSuccess(error);
           console.log('create support ticket failure ', error);
         });
+  }
+
+  inventoryNavigation() {
+    this.router.navigate(['/inventory', {}]);
   }
 }
