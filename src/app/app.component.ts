@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import {AuthenticationService } from './core/services/authentication.service';
 
+export declare function check_navigation();
+export declare function setup_navigation();
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,6 +25,9 @@ export class AppComponent implements OnInit {
     } else {
       this.showNavBar = false;
     }
+    
+    setTimeout(setup_navigation(),0);
+    setTimeout(check_navigation(),1);
   }
   logOut() {
     this.authenticationService.logout();

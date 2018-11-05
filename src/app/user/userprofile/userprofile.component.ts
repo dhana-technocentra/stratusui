@@ -161,6 +161,10 @@ export class UserProfileComponent implements OnInit {
     showSuccess(successMessage) {
         this.toastr.success(successMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true}); 
     }
+  
+    showError(message) {
+        this.toastr.error(message, '', { dismiss: 'click', showCloseButton: true, enableHTML: true}); 
+    }
 
     @HostListener('document:keypress', ['$event'])
     handleKeyboardEvent(event: KeyboardEvent) {
@@ -222,13 +226,14 @@ export class UserProfileComponent implements OnInit {
             .subscribe(
                 data => {
                     this.spinnerService.hide();
-                        this.showSuccess("Updated Successfully");
+                    this.showSuccess("Updated Successfully");
                     this.alertService.success(UPDATE_USERPROFILE, true);
                     console.log('updateUserProfile result ', data);
                     //  this.router.navigate([LOGIN_PATH]);
                 },
                 error => {
                     this.spinnerService.hide();
+                    this.showError("Problem updating your profile. Please try again.");
                     console.log('updateUserProfile result failure ', error);
                     // this.alertService.error(error);
                     // this.loading = false;

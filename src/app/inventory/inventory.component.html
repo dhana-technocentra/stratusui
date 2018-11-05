@@ -1,8 +1,11 @@
 <section class="desktop">
   <div class="container">
     <div class="row">
-      <div class="col-12" style="margin-top: 5%;">
-        <div class="example-container mat-elevation-z8" *ngIf="dataLoaded">
+      <div class="page-header col-12"></div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="example-container" *ngIf="dataLoaded">
           <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)"
             matSortDirection="desc" matSortDisableClear [class.isMobile]="isMobile">
             <ng-container matColumnDef="Category">
@@ -49,6 +52,7 @@
   
 </section>
 <section class="mobile">
+  <div class="page-header"></div>
   <table border="1" cellspacing='50' cellpadding='0' *ngFor="let order of orders">
     <tbody>
       <tr class="tableheader">

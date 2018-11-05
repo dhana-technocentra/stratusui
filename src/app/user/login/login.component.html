@@ -1,63 +1,35 @@
 <section class="desktop">
-    <div class="container-fluid"  *ngIf="!loginsuccessful">
-        <div class="row">
-            <div class="col-md-3 col-lg-3 col-xl-4"></div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="loginform">
-                            <div class="loginheader">{{formTitle}}</div>
-                            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="username" class="formlabel">Username</label>
-                                            <input type="text" formControlName="username" class="form-control"
-                                                [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                                            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                                                <div *ngIf="f.username.errors.required">Username is required</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="password" class="formlabel">Password</label>
-                                            <input type="password" formControlName="password" class="form-control"
-                                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                                <div *ngIf="f.password.errors.required">Password is required</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-8 offset-2 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
-                                        <div class="form-group">
-                                            <button type="submit" class="form-control" id="loginsubmit">Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+  <div class="row no-gutters">
+    <div class="loginwrapper mr-auto ml-auto">
+      <div class="loginform d-flex flex-column justify-content-center" *ngIf="!loginsuccessful">
+          <h3 class="loginheader">{{formTitle}}</h3>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">  
+            <div class="form-group">
+                <label for="username" class="formlabel">Username</label>
+                <input type="text" formControlName="username" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container-fluid" *ngIf="loginsuccessful">
-        <div class="row">
-            <div class="col-md-3 col-lg-3 col-xl-4"></div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="loginform loginsuccess">
-                            <h3 class="loginheader">Logged In Successfully!</h3>
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-                                <polyline class="path check" points="100.2,40.2 51.5,88.8 29.8,67.5 " />
-                            </svg>
-                        </div>
-                    </div>
+            <div class="form-group">
+                <label for="password" class="formlabel">Password</label>
+                <input type="password" formControlName="password" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="form-group">
+                <button type="submit" class="form-control" id="loginsubmit">Submit</button>
+            </div>
+          </form>
+      </div>
 
+      <div class="loginsuccess d-flex flex-column justify-content-center" *ngIf="loginsuccessful">
+          <h3 class="loginheader">Logged In Successfully!</h3>
+          <div class="checkwrap"><div class="check draw"></div></div>
+      </div>
+    </div>
+  </div>
 </section>

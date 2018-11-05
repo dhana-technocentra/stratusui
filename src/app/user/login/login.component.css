@@ -1,128 +1,85 @@
-
+.loginwrapper {  width: 375px; max-width: 375px;}
+.loginform, .loginsuccess {
+    background: rgb(95,182,232);
+    background: -webkit-linear-gradient(bottom left, rgba(95,182,232,1) 0%, rgba(95,182,232,1) 50%, rgba(80,234,248,1) 100%);
+    background: -o-linear-gradient(bottom left, rgba(95,182,232,1) 0%, rgba(95,182,232,1) 50%, rgba(80,234,248,1) 100%);
+    background: linear-gradient(to top right, rgba(95,182,232,1) 0%, rgba(95,182,232,1) 50%, rgba(80,234,248,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5fb6e8",endColorstr="#50eaf8",GradientType=1);
+    padding: 4rem 3rem; 
+    margin-top: 75px;
+}
 .loginheader {
-    font-family: 'Montserrat', sans-serif; 
-    font-size: 32px;
     color: white;
     font-weight: 400;
     text-align: center;
-    text-justify: inter-word; 
     margin-bottom: 25px;
 }
-.formlabel {
-    font-family: 'Montserrat', sans-serif; 
+.loginform label {
     font-size: 12px;
     text-align: left;
     color: white;
+    margin-bottom: 0;
 }
 #loginsubmit {
     background-color: #0F75BD;
     border: 3px white solid;
-    margin-top: 60px;
+    width: auto;
+    padding: 1rem 6rem;
     color: white;
+    margin: 25px auto 0 auto;
     font-size: 12px;
-    border-radius: 10px;
-    margin-bottom: 60px;
+}
+.checkwrap {
+  position: relative;
+  width: 200px; 
+  height: 200px;
+  margin: 20px auto;
+}
+.check.draw:after {
+  animation-duration: 800ms;
+  animation-timing-function: ease;
+  animation-name: checkmark;
+  transform: scaleX(-1) rotate(135deg);
+}
+.check:after {
+  opacity: 1;
+  width: 100px; 
+  height: 200px;
+  top: 100px;
+  left: 0;
+  transform-origin: left top;
+  border-right: 20px solid #fff;
+  border-top: 20px solid #fff;
+  content: '';
+  position: absolute;
 }
 
-
-.is-invalid {
-    border: 2px solid #cf4b63 !important;
-}
-
-.is-invalid1 {
-    border: 2px solid #cf4b63 !important;
-}
-
-.invalid-feedback {
-    color: #cf4b63;
-    font-weight: 500;
-    margin-left: 6px;   
-}
-
- @media (max-width: 767px) {
-    .desktop {
-        background: linear-gradient(to bottom, #5FB6E8 100%, #5FB6E8 100%, #50EAF8 100%);
-        margin-top: 0px !important;
-    }
-    .loginform {
-        background: none;
-        padding: 2rem 3rem; 
-        margin-top: 60px;
-    }
-    .form-control {
-        height: calc(2.25rem + 25px);
-    }
-    .loginheader {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 32px;    
-        color: white;
-        text-align: center;
-        text-justify: inter-word;
-        margin-bottom: 200px;
-        font-weight: 600;
-    }
-    #loginsubmit {
-        background-color: #0F75BD;
-        border: 3px white solid;
-        margin-top: 60px;
-        color: white;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 12px;
-        border-radius: 10px;
-        margin-bottom: 100px;
-    }
-      .loginform, .loginsuccess { height: 100vh; max-height: calc(100vh - 45px); } 
-
-}
-
-@media (min-width: 768px) {
-    .loginform {
-    background: linear-gradient(to bottom, #50EAF8 0%, #5FB6E8 100%);
-    padding: 2rem 3rem; 
-    margin-top: 60px;
-    }
-    .form-control {
-        height: calc(2.25rem + 10px);
-    }
-} 
-  .mobileloginheader {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 24pt;    
-    color: white;
-    text-align: center;
-    text-justify: inter-word;
-    margin-top: 50px;
-    font-weight: 600;
+@keyframes checkmark {
+  0% {
+    height: 0;
+    width: 0;
+    opacity: 1;
   }
-
-  .desktop input {
-    border: 1px #707070 solid;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #064B94;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    resize: none;
-}
-  .mobileform {
-    margin-top: 100px;
-    margin-bottom: 100px;
-}
-
- .path.check { 
-    stroke-dashoffset: -100; 
-    -webkit-animation: dash-check 0.9s 0.35s ease-in-out forwards; 
-    animation: dash-check 0.9s 0.35s ease-in-out forwards; 
+  20% {
+    height: 0;
+    width: 100px;
+    opacity: 1;
   }
-  
+  40% {
+    height: 200px;
+    width: 100px;
+    opacity: 1;
+  }
+  100% {
+    height: 200px;
+    width: 100px;
+    opacity: 1;
+  }
+}
 
-  .loginsuccess svg { 
-    width: 265px; 
-    display: block; 
-    margin: 0 auto; 
-    fill: none; 
-    stroke: #FFF; 
-    stroke-width: 15px;  
-    stroke-linecap: square; 
-    stroke-miterlimit: 10; 
-  } 
+
+@media (max-width: 767px) {
+  .loginwrapper { max-width: 100%; width: 100%;}
+  .loginform, .loginsuccess { height: 100vh; margin: 0; }
+  .checkwrap { margin: 0px auto; }
+}

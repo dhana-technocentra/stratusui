@@ -1,45 +1,8 @@
-/* .mat-column-select {
-    overflow: visible;
-  }
-  .mat-cell:foucs {
-    outline-color:black;
-  }
-  /* .example-container {
-    display: flex;
-    flex-direction: column;
-    max-height: 500px;
-  } */
-  
-  /* .mat-table {
-    overflow: auto;
-    max-height: 500px;
-  }
-  
-  */
-  .mobile-label {
+.mobile-label {
     display: none;
-  }
-  @media(max-width: 600px) {
-    .mobile-label {
-      width: 80px;
-      display: inline-block;
-          font-weight: bold;
-    }
-  
-    .mat-header-row {
-      display: none;
-    }
-  
-    .mat-row { 
-      flex-direction: column;
-      align-items: start;
-      padding: 8px 24px 0px 24px;
-      min-height: 20px;
-    }
-  }
-  
-  .type--right {
-    text-align: right;
+}
+.type--right {
+  text-align: right;
 }
 
 #ponnumber {
@@ -104,10 +67,6 @@ mat-header-row {
   border: 0.5px #064B94 solid;  
 }
 
-/* .mat-paginator {
-  display: none;
-} */
-
 mat-table {
   border-bottom: 1px solid #064B94;
   box-shadow: 0px;
@@ -124,29 +83,14 @@ mat-cell a {
   justify-content: center;
 }
 
-@media(max-width: 767px) { 
-  .desktop { display:none; }
-  .mobile { display: block; margin-top: 75px; margin-bottom: 50px;}
-  .container-fluid {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-}
-
-@media(min-width: 768px) { 
-  .desktop { display:block; }
-  .mobile { display: none; }
-}
-
 table {
   border-collapse:collapse;
   border:none;
   border-right: hidden;
   border-left: hidden;
   border-color: #064B94;
-  margin-top: 25px;
   width:88%;
-  margin-left: 25px;
+  margin: 0 auto 25px auto;
 }
 .tableheader {
   background: #064B94;
@@ -185,4 +129,38 @@ table {
   font-weight: 500;
 
 }
+  @media(max-width: 767px) {
+    .mobile-label {
+      width: 80px;
+      display: inline-block;
+          font-weight: bold;
+    }
+  
+    .mat-header-row {
+      display: none;
+    }
+  
+    .mat-row { 
+      flex-direction: column;
+      align-items: start;
+      padding: 8px 24px 0px 24px;
+      min-height: 20px;
+    }
+  }
+
+@media(max-width: 767px) { 
+  .desktop { display:none; }
+  .mobile { display: block; }
+  .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+@media(min-width: 768px) { 
+  .desktop { display:block; }
+  .mobile { display: none; }
+}
+
+
 
