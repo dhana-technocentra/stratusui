@@ -1,6 +1,8 @@
 <section class="desktop">
   <div class="container">
     <div class="row">
+      <div class="page-header col-12">
+      </div>
       <div class="col-12">
         <form [formGroup]="newTicketForm" (ngSubmit)="onFormSubmit(newTicketForm)">
           <div class="row">
@@ -98,16 +100,34 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-2 col-sm-2 col-md-1 col-lg-3 col-xl-3"></div>
-                <div class="col-8 col-sm-8 col-md-10 col-lg-6 col-xl-6">
-                  <div class="form-group">
-                    <button type="submit" class="form-control" id="requestquote1">Open Ticket</button>
+                <div class="col-12">
+                  <div class="form-group text-center">
+                    <button type="submit" class="btn-primary">Open Ticket</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+  <div #submitsuccess class="submitsuccess modal fade text-center">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="submitheader">Ticket Submitted Successfully!</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="checkwrap"><div class="check draw"></div></div>
+          <div class="submitinfo text-left">
+            <p>Successfully created ticket #, please keep this ticket number for your future reference.</p>
+          </div>
+          <button routerLink="/ticket/getticketnotes" (click)="hideSuccess()" class="btn-primary">Back to Support</button>
+        </div>
       </div>
     </div>
   </div>

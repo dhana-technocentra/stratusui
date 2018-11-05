@@ -10,15 +10,20 @@ import { AppComponent } from './../../app.component';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastsManager } from 'ng6-toastr';
 import { InventoryService } from './../../core/services/inventory.service';
+
+
+declare var $: any;
+
 @Component({
   selector: 'app-new-ticket',
   templateUrl: './new-ticket.component.html',
   styleUrls: ['./new-ticket.component.css']
 })
-export class NewTicketComponent implements OnInit {
+export class NewTicketComponent implements OnInit {  
   newTicketForm: FormGroup;
   loading = false;
   submitted = false;
+  
   public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   severities = ["No Impact", "Minor", "Major", "Critical"];
   ponNumbers: any;
@@ -49,6 +54,7 @@ export class NewTicketComponent implements OnInit {
         this.spinnerService.hide();
       })
     });
+    
   }
 
   showError(errorMessage) {
@@ -56,7 +62,11 @@ export class NewTicketComponent implements OnInit {
   }
 
   showSuccess(successMessage) {
-    this.toastr.success(successMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true });
+     $('.submitsuccess').modal('show'); 
+  }
+  
+  hideSuccess() {
+     $('.submitsuccess').modal('hide'); 
   }
 
   get f() { return this.newTicketForm.controls; }
@@ -84,6 +94,7 @@ export class NewTicketComponent implements OnInit {
           this.spinnerService.hide();
           
           this.showSuccess("Submitted Successfully");
+          
           console.log('create new support ticket result ', data);
 
         },

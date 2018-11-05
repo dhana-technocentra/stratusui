@@ -1,34 +1,32 @@
-<div class="container-fluid" id="headertitle">
+<div class="container-fluid">
   <div class="row text-center">
-    <div class="col-12 header">
-      <span>Phone: 1-866-822-2246</span>
+    <div class="page-header col-12">
     </div>
-    <div class="col-12 header">
-      <span>Support Email: noc@stratusnet.com</span>
+    <div class="col-12 sub-header">
+      <p>Phone: 1-866-822-2246</p>
+    </div>
+    <div class="col-12 sub-header">
+      <p>Support Email: noc@stratusnet.com</p>
     </div>
     <div class="col-12">
-      <button clas="form-control" (click)="navigateToCreateTicket()" id="requestquote1">Open A Support Ticket</button>
+      <button class="btn-primary ticket-btn" (click)="navigateToCreateTicket()">Open A Support Ticket</button>
     </div>
   </div>
 </div>
-<section class="desktop">
-  <div class="container" id="title">
+<section class="desktop ticket-list-container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-1 col-sm-1"></div>
-      <div class="col-10 col-sm-10 col-md-12 col-lg-12 col-xl-12 header2">
+      <div class="col-12 ticket-list-header">
         <span>Open/Active Tickets</span>
       </div>
     </div>
-  </div>
-  <div class="container" *ngIf="dataExists">
-    <div class="row">
-      <div class="col-1 col-sm-1"></div>
-      <div class="col-10 col-sm-10 col-md-12 col-lg-12 col-xl-12 header3">
+    <div class="row" *ngIf="dataExists">
+      <div class="col-12 header3">
         <span>No Data Available</span>
       </div>
     </div>
   </div>
-  <div class="example-container" *ngIf="displayData">
+  <div class="container-fluid example-container" *ngIf="displayData">
     <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" matSortDirection="desc"
       matSortDisableClear [class.isMobile]="isMobile">
       <ng-container matColumnDef="ID">
@@ -65,13 +63,17 @@
   </div>
 </section>
 
-<section class="mobile">
-  <div class="container-fluid" id="title">
+<section class="mobile ticket-list-container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-10 col-sm-10 header2">
+      <div class="col-12 ticket-list-header">
         <span>Open/Active Tickets</span>
       </div>
-      <div class="col-1 col-sm-1"></div>
+    </div>
+    <div class="row" *ngIf="dataExists">
+      <div class="col-12 header3">
+        <span>No Data Available</span>
+      </div>
     </div>
   </div>
   <table border="1" cellspacing='50' cellpadding='0' *ngFor="let ticket of ticketNotes" style="border-top: none;">

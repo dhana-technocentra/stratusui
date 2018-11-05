@@ -24,6 +24,9 @@ export class AppComponent implements OnInit {
     } else {
       document.getElementById("navbar").style.display = "none";
     }
+    
+    setTimeout(setup_navigation(),0);
+    setTimeout(check_navigation(),1);
   }
 
   checkForAuthentication() {
@@ -32,10 +35,8 @@ export class AppComponent implements OnInit {
     } else {
       document.getElementById("navbar").style.display = "none";
     }
-    
-    setTimeout(setup_navigation(),0);
-    setTimeout(check_navigation(),1);
   }
+  
   logOut() {
     this.authenticationService.logout();
     document.getElementById("navbar").style.display = "none";

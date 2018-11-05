@@ -162,10 +162,6 @@ export class UserProfileComponent implements OnInit {
     showSuccess(successMessage) {
         this.toastr.success(successMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true });
     }
-
-    showError(errorMessage) {
-        this.toastr.error(errorMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true });
-    }
   
     showError(message) {
         this.toastr.error(message, '', { dismiss: 'click', showCloseButton: true, enableHTML: true}); 
