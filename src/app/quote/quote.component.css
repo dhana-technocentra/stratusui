@@ -23,6 +23,7 @@ textarea { height: 20.5rem;}
     font-size: 18px;
     font-weight: 600;
     height: calc(2.25rem + 20px);
+    cursor: pointer;
 }
 
 .is-invalid {
@@ -48,5 +49,4 @@ textarea { height: 20.5rem;}
         display: none;
     }
 }
-
   

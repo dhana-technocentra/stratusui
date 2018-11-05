@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -37,7 +37,11 @@ export class InventoryComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
-    this.appComponent.title = "Inventory";
+    if (window.innerWidth <= 767) {
+      this.appComponent.title = "Stratus Inventory";
+    } else {
+      this.appComponent.title = "Inventory";
+    }
     this.spinnerService.show();
     this.userService.getUserProfile()
       .subscribe(data => {
@@ -59,6 +63,15 @@ export class InventoryComponent implements OnInit {
     this.pageSize = setPageSizeOptionsInput.pageSize;
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (event.target.innerWidth <= 767) {
+      this.appComponent.title = "Stratus Inventory";
+    } else {
+      this.appComponent.title = "Inventory";
+    }
+  }
+
   navigateToInventoryDetails(id) {
     console.log(id);
     this.router.navigate(['/inventorydetails', { orderId: id }]);
@@ -67,11 +80,11 @@ export class InventoryComponent implements OnInit {
   sortData(sort: Sort) {
     this.spinnerService.show();
     this.orders = this.orders.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
+      const isAsc = sort.direction === 'asc' ? true : false;
       switch (sort.active) {
         case 'Category': return this.compare(a.serviceCategory, b.serviceCategory, isAsc);
         case 'Service Media': return this.compare(a.mediaType, b.mediaType, isAsc);
-        case 'PON Number': return this.compare(a.ponNumber, b.mediaType, isAsc);
+        case 'PON Number': return this.compare(a.ponNumber, b.ponNumber, isAsc);
         default: return 0;
       }
     });

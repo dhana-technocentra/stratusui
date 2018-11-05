@@ -11,6 +11,8 @@ import { TicketRoutingModule }  from './ticket.routing';
 import { TicketComponent } from './ticket.component';
 import { TicketService } from './ticket.service';
 import { NewTicketComponent } from './new-ticket/new-ticket.component';
+import { TextMaskModule } from 'angular2-text-mask';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { NewTicketComponent } from './new-ticket/new-ticket.component';
     HttpClientModule,
     CoreModule,
     MaterialModule,
-    TicketRoutingModule
+    TicketRoutingModule,
+    TextMaskModule,
+    NgbModule
   ],
   providers:[
     TicketService

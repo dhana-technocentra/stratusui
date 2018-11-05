@@ -56,6 +56,7 @@ mat-header-row {
 #category {
   background: #0F75BD;
   color: white; 
+  cursor: pointer;
 }
 
 mat-row {
@@ -115,6 +116,7 @@ table {
 
 .tableheaderinfo {
   padding: 15pt 1pt 15pt 5pt;
+  cursor: pointer;
 }
 
 .title {
@@ -164,3 +166,9 @@ table {
 
 
 
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE10+ CSS styles go here */
+  .mat-header-row, .mat-row {
+    -ms-flex-align: stretch;
+  }
+}

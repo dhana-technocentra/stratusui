@@ -1,14 +1,15 @@
 import { Component, OnInit, HostListener, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm, AbstractControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AlertService, UserService } from '../../core';
+import { AlertService, UserService, AuthenticationService } from '../../core';
 import { AppComponent } from './../../app.component';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastsManager } from 'ng6-toastr';
+import { environment } from '../../../environments/environment';
 
 
 // Depending on whether rollup is used, moment needs to be imported differently.
@@ -62,9 +63,9 @@ export class UserProfileComponent implements OnInit {
         private route: ActivatedRoute,
         private userService: UserService,
         private alertService: AlertService,
-        private appComponent: AppComponent, private spinnerService: Ng4LoadingSpinnerService, public toastr: ToastsManager, vcr: ViewContainerRef) { 
-            this.toastr.setRootViewContainerRef(vcr);
-        }
+        private appComponent: AppComponent, private spinnerService: Ng4LoadingSpinnerService, public toastr: ToastsManager, vcr: ViewContainerRef, private authenticationService: AuthenticationService) {
+        this.toastr.setRootViewContainerRef(vcr);
+    }
 
     ngOnInit() {
         // let userId = localStorage.getItem("editUserId");
@@ -92,17 +93,17 @@ export class UserProfileComponent implements OnInit {
             title: ['', [Validators.required]],
             officePhone:
                 this.formBuilder.group({
-                    phoneNumber: ['', Validators.required],
+                    phoneNumber: ['', [Validators.required, Validators.minLength(14)]],
                     extension: ['']
                 }),
             cellPhone:
                 this.formBuilder.group({
-                    phoneNumber: ['', [Validators.required]],
+                    phoneNumber: ['', [Validators.required, Validators.minLength(14)]],
                     extension: ['']
                 }),
             fax:
                 this.formBuilder.group({
-                    phoneNumber: ['', [Validators.required]],
+                    phoneNumber: ['', [Validators.minLength(14)]],
                     extension: ['']
                 }),
             isActive: [''],
@@ -144,11 +145,11 @@ export class UserProfileComponent implements OnInit {
                     data["fax"]["extension"] = "";
                 }
                 this.userProfileForm.setValue(data);
-                var registerDate = new Date(data["registerDate"]).toLocaleString().slice(0,10);
-                registerDate = registerDate.replace(/,/g,"");
+                var registerDate = new Date(data["registerDate"]).toLocaleString().replace(/[^ -~]/g,'').slice(0, 10);
+                registerDate = registerDate.replace(/,/g, "");
                 console.log(registerDate);
                 this.userProfile = data;
-                this.userProfile["registerDate"] = registerDate; 
+                this.userProfile["registerDate"] = registerDate;
                 this.spinnerService.hide();
                 if (data['isActive'] == 'Y') {
                     this.isActiveToggle = true;
@@ -159,7 +160,11 @@ export class UserProfileComponent implements OnInit {
     }
 
     showSuccess(successMessage) {
-        this.toastr.success(successMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true}); 
+        this.toastr.success(successMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true });
+    }
+
+    showError(errorMessage) {
+        this.toastr.error(errorMessage, '', { dismiss: 'click', showCloseButton: true, enableHTML: true });
     }
   
     showError(message) {
@@ -168,9 +173,9 @@ export class UserProfileComponent implements OnInit {
 
     @HostListener('document:keypress', ['$event'])
     handleKeyboardEvent(event: KeyboardEvent) {
-      if (event.srcElement.id == "zip" && (event.keyCode < 48 || event.keyCode > 57)) {
-        event.returnValue = false;
-      }
+        if (event.srcElement.id == "zip" && (event.keyCode < 48 || event.keyCode > 57)) {
+            event.returnValue = false;
+        }
     }
 
 
@@ -194,51 +199,102 @@ export class UserProfileComponent implements OnInit {
     }
 
     onFormSubmit(form: NgForm) {
+        console.log(form);
         this.submitted = true;
         this.spinnerService.show();
         if (this.userProfileForm.invalid) {
             this.spinnerService.hide();
             return;
-        }
-
-        this.loading = true;
-        console.log(this.userProfileForm.value.oldPassword, this.userProfileForm.value.password);
-        if (this.userProfileForm.value.password.oldPassword != "" && this.userProfileForm.value.password.password != "") {
-            var passwordObject = {
-                "username": this.userProfileForm.value.username,
-                "oldPassword": this.userProfileForm.value.password.oldPassword,
-                "password": this.userProfileForm.value.password.password
+        } else if (this.userProfileForm.value.password.oldPassword != "" && (this.userProfileForm.value.password.password == "" || this.userProfileForm.value.password.repeatPassword == "")) {
+            this.spinnerService.hide();
+            return;
+        } else if (this.userProfileForm.value.password.password != "" && (this.userProfileForm.value.password.oldPassword == "" || this.userProfileForm.value.password.repeatPassword == "")) {
+            this.spinnerService.hide();
+            return;
+        } else if (this.userProfileForm.value.password.repeatPassword != "" && (this.userProfileForm.value.password.password == "" || this.userProfileForm.value.password.oldPassword == "")) {
+            this.spinnerService.hide();
+            return;
+        } else {
+            this.loading = true;
+            console.log(this.userProfileForm.value.oldPassword, this.userProfileForm.value.password);
+            if (this.userProfileForm.value.password.oldPassword != "" && this.userProfileForm.value.password.password != "") {
+                var passwordObject = {
+                    "username": this.userProfileForm.value.username,
+                    "oldPassword": this.userProfileForm.value.password.oldPassword,
+                    "password": this.userProfileForm.value.password.password
+                }
+                var userProfileObj = Object.assign({}, this.userProfileForm.value);
+                delete userProfileObj["password"];
+                this.updateUserProfile(userProfileObj, passwordObject, true);
+            } else {
+                this.updateUserProfile(this.userProfileForm.value, null, false);
             }
-            this.userService.updatePassword(passwordObject)
-                .pipe(first())
-                .subscribe(
-                    data => {
-                        console.log(data);
-                    },
-                    error => {
-                        console.log(error);
-                    });
         }
-        var userProfileObj = Object.assign({}, this.userProfileForm.value);
-        delete userProfileObj["password"];
-        this.userService.updateUserProfile(userProfileObj)
-            .pipe(first())
+    }
+
+    updateUserProfile(userProfile, passwordObject, updatePassword) {
+        this.userService.updateUserProfile(userProfile)
             .subscribe(
                 data => {
-                    this.spinnerService.hide();
                     this.showSuccess("Updated Successfully");
-                    this.alertService.success(UPDATE_USERPROFILE, true);
-                    console.log('updateUserProfile result ', data);
-                    //  this.router.navigate([LOGIN_PATH]);
+                    if (updatePassword) {
+                        this.updatePassword(userProfile, passwordObject);
+                    } else {
+                        this.spinnerService.hide();
+                    }
                 },
                 error => {
+                    console.log(error);
                     this.spinnerService.hide();
-                    this.showError("Problem updating your profile. Please try again.");
-                    console.log('updateUserProfile result failure ', error);
-                    // this.alertService.error(error);
-                    // this.loading = false;
+                    this.showError(error);
                 });
     }
 
+    updatePassword(userProfile, passwordObject) {
+        this.userService.updatePassword(passwordObject)
+            .subscribe(
+                data => {
+                    if (data["status"] == "failed - no matching found.") {
+                        this.spinnerService.hide();
+                        this.showError("Invalid Current Password!");
+                    } else {
+                        this.reLoginForNewAccessToken(userProfile, passwordObject);
+                    }
+                },
+                error => {
+                    var error = JSON.parse(error._body);
+                    this.spinnerService.hide();
+                    this.showError(error.error_description);
+                });
+    }
 
+    reLoginForNewAccessToken(userProfile, passwordObject) {
+        var userObject = {
+            username: userProfile.username,
+            client_id: environment.oAuthUserName,
+            password: passwordObject.password,
+            grant_type: "password"
+        }
+        this.spinnerService.hide();
+        this.authenticationService.login(userObject)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    localStorage.setItem('user_name', userObject.username);
+                    console.log('user_name set', userObject.username);
+                    this.userProfileForm.controls.password.reset();
+                    let control: AbstractControl = null;
+                    Object.keys(this.userProfileForm.controls.password).forEach((name) => {
+                        control = this.userProfileForm.controls[name];
+                        control.setErrors(null);
+                    }); 
+                },
+                error => {
+                    var error = JSON.parse(error._body);
+                    this.spinnerService.hide();
+                    this.showError(error.error_description);
+                });
+    }
+
+    
 }

@@ -1,3 +1,120 @@
-<p>
-  ticket works!
-</p>
+<div class="container-fluid" id="headertitle">
+  <div class="row text-center">
+    <div class="col-12 header">
+      <span>Phone: 1-866-822-2246</span>
+    </div>
+    <div class="col-12 header">
+      <span>Support Email: noc@stratusnet.com</span>
+    </div>
+    <div class="col-12">
+      <button clas="form-control" (click)="navigateToCreateTicket()" id="requestquote1">Open A Support Ticket</button>
+    </div>
+  </div>
+</div>
+<section class="desktop">
+  <div class="container" id="title">
+    <div class="row">
+      <div class="col-1 col-sm-1"></div>
+      <div class="col-10 col-sm-10 col-md-12 col-lg-12 col-xl-12 header2">
+        <span>Open/Active Tickets</span>
+      </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="dataExists">
+    <div class="row">
+      <div class="col-1 col-sm-1"></div>
+      <div class="col-10 col-sm-10 col-md-12 col-lg-12 col-xl-12 header3">
+        <span>No Data Available</span>
+      </div>
+    </div>
+  </div>
+  <div class="example-container" *ngIf="displayData">
+    <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" matSortDirection="desc"
+      matSortDisableClear [class.isMobile]="isMobile">
+      <ng-container matColumnDef="ID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell id="category" *matCellDef="let ticket">
+          #{{ticket.incidentID}}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Name </mat-header-cell>
+        <mat-cell id="mediaType" *matCellDef="let ticket">
+          {{ticket.results[0].CreatedByFullName}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Date">
+        <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Date </mat-header-cell>
+        <mat-cell id="mediaType" *matCellDef="let ticket">
+          {{ticket.results[0].CreateDate | date:'shortDate' }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Details">
+        <mat-header-cell *matHeaderCellDef id="mediaType"> Details </mat-header-cell>
+        <mat-cell id="mediaType" *matCellDef="let ticket">
+          {{ticket.results[0].LongText.substring(0, 15)}}...<button type="button" id="seemore" class="btn btn-outline-secondary mr-2"
+            placement="top" ngbPopover="{{ticket.results[0].LongText}}">
+            See More
+          </button> </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnsToDisplay;">
+      </mat-row>
+    </mat-table>
+
+    <!-- <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="setPageSizeOptions($event)">
+    </mat-paginator> -->
+  </div>
+</section>
+
+<section class="mobile">
+  <div class="container-fluid" id="title">
+    <div class="row">
+      <div class="col-10 col-sm-10 header2">
+        <span>Open/Active Tickets</span>
+      </div>
+      <div class="col-1 col-sm-1"></div>
+    </div>
+  </div>
+  <table border="1" cellspacing='50' cellpadding='0' *ngFor="let ticket of ticketNotes" style="border-top: none;">
+    <tbody>
+      <tr class="rowstyle">
+        <td class="columnstyle">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 col-sm-12">ID:#{{ticket.incidentID}}</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="rowstyle">
+        <td class="columnstyle">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 col-sm-12">Name:{{ticket.results[0].CreatedByFullName}}</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="rowstyle">
+        <td class="columnstyle">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 col-sm-12">Date:{{ticket.results[0].CreateDate | date:'shortDate' }}</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="rowstyle">
+        <td class="columnstyle">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 col-sm-12 columnvalue1">{{ticket.results[0].LongText.substring(0, 15)}}...<button type="button" id="seemore"
+                  class="btn btn-outline-secondary mr-2" placement="top" ngbPopover="{{ticket.results[0].LongText}}">
+                  See More
+                </button></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

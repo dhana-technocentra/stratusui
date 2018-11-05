@@ -49,6 +49,21 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
+                                        <label for="firstname" class="formlabel">Phone Number *</label>
+                                        <input type="text" [textMask]="{mask: mask,guide : false}" formControlName="phone"
+                                            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                                        <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                            <div *ngIf="f.phone.errors.required">
+                                                Phone Number is required</div>
+                                            <div *ngIf="f.phone.errors.minlength">
+                                                Invalid Phone Number</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
                                         <label for="firstname" class="formlabel">Address *</label>
                                         <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
                                         <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
@@ -99,13 +114,14 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="service" class="formlabel">Service *</label>
-                                        <select formControlName="service" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.service.errors }">
-                                            <option [value]="service" *ngFor="let service of services">{{service}}</option>
+                                        <label for="serviceType" class="formlabel">Service *</label>
+                                        <select formControlName="serviceType" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.serviceType.errors }">
+                                            <option selected></option>
+                                            <option [value]="serviceType" *ngFor="let serviceType of services">{{serviceType}}</option>
                                         </select>
                                         <i class="fa fa-chevron-down"></i>
-                                        <div *ngIf="submitted && f.service.errors" class="invalid-feedback">
-                                            <div *ngIf="f.service.errors.required">Service is required</div>
+                                        <div *ngIf="submitted && f.serviceType.errors" class="invalid-feedback">
+                                            <div *ngIf="f.serviceType.errors.required">Service is required</div>
                                         </div>
                                     </div>
                                 </div>
@@ -115,6 +131,7 @@
                                     <div class="form-group">
                                         <label for="priority" class="formlabel">Priority *</label>
                                         <select formControlName="priority" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.priority.errors }">
+                                            <option selected></option>
                                             <option [value]="priority" *ngFor="let priority of priorities">{{priority}}</option>
                                         </select>
                                         <i class="fa fa-chevron-down"></i>
@@ -129,10 +146,10 @@
                                     <div class="form-group">
                                         <label for="firstname" class="formlabel">Message * <span style="font-weight: 600;">(max
                                                 2000 characters)</span></label>
-                                        <textarea formControlName="message" class="form-control" maxlength="2000"
-                                            [ngClass]="{ 'is-invalid': submitted && f.message.errors }" rows="10"></textarea>
-                                        <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
-                                            <div *ngIf="f.message.errors.required">Message is required</div>
+                                        <textarea formControlName="emailBody" class="form-control" maxlength="2000"
+                                            [ngClass]="{ 'is-invalid': submitted && f.emailBody.errors }" rows="10"></textarea>
+                                        <div *ngIf="submitted && f.emailBody.errors" class="invalid-feedback">
+                                            <div *ngIf="f.emailBody.errors.required">Message is required</div>
                                         </div>
                                     </div>
                                 </div>
