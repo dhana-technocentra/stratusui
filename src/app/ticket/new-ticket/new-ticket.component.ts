@@ -23,7 +23,7 @@ export class NewTicketComponent implements OnInit {
   newTicketForm: FormGroup;
   loading = false;
   submitted = false;
-  
+  ticketId: any;
   public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   severities = ["No Impact", "Minor", "Major", "Critical"];
   ponNumbers: any;
@@ -84,6 +84,7 @@ export class NewTicketComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          this.ticketId = data["ticketId"];
           let control: AbstractControl = null;
           this.newTicketForm.reset();
           this.newTicketForm.markAsUntouched();

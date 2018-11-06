@@ -25,41 +25,45 @@
         <span>No Data Available</span>
       </div>
     </div>
-  </div>
-  <div class="container-fluid example-container" *ngIf="displayData">
-    <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" matSortDirection="desc"
-      matSortDisableClear [class.isMobile]="isMobile">
-      <ng-container matColumnDef="ID">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-        <mat-cell id="category" *matCellDef="let ticket">
-          #{{ticket.incidentID}}
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="Name">
-        <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Name </mat-header-cell>
-        <mat-cell id="mediaType" *matCellDef="let ticket">
-          {{ticket.results[0].CreatedByFullName}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="Date">
-        <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Date </mat-header-cell>
-        <mat-cell id="mediaType" *matCellDef="let ticket">
-          {{ticket.results[0].CreateDate | date:'shortDate' }} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="Details">
-        <mat-header-cell *matHeaderCellDef id="mediaType"> Details </mat-header-cell>
-        <mat-cell id="mediaType" *matCellDef="let ticket">
-          {{ticket.results[0].LongText.substring(0, 15)}}...<button type="button" id="seemore" class="btn btn-outline-secondary mr-2"
-            placement="top" ngbPopover="{{ticket.results[0].LongText}}">
-            See More
-          </button> </mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: columnsToDisplay;">
-      </mat-row>
-    </mat-table>
+    <div class="row">
+      <div class="col-12 table-padding">
+        <div class="example-container" *ngIf="displayData">
+          <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" matSortDirection="desc"
+            matSortDisableClear [class.isMobile]="isMobile">
+            <ng-container matColumnDef="ID">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+              <mat-cell id="category" *matCellDef="let ticket">
+                #{{ticket.incidentID}}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Name">
+              <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Name </mat-header-cell>
+              <mat-cell id="mediaType" *matCellDef="let ticket">
+                {{ticket.results[0].CreatedByFullName}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Date">
+              <mat-header-cell *matHeaderCellDef id="mediaType" mat-sort-header> Date </mat-header-cell>
+              <mat-cell id="mediaType" *matCellDef="let ticket">
+                {{ticket.results[0].CreateDate | date:'shortDate' }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Details">
+              <mat-header-cell *matHeaderCellDef id="mediaType"> Details </mat-header-cell>
+              <mat-cell id="mediaType" *matCellDef="let ticket">
+                {{ticket.results[0].LongText.substring(0, 15)}}...<button type="button" id="seemore" class="btn btn-outline-secondary mr-2"
+                  placement="top" ngbPopover="{{ticket.results[0].LongText}}">
+                  See More
+                </button> </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: columnsToDisplay;">
+            </mat-row>
+          </mat-table>
 
-    <!-- <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="setPageSizeOptions($event)">
+          <!-- <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="setPageSizeOptions($event)">
     </mat-paginator> -->
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
