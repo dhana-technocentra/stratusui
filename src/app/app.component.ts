@@ -24,9 +24,15 @@ export class AppComponent implements OnInit {
     } else {
       document.getElementById("navbar").style.display = "none";
     }
-    
-    setTimeout(setup_navigation(),0);
-    setTimeout(check_navigation(),1);
+    setTimeout(setup_navigation(), 0);
+    setTimeout(check_navigation(), 1);
+  }
+
+  changeOfRoutes() {
+    setTimeout(() => {
+      setTimeout(setup_navigation(), 0);
+      setTimeout(check_navigation(), 1);
+    }, 1500);
   }
 
   checkForAuthentication() {
