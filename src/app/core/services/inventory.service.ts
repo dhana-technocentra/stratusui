@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment'
+import { BaseService } from './base.service';
 
 @Injectable()
-export class InventoryService {
+export class InventoryService extends BaseService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { 
+        super();
+    }
 
     requestAQuote(quote: any) {
         return this.http.post(`${environment.apiUrl}/api/quote/requestQuote`, quote);
@@ -25,5 +28,9 @@ export class InventoryService {
 
     getPONsByCompanyId(id: any) {
         return this.http.get(`${environment.apiUrl}/api/orders/getPONs?companyId=` + id);
+    }
+
+    getOrderPhone(id: any) {
+        return this.http.get(`${environment.apiUrl}/api/orders/getOrderPhoneByType?orderId=` + id + `&phoneType=DID`);
     }
  }   

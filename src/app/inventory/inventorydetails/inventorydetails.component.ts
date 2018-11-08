@@ -17,6 +17,8 @@ export class InventorydetailsComponent implements OnInit {
   order: any;
   orderInfo: any;
   dataLoaded: boolean;
+  orderPhoneInfo: any;
+  phoneStringArray: string;
 
   ngOnInit() {
     this.appComponent.title = "Inventory";
@@ -24,10 +26,17 @@ export class InventorydetailsComponent implements OnInit {
     this.orderId = this.route.snapshot.paramMap.get("orderId");
     this.inventoryService.getOrderDetailsByOrderId(this.orderId).subscribe(data => {
       this.inventoryService.getOrderDetailById(this.orderId).subscribe(orderData => {
-        this.order = data;
-        this.orderInfo = orderData;
-        this.dataLoaded = true;
-        this.spinnerService.hide();
+        this.inventoryService.getOrderPhone(this.orderId).subscribe(orderPhoneData => {
+          console.log(orderPhoneData);
+          this.order = data;
+          this.orderInfo = orderData;
+          this.orderPhoneInfo = orderPhoneData;
+          this.phoneStringArray = this.orderPhoneInfo.map(function(obj){
+            return obj.number + "\n";
+          });
+          this.dataLoaded = true;
+          this.spinnerService.hide();
+        })
       });
     });
 

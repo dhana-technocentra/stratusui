@@ -84,7 +84,8 @@ export class InventoryComponent implements OnInit {
       switch (sort.active) {
         case 'Category': return this.compare(a.serviceCategory, b.serviceCategory, isAsc);
         case 'Service Media': return this.compare(a.mediaType, b.mediaType, isAsc);
-        case 'PON Number': return this.compare(a.ponNumber, b.ponNumber, isAsc);
+        case 'PON Number': return this.sortStringWithSpecialCharacters(a, b, isAsc, "PON Number");
+        case 'Head Location': return this.sortStringWithSpecialCharacters(a, b, isAsc, "Head Location");
         default: return 0;
       }
     });
@@ -97,5 +98,22 @@ export class InventoryComponent implements OnInit {
   }
 
 
-
+  sortStringWithSpecialCharacters(a, b, isAsc, columnType) {
+    var x: any;
+    var y: any;
+    if (columnType == "PON Number") {
+      x = a.ponNumber.split('.').map(Number)
+      y = b.ponNumber.split('.').map(Number)
+    } else  {
+      x = a.headLocation.zip.split('.').map(Number)
+      y = b.headLocation.zip.split('.').map(Number)
+    }
+    
+    for (var i = 0; i < 3; i++) {
+      if (x[i] > y[i]) return isAsc ? 1 : -1;
+      if (x[i] < y[i]) return isAsc ? -1 : 1;
+      if (!isNaN(x[i]) && isNaN(y[i])) return isAsc ? 1 : -1;
+      if (isNaN(x[i]) && !isNaN(y[i])) return isAsc ? -1 : 1;
+    }
+  }
 }

@@ -45,25 +45,33 @@
               <td style="padding: 15pt 1pt 1pt 5pt;width: 45%;">Account</td>
               <td style="padding: 15pt 1pt 1pt 5pt;width: 300px;"></td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="order.accountNumber != ''">
               <td class="columnstyle">Account Number</td>
               <td class="columnstyle">{{order.accountNumber}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="order.ponNumber != ''">
               <td class="columnstyle">PON Number</td>
               <td class="columnstyle">{{order.ponNumber}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="order.serviceCategory != ''">
               <td class="columnstyle">Service</td>
               <td class="columnstyle">{{order.serviceCategory}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="order.mediaType != ''">
               <td class="columnstyle">Media</td>
               <td class="columnstyle">{{order.mediaType}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="order.bandwidth != ''">
               <td class="columnstyle">Bandwidth</td>
               <td class="columnstyle">{{order.bandwidth}}</td>
+            </tr>
+            <tr class="rowstyle" *ngIf="order.orderServiceState != ''">
+              <td class="columnstyle">State</td>
+              <td class="columnstyle">{{order.orderServiceState}}</td>
+            </tr>
+            <tr class="rowstyle" *ngIf="order.orderServiceCountry != ''">
+              <td class="columnstyle">Country</td>
+              <td class="columnstyle">{{order.orderServiceCountry}}</td>
             </tr>
           </tbody>
         </table>
@@ -75,47 +83,51 @@
               <td style="padding: 15pt 1pt 1pt 5pt;width: 50%;">Order Detail</td>
               <td style="padding: 15pt 1pt 1pt 5pt;width: 300px;"></td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="orderInfo.extendedDeMarc && orderInfo.extendedDeMarc != ''">
               <td class="columnstyle">Extend Demarc:</td>
               <td class="columnstyle">{{orderInfo.extendedDeMarc}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="orderInfo.routerIncluded && orderInfo.routerIncluded != ''">
               <td class="columnstyle">Router Included:</td>
               <td class="columnstyle">{{orderInfo.routerIncluded}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="orderInfo.serIpFromCarrier && orderInfo.serIpFromCarrier != ''">
               <td class="columnstyle">serial IP from Carrier:</td>
               <td class="columnstyle">{{orderInfo.serIpFromCarrier}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="orderInfo.custSerIpFromCarrier && orderInfo.custSerIpFromCarrier != ''">
               <td class="columnstyle">Custom Serail IP from Carrier:</td>
               <td class="columnstyle">{{orderInfo.custSerIpFromCarrier}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="phoneStringArray && phoneStringArray != ''">
+              <td class="columnstyle">DID:</td>
+              <td class="columnstyle">{{phoneStringArray}}</td>
+            </tr>
+            <tr class="rowstyle" *ngIf="orderInfo.ipReceivedFromCarrier && orderInfo.ipReceivedFromCarrier != ''">
               <td class="columnstyle">LAN IP's:</td>
               <td class="columnstyle">{{orderInfo.ipReceivedFromCarrier}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="orderInfo.routerPassword && orderInfo.routerPassword != ''">
               <td class="columnstyle">Router Password:</td>
               <td class="columnstyle">{{orderInfo.routerPassword}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="orderInfo.providerDNS && orderInfo.providerDNS != ''">
               <td class="columnstyle">Provider DNS:</td>
               <td class="columnstyle">{{orderInfo.providerDNS}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="orderInfo.dnsNotes && orderInfo.dnsNotes != ''">
               <td class="columnstyle">Provider DNS Notes:</td>
               <td class="columnstyle">{{orderInfo.dnsNotes}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="orderInfo.lecCircuitId && orderInfo.lecCircuitId != ''">
               <td class="columnstyle">LEC Circuit ID:</td>
               <td class="columnstyle">{{orderInfo.lecCircuitId}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="orderInfo.providedBy && orderInfo.providedBy != ''">
               <td class="columnstyle">Loop Provided By:</td>
               <td class="columnstyle">{{orderInfo.providedBy}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="orderInfo.carrierCuitId && orderInfo.carrierCuitId != ''">
               <td class="columnstyle">Carrier Port/IOC/Bundle Circuit ID:</td>
               <td class="columnstyle">{{orderInfo.carrierCuitId}}</td>
             </tr>
@@ -190,20 +202,26 @@
             <tr class="tableheader">
               <td style="padding: 15pt 1pt 1pt 5pt;">Account</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="order.accountNumber != ''">
               <td class="columnstyle">Account Number: {{order.accountNumber}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="order.ponNumber != ''">
               <td class="columnstyle">PON Number: {{order.ponNumber}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="order.serviceCategory != ''">
               <td class="columnstyle">Service: {{order.serviceCategory}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="order.mediaType != ''">
               <td class="columnstyle">Media: {{order.mediaType}}</td>
             </tr>
-            <tr class="rowstyle">
+            <tr class="rowstyle" *ngIf="order.bandwidth != ''">
               <td class="columnstyle">Bandwidth: {{order.bandwidth}}</td>
+            </tr>
+            <tr class="rowstyle" *ngIf="order.orderServiceState != ''">
+              <td class="columnstyle">State: {{order.orderServiceState}}</td>
+            </tr>
+            <tr class="rowstyle" *ngIf="order.orderServiceCountry != ''">
+              <td class="columnstyle">Country: {{order.orderServiceCountry}}</td>
             </tr>
           </tbody>
         </table>
@@ -216,38 +234,41 @@
             <tr class="tableheader">
               <td style="padding: 15pt 1pt 1pt 5pt;">Order Detail</td>
             </tr>
-            <tr class="rowstyle">
-              <td class="columnstyle">Extend Demarc:{{orderInfo.extendedDeMarc}}</td>
+            <tr class="rowstyle" *ngIf="orderInfo.extendedDeMarc && orderInfo.extendedDeMarc != ''">
+              <td class="columnstyle">Extend Demarc: {{orderInfo.extendedDeMarc}}</td>
             </tr>
-            <tr class="rowstyle">
-              <td class="columnstyle">Router Included:{{orderInfo.routerIncluded}}</td>
+            <tr class="rowstyle" *ngIf="orderInfo.routerIncluded && orderInfo.routerIncluded != ''">
+              <td class="columnstyle">Router Included: {{orderInfo.routerIncluded}}</td>
             </tr>
-            <tr class="rowstyle">
-              <td class="columnstyle">serial IP from Carrier:{{orderInfo.serIpFromCarrier}}</td>
+            <tr class="rowstyle" *ngIf="orderInfo.serIpFromCarrier && orderInfo.serIpFromCarrier != ''">
+              <td class="columnstyle">serial IP from Carrier: {{orderInfo.serIpFromCarrier}}</td>
             </tr>
-            <tr class="rowstyle">
-              <td class="columnstyle">Custom Serail IP from Carrier:{{orderInfo.custSerIpFromCarrier}}</td>
+            <tr class="rowstyle" *ngIf="orderInfo.custSerIpFromCarrier && orderInfo.custSerIpFromCarrier != ''">
+              <td class="columnstyle">Custom Serail IP from Carrier: {{orderInfo.custSerIpFromCarrier}}</td>
             </tr>
-            <tr class="rowstyle">
-              <td class="columnstyle">LAN IP's:{{orderInfo.ipReceivedFromCarrier}}</td>
+            <tr class="rowstyle" *ngIf="phoneStringArray && phoneStringArray != ''">
+              <td class="columnstyle">DID: {{phoneStringArray}}</td>
             </tr>
-            <tr class="rowstyle">
-              <td class="columnstyle">Router Password:{{orderInfo.routerPassword}}</td>
+            <tr class="rowstyle" *ngIf="orderInfo.ipReceivedFromCarrier && orderInfo.ipReceivedFromCarrier != ''">
+              <td class="columnstyle">LAN IP's: {{orderInfo.ipReceivedFromCarrier}}</td>
             </tr>
-            <tr class="rowstyle">
-              <td class="columnstyle">Provider DNS:{{orderInfo.providerDNS}}</td>
+            <tr class="rowstyle" *ngIf="orderInfo.routerPassword && orderInfo.routerPassword != ''">
+              <td class="columnstyle">Router Password: {{orderInfo.routerPassword}}</td>
             </tr>
-            <tr class="rowstyle">
-              <td class="columnstyle">Provider DNS Notes:{{orderInfo.providerDNS}}</td>
+            <tr class="rowstyle" *ngIf="orderInfo.providerDNS && orderInfo.providerDNS != ''">
+              <td class="columnstyle">Provider DNS: {{orderInfo.providerDNS}}</td>
             </tr>
-            <tr class="rowstyle">
-              <td class="columnstyle">LEC Circuit ID:{{orderInfo.lecCircuitId}}</td>
+            <tr class="rowstyle" *ngIf="orderInfo.dnsNotes && orderInfo.dnsNotes != ''">
+              <td class="columnstyle">Provider DNS Notes: {{orderInfo.dnsNotes}}</td>
             </tr>
-            <tr class="rowstyle">
-              <td class="columnstyle">Loop Provided By:{{orderInfo.providedBy}}</td>
+            <tr class="rowstyle" *ngIf="orderInfo.lecCircuitId && orderInfo.lecCircuitId != ''">
+              <td class="columnstyle">LEC Circuit ID: {{orderInfo.lecCircuitId}}</td>
             </tr>
-            <tr class="rowstyle">
-              <td class="columnstyle">Carrier Port/IOC/Bundle Circuit ID:{{orderInfo.carrierCuitId}}</td>
+            <tr class="rowstyle" *ngIf="orderInfo.providedBy && orderInfo.providedBy != ''">
+              <td class="columnstyle">Loop Provided By: {{orderInfo.providedBy}}</td>
+            </tr>
+            <tr class="rowstyle" *ngIf="orderInfo.carrierCuitId &&orderInfo.carrierCuitId != ''">
+              <td class="columnstyle">Carrier Port/IOC/Bundle Circuit ID: {{orderInfo.carrierCuitId}}</td>
             </tr>
           </tbody>
         </table>
