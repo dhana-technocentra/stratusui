@@ -24,14 +24,12 @@ export class AppComponent implements OnInit {
     } else {
       document.getElementById("navbar").style.display = "none";
     }
-    setTimeout(setup_navigation(), 0);
-    setTimeout(check_navigation(), 1);
   }
 
   changeOfRoutes() {
     setTimeout(() => {
-      setTimeout(setup_navigation(), 0);
-      setTimeout(check_navigation(), 1);
+      setup_navigation();
+      check_navigation();
     }, 1500);
   }
 

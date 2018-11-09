@@ -11,17 +11,26 @@ var breakHeights = [];
 // Get initial state
 var availableSpace, numOfVisibleItems, requiredSpace;
 
-function check_navigation() {
+function check_navigation() { 
+  //Only run if nav visible
+  if(!$('.navbar').is(':visible')) { return; }
+  
   var $btn = $('.nav.greedy button');
   var $hlinks = $('.nav.greedy .hidden-links');
   var $vlinksWrap = $('.nav.greedy');
   var $vlinks = $('.nav.greedy .links');
   var $secondarylinks = $('.nav.nav-secondary');
   
+  //Desktop
   if($(window).innerWidth() > 767) {
     //Put secondary items back on larger screen
     if($secondarylinks.children().length == 0) {
       $hlinks.children(".nav-secondary-item").appendTo($secondarylinks);
+    }
+    
+    //Re-set
+    if(totalSpace == 0) {
+      setup_navigation();
     }
 
     // Get instant state
@@ -54,37 +63,68 @@ function check_navigation() {
     } else {
       $btn.removeClass('hidden');
     }
-  } else {
+  } 
+  //Mobile
+  else {
     $btn.removeClass('hidden');
     
     //Small, put all items in hidden.
+    $vlinks.children().prependTo($hlinks);
+    
     if($secondarylinks.children().length > 0) {
-      $vlinks.children().prependTo($hlinks);
       $secondarylinks.children().appendTo($hlinks);
     }
   }
 }
 
 function setup_navigation() {
-  $('.nav.greedy .links').children().each(function() {
+  //Only run if nav visible
+  if(!$('.navbar').is(':visible')) { return; }
+
+  var $btn = $('.nav.greedy button');
+  var $hlinks = $('.nav.greedy .hidden-links');
+  var $vlinks = $('.nav.greedy .links');
+  var $secondarylinks = $('.nav.nav-secondary');
+  
+  //Reset
+  numOfItems = 0;
+  totalSpace = 0;
+  breakHeights = [];
+  availableSpace = 0;
+  numOfVisibleItems = 0;
+  requiredSpace = 0;
+  
+  $hlinks.children(".nav-secondary-item").appendTo($secondarylinks);
+  $hlinks.children().appendTo($vlinks);
+  $btn.attr("count", 0);
+  $btn.addClass('hidden');
+  $btn.unbind('click');
+  
+  //Setup
+  $vlinks.children().each(function() {
     totalSpace += $(this).outerHeight(true);
     numOfItems += 1;
     breakHeights.push(totalSpace);
   });
   
-  $('.nav.greedy button').on('click', function() {
-    $('.nav.greedy .hidden-links').toggleClass('hidden');
-    $('.nav.greedy button').toggleClass('active');
+  $btn.on('click', function() {
+    $hlinks.toggleClass('hidden');
+    $btn.toggleClass('active');
   });
   
   $(document).on("click", function(e){
-    if($(".nav.greedy button").hasClass("active")) {
+    if($btn.hasClass("active")) {
       if($(e.target).closest(".nav.greedy .hidden-links").length == 0 && $(e.target).closest(".nav.greedy button").length == 0){
-        $('.nav.greedy .hidden-links').toggleClass('hidden');
-        $('.nav.greedy button').toggleClass('active');
+        $hlinks.toggleClass('hidden');
+        $btn.toggleClass('active');
       }
     }
   });
+  
+  /*console.log('setup_navigation running');
+  console.log(totalSpace);
+  console.log(numOfItems);
+  console.log(breakHeights);*/
 }
 
 $(function() {
