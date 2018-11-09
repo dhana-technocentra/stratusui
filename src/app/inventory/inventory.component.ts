@@ -105,8 +105,8 @@ export class InventoryComponent implements OnInit {
       x = a.ponNumber.split('.').map(Number)
       y = b.ponNumber.split('.').map(Number)
     } else  {
-      x = a.headLocation.zip.split('.').map(Number)
-      y = b.headLocation.zip.split('.').map(Number)
+      x = a.headLocation.address + "." + a.headLocation.city + "." + a.headLocation.state + "." + a.headLocation.zip.split('.').map(String)
+      y = b.headLocation.address + "." + b.headLocation.city + "." + b.headLocation.state + "." + b.headLocation.zip.split('.').map(String)
     }
     
     for (var i = 0; i < 3; i++) {
