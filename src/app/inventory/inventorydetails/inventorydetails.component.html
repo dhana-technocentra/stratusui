@@ -5,11 +5,6 @@
         <span>{{order.companyName}}</span>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12" id="subheader">
-        Office Location
-      </div>
-    </div>
   </div>
   <div class="container" style="margin-top: 45px;">
     <div class="row">
@@ -17,7 +12,7 @@
         <table border="1" cellspacing='50' cellpadding='0'>
           <tbody>
             <tr class="tableheader">
-              <td style="padding: 15pt 1pt 1pt 5pt;width: 45%;">Address</td>
+              <td style="padding: 15pt 1pt 1pt 5pt;width: 45%;">Office Location</td>
               <td style="padding: 15pt 1pt 1pt 5pt;width: 300px;">On-Site Contact</td>
             </tr>
             <tr class="rowstyle">
@@ -92,11 +87,11 @@
               <td class="columnstyle">{{orderInfo.routerIncluded}}</td>
             </tr>
             <tr class="rowstyle" *ngIf="orderInfo.serIpFromCarrier && orderInfo.serIpFromCarrier != ''">
-              <td class="columnstyle">serial IP from Carrier:</td>
+              <td class="columnstyle">Serial IP from Carrier:</td>
               <td class="columnstyle">{{orderInfo.serIpFromCarrier}}</td>
             </tr>
             <tr class="rowstyle" *ngIf="orderInfo.custSerIpFromCarrier && orderInfo.custSerIpFromCarrier != ''">
-              <td class="columnstyle">Custom Serail IP from Carrier:</td>
+              <td class="columnstyle">Customer Serial IP from Carrier:</td>
               <td class="columnstyle">{{orderInfo.custSerIpFromCarrier}}</td>
             </tr>
             <tr class="rowstyle" *ngIf="phoneStringArray && phoneStringArray != ''">
@@ -241,10 +236,10 @@
               <td class="columnstyle">Router Included: {{orderInfo.routerIncluded}}</td>
             </tr>
             <tr class="rowstyle" *ngIf="orderInfo.serIpFromCarrier && orderInfo.serIpFromCarrier != ''">
-              <td class="columnstyle">serial IP from Carrier: {{orderInfo.serIpFromCarrier}}</td>
+              <td class="columnstyle">Serial IP from Carrier: {{orderInfo.serIpFromCarrier}}</td>
             </tr>
             <tr class="rowstyle" *ngIf="orderInfo.custSerIpFromCarrier && orderInfo.custSerIpFromCarrier != ''">
-              <td class="columnstyle">Custom Serail IP from Carrier: {{orderInfo.custSerIpFromCarrier}}</td>
+              <td class="columnstyle">Customer Serial IP from Carrier: {{orderInfo.custSerIpFromCarrier}}</td>
             </tr>
             <tr class="rowstyle" *ngIf="phoneStringArray && phoneStringArray != ''">
               <td class="columnstyle">DID: {{phoneStringArray}}</td>
