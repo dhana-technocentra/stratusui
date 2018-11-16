@@ -7,5 +7,5 @@ export const environment = {
   production: false,
   apiUrl: 'https://portaldev.stratusnet.com:8888',
   oAuthUserName: 'companion-oauth2-tQR3GceA86SlTuYM',
-  password: 'SAIbQB#j5!IRZ@mq'
+  password: 'f&7tj51cLbOp#4Kb32wJAjUWRY'
 };
