@@ -239,6 +239,36 @@ table {
       padding: 8px 24px 0px 24px;
       min-height: 20px;
     }
+    .sub-header {
+      font-size: 20px;
+      font-weight: 400;
+      color: #064B94;
+      text-justify: inter-word;
+      line-height: 1;
+  }
+
+  .ticket-list-header {
+    background-color: #064B94;
+    color: white;
+    font-size: 32px;
+    font-weight: 100;
+    margin-top: 40px;
+    text-justify: inter-word;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  line-height: 1;
+}
+.header3 {
+  color: #064B94;
+  font-size: 32px;
+  font-weight: 100;
+  margin-top: 25px;
+  text-justify: inter-word;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+  line-height: 1;
+}
 }
 
 .mat-header-row, .mat-row {
