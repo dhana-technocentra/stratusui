@@ -19,6 +19,7 @@
     padding: 5pt 1pt 1pt 5pt;
 }
 
+.did-number-scroll { max-height: 300px; overflow-x: hidden; overflow-y: scroll;}
 
 
 @media (max-width: 767px) {

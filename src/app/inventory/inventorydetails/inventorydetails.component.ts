@@ -32,8 +32,8 @@ export class InventorydetailsComponent implements OnInit {
           this.orderInfo = orderData;
           this.orderPhoneInfo = orderPhoneData;
           this.phoneStringArray = this.orderPhoneInfo.map(function(obj){
-            return obj.number + "\n";
-          });
+            return obj.number;
+          }).join("<br>");
           this.dataLoaded = true;
           this.spinnerService.hide();
         })

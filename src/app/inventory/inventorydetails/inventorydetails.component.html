@@ -96,7 +96,7 @@
             </tr>
             <tr class="rowstyle" *ngIf="phoneStringArray && phoneStringArray != ''">
               <td class="columnstyle">DID:</td>
-              <td class="columnstyle">{{phoneStringArray}}</td>
+              <td class="columnstyle"><div class="did-number-scroll" [innerHTML]="phoneStringArray"></div></td>
             </tr>
             <tr class="rowstyle" *ngIf="orderInfo.ipReceivedFromCarrier && orderInfo.ipReceivedFromCarrier != ''">
               <td class="columnstyle">LAN IP's:</td>
@@ -242,7 +242,7 @@
               <td class="columnstyle">Customer Serial IP from Carrier: {{orderInfo.custSerIpFromCarrier}}</td>
             </tr>
             <tr class="rowstyle" *ngIf="phoneStringArray && phoneStringArray != ''">
-              <td class="columnstyle">DID: {{phoneStringArray}}</td>
+              <td class="columnstyle">DID: <div class="did-number-scroll" [innerHTML]="phoneStringArray"></div></td>
             </tr>
             <tr class="rowstyle" *ngIf="orderInfo.ipReceivedFromCarrier && orderInfo.ipReceivedFromCarrier != ''">
               <td class="columnstyle">LAN IP's: {{orderInfo.ipReceivedFromCarrier}}</td>
