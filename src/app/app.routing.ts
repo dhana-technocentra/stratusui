@@ -7,7 +7,8 @@ import { VoiceComponent } from './voice/voice.component';
 import { FirewallComponent } from './firewall/firewall.component';
 import { NetworkComponent } from './network/network.component';
 import {TicketComponent } from './ticket/ticket.component';
-import { AuthGuard }    from './core/guards';
+import { HomeComponent } from './home/home.component';
+import { AuthGuard }    from './core/guards'; 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/inventory', pathMatch: 'full' },
     { path: 'customersupport', redirectTo: '/customersupport', pathMatch: 'full', data: {title: 'Customer Support'}, canActivate: [AuthGuard] },
@@ -16,7 +17,8 @@ const appRoutes: Routes = [
     { path: 'inventory', component: InventoryComponent, data: {title: 'Inventory Details'}, canActivate: [AuthGuard]},
     { path: 'voice', component: VoiceComponent, canActivate: [AuthGuard] },
     { path: 'firewall', component: FirewallComponent, canActivate: [AuthGuard] },
-    { path: 'network', component: NetworkComponent, canActivate: [AuthGuard] }
+    { path: 'network', component: NetworkComponent, canActivate: [AuthGuard] },
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] }
     //{ path: '**', redirectTo: '' }
 ];
 

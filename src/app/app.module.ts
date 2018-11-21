@@ -17,6 +17,7 @@ import {MatTableModule} from '@angular/material/table';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import {ToastModule} from 'ng6-toastr';
 import {SupportModule } from './support/support.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({ 
   declarations: [
@@ -34,6 +35,7 @@ import {SupportModule } from './support/support.module';
     VoiceModule,
     FirewallModule,
     NetworkModule,
+    HomeModule,
     CustomerSupportModule,
     HttpModule,
     MatTableModule,

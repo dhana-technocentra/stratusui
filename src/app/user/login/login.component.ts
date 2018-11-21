@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
         }
         
     }
-
+ 
     // convenience getter for easy access to form fields
     get f() { return this.loginForm.controls; }
 
@@ -105,7 +105,7 @@ export class LoginComponent implements OnInit {
                     
                     setTimeout(()=>{ 
                         this.appComponent.checkForAuthentication();
-                        this.router.navigate(['inventory']);
+                        this.router.navigate(['home']);
                     }, 1500);
                 },
                 error => {

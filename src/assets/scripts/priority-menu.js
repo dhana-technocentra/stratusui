@@ -23,6 +23,8 @@ function check_navigation() {
   
   //Desktop
   if($(window).innerWidth() > 767) {
+    $('.nav.hidden-links a').unbind('click'); 
+    
     //Put secondary items back on larger screen
     if($secondarylinks.children().length == 0) {
       $hlinks.children(".nav-secondary-item").appendTo($secondarylinks);
@@ -74,6 +76,15 @@ function check_navigation() {
     if($secondarylinks.children().length > 0) {
       $secondarylinks.children().appendTo($hlinks);
     }
+    
+    
+    $('.nav.hidden-links a').unbind('click');
+    $('.nav.hidden-links a').on('click', function() {
+      $hlinks.toggleClass('hidden');
+      $btn.toggleClass('active');
+    });
+  
+    
   }
 }
 
