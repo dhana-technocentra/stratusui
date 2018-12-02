@@ -86,10 +86,10 @@ export class UserProfileComponent implements OnInit {
             lastName: ['', [Validators.required]],
             email: ['', [Validators.required, Validators.email]],
             registerDate: ['', [Validators.required]],
-            address: ['', [Validators.required]],
-            city: ['', [Validators.required]],
-            state: ['', [Validators.required]],
-            zipCode: ['', [Validators.required]],
+            address: [''],
+            city: [''],
+            state: [''],
+            zipCode: [''],
             title: ['', [Validators.required]],
             officePhone:
                 this.formBuilder.group({
