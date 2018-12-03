@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthenticationService } from './core/services/authentication.service';
 
@@ -12,6 +12,7 @@ export declare var Tawk_API: any;
 })
 export class AppComponent implements OnInit {
   title = '';
+  chatstatus = 'Offline';
   showNavBar = false;
 
   constructor(private authenticationService: AuthenticationService, private router: Router) {
@@ -20,14 +21,32 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (this.authenticationService.isAuthenticated()) {
-      Tawk_API.onLoad = function () {
-        Tawk_API.showWidget();
+      
+      /*Tawk_API.onStatusChange = (status) => {
+        console.log('ddd');
+        if(status === 'online'){
+            this.chatstatus = 'Online';
+        } else if(status === 'away'){
+            this.chatstatus = 'Online';
+        } else{
+            this.chatstatus = 'Offline';
+        }
+      };*/
+      
+      if(Tawk_API.getStatus() === 'online'){
+          this.chatstatus = 'Online';
+      } else if(Tawk_API.getStatus() === 'away'){
+          this.chatstatus = 'Online';
+      } else{
+          this.chatstatus = 'Offline';
+      }
+      
+      if (window.innerWidth > 767) {
+        document.getElementById("desktop-chat").style.display = "block";
       }
       document.getElementById("navbar").style.display = "block";
     } else {
-      Tawk_API.onLoad = function () {
-        Tawk_API.hideWidget();
-      }
+      document.getElementById("desktop-chat").style.display = "none";
       document.getElementById("navbar").style.display = "none";
     }
   }
@@ -40,29 +59,55 @@ export class AppComponent implements OnInit {
   }
 
   checkForAuthentication() {
-    if (this.authenticationService.isAuthenticated()) {
-      Tawk_API.onLoad = function () {
-        Tawk_API.showWidget();
+   if (this.authenticationService.isAuthenticated()) {
+     /*Tawk_API.onStatusChange = (status) => {
+        console.log('ddd');
+        if(status === 'online'){
+            this.chatstatus = 'Online';
+        } else if(status === 'away'){
+            this.chatstatus = 'Online';
+        } else{
+            this.chatstatus = 'Offline';
+        }
+      };*/
+      
+      if(Tawk_API.getStatus() === 'online'){
+          this.chatstatus = 'Online';
+      } else if(Tawk_API.getStatus() === 'away'){
+          this.chatstatus = 'Online';
+      } else{
+          this.chatstatus = 'Offline';
       }
-      Tawk_API.onLoad();
+     
+      if (window.innerWidth > 767) {
+        document.getElementById("desktop-chat").style.display = "block";
+      }
       document.getElementById("navbar").style.display = "block";
     } else {
-      Tawk_API.onLoad = function () {
-        Tawk_API.hideWidget();
-      }
-      Tawk_API.onLoad();
+      document.getElementById("desktop-chat").style.display = "none";
       document.getElementById("navbar").style.display = "none";
     }
   }
 
   logOut() {
     this.authenticationService.logout();
-    Tawk_API.onLoad = function () {
-      Tawk_API.hideWidget();
-    }
-    Tawk_API.onLoad();
+    document.getElementById("desktop-chat").style.display = "none";
     document.getElementById("navbar").style.display = "none";
     this.router.navigate(['/user/login'], {});
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (window.innerWidth <= 767 && document.getElementById("desktop-chat").style.display == "block") {
+      if (this.authenticationService.isAuthenticated()) { 
+        document.getElementById("desktop-chat").style.display = "none"; 
+      }
+    } else if (window.innerWidth > 767 && document.getElementById("desktop-chat").style.display == "none") {
+      if (this.authenticationService.isAuthenticated()) { 
+        document.getElementById("desktop-chat").style.display = "block"; 
+      }
+    }
+    
+  }
+  
 }
